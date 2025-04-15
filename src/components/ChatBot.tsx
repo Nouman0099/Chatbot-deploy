@@ -98,7 +98,7 @@ export default function ChatBot() {
       <div className="pt-1 rounded-xl pb-10 bg-gradient-to-br from-purple-950 to bg-indigo-900 border border-indigo-700">
         <div className="flex justify-between items-center pr-10">
           <p className="font-extrabold text-2xl capitalize mx-auto text-white pb-2">
-            Prediction - chatbot
+          Finance For Founders - chatbot
           </p>
           {/* <span className="cursor-pointer">
             <IoMdClose onClick={() => setOpen(false)} size={24} />
