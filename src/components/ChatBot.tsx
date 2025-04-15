@@ -84,14 +84,29 @@ export default function ChatBot() {
       setLoading(false);
     }
   };
+
+  // const formatMessage = (message: string) => {
+  //   return message
+  //     .replace(/(\*\*)(.*?)(\*\*)/g, "<strong>$2</strong>") // Remove ** and make text bold
+  //     .replace(/### (.*?)$/g, "<h2><strong>$1</strong></h2>") // Convert ### to heading 2 and make it bold
+  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, "$1") // Remove () or [] around URLs
+  //     .replace(
+  //       /(https?:\/\/[^\s]+)/g,
+  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>' // Add a line break before the URL
+  //     );
+  // };
+  
   const formatMessage = (message: string) => {
     return message
+      .replace(/(\*\*)(.*?)(\*\*)/g, "<strong>$2</strong>") // Remove ** and make text bold
+      .replace(/### (.*?)(?=\s|$)/g, "<h2><strong>$1</strong></h2>") // Convert ### to heading 2 and make it bold
       .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, "$1") // Remove () or [] around URLs
       .replace(
         /(https?:\/\/[^\s]+)/g,
-        '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-      ); // Add a line break before the URL
+        '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>' // Add a line break before the URL
+      );
   };
+  
 
   return (
     <div className="max-w-screen-sm mx-auto pt-20">
