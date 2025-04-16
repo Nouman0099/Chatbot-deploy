@@ -103,11 +103,11 @@ export default function PopupChatBot() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const userInfo = {
-      name: name,
-      email: email,
-      phone_no: number,
-    };
+    // const userInfo = {
+    //   name: name,
+    //   email: email,
+    //   phone_no: number,
+    // };
     // console.log(userInfo);
 
     setName("");
@@ -305,7 +305,7 @@ export default function PopupChatBot() {
                       <div className="bg-purple-600 rounded-r-2xl rounded-b-2xl p-3 mt-1">
                         <p className="text-[13px] text-white">
                           Please confirm your contact information in case we get
-                          disconnected, and we'll transfer you to a
+                          disconnected, and we will transfer you to a
                           FinanceForFounder representative.
                         </p>
                       </div>
@@ -449,7 +449,7 @@ export default function PopupChatBot() {
                   <Loading1 />
                 ) : (
                   <span>
-                    <IoSendOutline className="text-white h-7 w-7" />
+                    <IoSendOutline onClick={handleMessage} className="text-white h-7 w-7" />
                   </span>
                 )}
               </div>
