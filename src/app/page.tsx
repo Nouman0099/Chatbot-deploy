@@ -1,10 +1,5 @@
-import ChatBot from "@/components/ChatBot";
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <div className="bg-indigo-950 h-screen ">
-
-      <ChatBot/>
-    </div>
-  );
+export default function Page() {
+  redirect('/financeforfounder');
 }

@@ -39,12 +39,12 @@ export default function ChatBot() {
     setLoading(true);
     try {
       const payload = { chatInput: newMessage.user };
-      console.log(payload);
+      // console.log(payload);
       const res = await axios.post(
         `https://agent1.c1m.ai/webhook/a9f23ed9-0a2f-4ea0-b64c-0b166e32b296`,
         payload
       );
-      console.log(res.data);
+      // console.log(res.data);
       const botResponse = res.data[0].output;
 
     //   const token = localStorage.getItem("usertoken");
@@ -63,7 +63,7 @@ export default function ChatBot() {
     //   );
     //   console.log(res.data);
     //   const botResponse = res.data.video_path;
-      // update the bot response for the latest user message
+    // update the bot response for the latest user message
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
           index === prevMessages.length - 1
@@ -84,17 +84,6 @@ export default function ChatBot() {
       setLoading(false);
     }
   };
-
-  // const formatMessage = (message: string) => {
-  //   return message
-  //     .replace(/(\*\*)(.*?)(\*\*)/g, "<strong>$2</strong>") // Remove ** and make text bold
-  //     .replace(/### (.*?)$/g, "<h2><strong>$1</strong></h2>") // Convert ### to heading 2 and make it bold
-  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, "$1") // Remove () or [] around URLs
-  //     .replace(
-  //       /(https?:\/\/[^\s]+)/g,
-  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>' // Add a line break before the URL
-  //     );
-  // };
   
   const formatMessage = (message: string) => {
     return message
