@@ -160,7 +160,7 @@ export default function PopupChatBot() {
             height={80}
             width={80}
             priority
-            className="rounded-full h-12 w-12"
+            className="rounded-full h-12 w-12 cursor-pointer"
           />
         </button>
         {isPopoverOpen && (
@@ -449,7 +449,7 @@ export default function PopupChatBot() {
                   <Loading1 />
                 ) : (
                   <span>
-                    <IoSendOutline onClick={handleMessage} className="text-white h-7 w-7" />
+                    <IoSendOutline onClick={handleMessage} className="text-white h-7 w-7 cursor-pointer" />
                   </span>
                 )}
               </div>

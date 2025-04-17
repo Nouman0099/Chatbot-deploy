@@ -163,7 +163,7 @@ export default function ChatBot() {
             ) : (
               <button
                 onClick={handleMessage}
-                className="rounded-lg px-3 py-2 font-semibold w-24 bg-indigo-600 hover:bg-indigo-500 text-white"
+                className="rounded-lg px-3 py-2 font-semibold w-24 bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer"
               >
                 Send
               </button>
