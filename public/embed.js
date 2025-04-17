@@ -15,9 +15,7 @@ function createChatWidget(options) {
     document.body.appendChild(iframe);
   }
   
-  const Chatbot = {
+  // Attach to global scope
+  window.Chatbot = {
     init: createChatWidget,
-  };
-  
-  export default Chatbot;
-  
+  };  
