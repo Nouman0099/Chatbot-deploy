@@ -33,7 +33,7 @@ function createChatWidget(options) {
     iframe.style.position = 'fixed';
     iframe.style.bottom = '20px';
     iframe.style[options.position || 'right'] = '20px';
-    iframe.style.width = '500px';
+    iframe.style.width = '600px';
     iframe.style.height = '500px';
     iframe.style.border = 'none';
     iframe.style.borderRadius = '10px';
