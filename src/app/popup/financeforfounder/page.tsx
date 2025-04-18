@@ -3,7 +3,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div className="bg-indigo-950 h-screen ">
+    <div>
       <PopupChatbot/>
     </div>
   )
