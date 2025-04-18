@@ -6,7 +6,7 @@ function createChatWidget(options) {
     iframe.style.bottom = '24px';
     iframe.style[options.position || 'right'] = '20px';
     iframe.style.width = '550px';
-    iframe.style.height = '500px';
+    iframe.style.height = '550px';
     iframe.style.border = 'none';
     iframe.style.borderRadius = '10px';
     iframe.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
