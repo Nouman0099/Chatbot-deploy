@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
+    <!-- <script>
         window.addEventListener("DOMContentLoaded", function () {
           const script = document.createElement("script");
           script.src = "https://cai.c1m.ai/embed.js";
@@ -14,10 +14,6 @@
                 apiUrl: "https://cai.c1m.ai/financeforfounder",
                 position: "right",
                 welcomeMessage: "Hey there! How can I help you today?",
-                // bgColor: "transparent", // Ensure the background is transparent
-                // fontFamily: "Arial, sans-serif",
-                // fontSize: "14px",
-                // textColor: "#ffffff",
               });
             } else {
               console.error("Chatbot object not found after script loaded.");
@@ -28,8 +24,32 @@
           };
           document.head.appendChild(script);
         });
+      </script> -->
+      <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          const script = document.createElement("script");
+          script.src = "https://cai.c1m.ai/embed.js";
+          script.onload = function () {
+            if (window.Chatbot) {
+              window.Chatbot.init({
+                apiUrl: "https://cai.c1m.ai/financeforfounder",
+                welcomeMessage: "Hey there! How can I help you today?",
+                position: "right",
+                width: "500px",
+                height: "600px",
+                fontSize: "16px",
+                fontColor: "#ffffff",
+                bgColor: "#1e1b4b",
+                bubbleColor: "#3730a3",
+                botColor: "#6b21a8",
+              });
+            }
+          };
+          document.head.appendChild(script);
+        });
       </script>
-</head>
+      
+    </head>
 <body style="background-color: transparent; margin: 0; padding: 0;">
     <p>Hello World!</p>
 </body>
