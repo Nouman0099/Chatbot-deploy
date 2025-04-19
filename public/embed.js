@@ -22,14 +22,16 @@
 function createChatWidget(options) {
     const iframe = document.createElement("iframe");
   
-    const params = new URLSearchParams({
+    const styleParams = {
       welcomeMessage: options.welcomeMessage || "",
       fontSize: options.fontSize || "14px",
       fontColor: options.fontColor || "#ffffff",
-      bgColor: options.bgColor || "#1e1b4b", // Default indigo-900
-      bubbleColor: options.bubbleColor || "#3730a3", // indigo-700
-      botColor: options.botColor || "#6b21a8", // purple-800
-    });
+      bgColor: options.bgColor || "#1e1b4b",
+      bubbleColor: options.bubbleColor || "#3730a3",
+      botColor: options.botColor || "#6b21a8",
+    };
+  
+    const params = new URLSearchParams(styleParams);
   
     iframe.src = `${options.apiUrl}?${params.toString()}`;
     iframe.style.position = "fixed";
@@ -40,6 +42,8 @@ function createChatWidget(options) {
     iframe.style.border = "none";
     iframe.style.borderRadius = "10px";
     iframe.style.zIndex = "9999";
+
+    console.log("iframe src:", iframe.src);
   
     iframe.setAttribute("id", "custom-chatbot");
     document.body.appendChild(iframe);
@@ -48,4 +52,5 @@ function createChatWidget(options) {
   window.Chatbot = {
     init: createChatWidget,
   };
+  
   
