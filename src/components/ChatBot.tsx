@@ -525,7 +525,7 @@ export default function ChatBot() {
   const [styleParams, setStyleParams] = useState({
     fontSize: '14px',
     fontColor: '#ffffff',
-    bgColor: '#1e1b4b',
+    bgColor: '',
     bubbleColor: '#3730a3',
     botColor: '#6b21a8',
   });
@@ -543,7 +543,7 @@ export default function ChatBot() {
     setStyleParams({
       fontSize: params.get('fontSize') || '14px',
       fontColor: params.get('fontColor') || '#ffffff',
-      bgColor: params.get('bgColor') || '#1e1b4b',
+      bgColor: params.get('bgColor') || '',
       bubbleColor: params.get('bubbleColor') || '#3730a3',
       botColor: params.get('botColor') || '#6b21a8',
     });
@@ -612,13 +612,15 @@ export default function ChatBot() {
   return (
     <div className="max-w-screen-sm mx-auto pt-20">
       <div
-        className="pt-1 rounded-xl pb-10 border border-indigo-700"
-        style={{ backgroundColor: bgColor }}
+        className={`pt-1 rounded-xl pb-10 border border-indigo-700 ${
+          bgColor ? '' : 'bg-gradient-to-br from-indigo-900 to-purple-900'
+        }`}
+        style={bgColor ? { backgroundColor: bgColor } : {}}
       >
         <div className="flex justify-between items-center pr-10">
           <p
             className="font-extrabold text-2xl capitalize mx-auto pb-2"
-            style={{ color: fontColor }}
+            style={{ color: fontColor, fontSize }}
           >
             Finance For Founders
           </p>
@@ -699,3 +701,4 @@ export default function ChatBot() {
     </div>
   );
 }
+
