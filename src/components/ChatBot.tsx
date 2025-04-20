@@ -541,7 +541,7 @@ export default function ChatBot() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStyleParams({
-      fontSize: params.get('fontSize') || '14px',
+      fontSize: params.get('fontSize') || '24px',
       fontColor: params.get('fontColor') || '#ffffff',
       bgColor: params.get('bgColor') || '',
       bubbleColor: params.get('bubbleColor') || '#3730a3',
@@ -613,14 +613,14 @@ export default function ChatBot() {
     <div className="max-w-screen-sm mx-auto pt-20">
       <div
         className={`pt-1 rounded-xl pb-10 border border-indigo-700 ${
-          bgColor ? '' : 'bg-gradient-to-br from-indigo-900 to-purple-900'
+          bgColor ? '' : 'bg-gradient-to-br from-indigo-950 to-purple-950'
         }`}
         style={bgColor ? { backgroundColor: bgColor } : {}}
       >
         <div className="flex justify-between items-center pr-10">
           <p
             className="font-extrabold text-2xl capitalize mx-auto pb-2"
-            style={{ color: fontColor, fontSize }}
+            style={{ color: fontColor, fontSize:fontSize }}
           >
             Finance For Founders
           </p>
@@ -635,7 +635,7 @@ export default function ChatBot() {
                       className="rounded-xl px-3 py-[6px] text-sm mr-3"
                       style={{
                         backgroundColor: bubbleColor,
-                        fontSize,
+                        // fontSize,
                         color: fontColor,
                       }}
                     >
@@ -650,7 +650,7 @@ export default function ChatBot() {
                         className="rounded-xl px-3 py-[6px] text-sm break-words overflow-hidden"
                         style={{
                           backgroundColor: botColor,
-                          fontSize,
+                          // fontSize,
                           color: fontColor,
                         }}
                         dangerouslySetInnerHTML={{
@@ -680,7 +680,7 @@ export default function ChatBot() {
               style={{
                 backgroundColor: '#4f46e5',
                 color: fontColor,
-                fontSize,
+                // fontSize,
               }}
               required
             />
