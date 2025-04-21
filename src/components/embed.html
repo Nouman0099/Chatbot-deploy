@@ -4,27 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script>
-        window.addEventListener("DOMContentLoaded", function () {
-          const script = document.createElement("script");
-          script.src = "https://cai.c1m.ai/embed.js";
-          script.onload = function () {
-            if (window.Chatbot) {
-              window.Chatbot.init({
-                apiUrl: "https://cai.c1m.ai/financeforfounder",
-                position: "right",
-                welcomeMessage: "Hey there! How can I help you today?",
-              });
-            } else {
-              console.error("Chatbot object not found after script loaded.");
-            }
-          };
-          script.onerror = function () {
-            console.error("Failed to load chatbot script.");
-          };
-          document.head.appendChild(script);
-        });
-      </script> -->
+      
       <!-- <script>
         window.addEventListener("DOMContentLoaded", function () {
           const script = document.createElement("script");
@@ -38,12 +18,12 @@
                 sidePadding: "20px",
                 bottom: "30px",
                 width: "900px",
-                height: "550px",
-                fontSize: "25px",
-                fontColor: "#ffe4c4",
-                bgColor: "#0f172a",
-                bubbleColor: "#2563eb",
-                botColor: "#7c3aed",
+                height: "500px",
+                fontSize: "24px",
+                fontColor: "white",
+                bgColor: "#35225d", // Gradient here
+                bubbleColor: "#4338ca", // user message
+                botColor: "#6b21a8", // chatbot response
               });
             }
           };
@@ -58,25 +38,24 @@
           script.onload = function () {
             if (window.Chatbot) {
               window.Chatbot.init({
-                apiUrl: "https://cai.c1m.ai/financeforfounder",
+                apiUrl: "https://cai.c1m.ai/popup/financeforfounder",
                 welcomeMessage: "Hey there! How can I help you today?",
                 position: "right",
                 sidePadding: "20px",
-                bottom: "30px",
+                bottom: "0px",
                 width: "900px",
-                height: "550px",
+                height: "590px",
                 fontSize: "24px",
                 fontColor: "white",
-                bgColor: "#35225d", // Gradient here
-                bubbleColor: "#4338ca", // user message
-                botColor: "#6b21a8", // chatbot response
+                bgColor: "#4338ca",
+                bubbleColor: "#4338ca",
+                botColor: "#6b21a8",
               });
             }
           };
           document.head.appendChild(script);
         });
       </script>
-      
       
       
     </head>
