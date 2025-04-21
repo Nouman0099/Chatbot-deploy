@@ -725,7 +725,7 @@ export default function PopupChatBot() {
             <ScrollArea className="lg:w-[360px] w-[350px] lg:h-[350px] h-[300px] rounded-md">
               {isSecondPage ? (
                 <div className="px-8 py-5">
-                  <p className="text-white text-sm">
+                  <p className="text-white text-sm" style={{ color: fontColor}}>
                     Sync this conversation by connecting to your favorite
                     messaging app to continue the conversation your way.
                   </p>
@@ -748,13 +748,13 @@ export default function PopupChatBot() {
                         priority
                       />
                     </div>
-                    <p className="text text-white">WhatsApp</p>
+                    <p className="text text-white" style={{ color: fontColor }}>WhatsApp</p>
                   </div>
                 </div>
               ) : (
                 <div>
                   <div className="px-12 py-5">
-                    <p className="text-white text-[12px]">
+                    <p className="text-white text-[12px]" style={{ color: fontColor }}>
                       Sync your conversation and continue messaging us through
                       your favorite app.
                     </p>
@@ -781,7 +781,7 @@ export default function PopupChatBot() {
                       {date}
                     </p>
                     <div className="max-w-[80%]">
-                      <p className="text-[12px] text-white">
+                      <p className="text-[12px] text-white" style={{ color: fontColor }}>
                         FinanceForFounder Representative
                       </p>
                       <div className="bg-purple-600 rounded-t-2xl rounded-e-2xl p-3">
