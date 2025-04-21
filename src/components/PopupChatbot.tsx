@@ -479,6 +479,7 @@ export default function PopupChatBot() {
       fontSize: '14px',
       fontColor: '#ffffff',
       bgColor: '',
+      bgColor1: '',
       bubbleColor: '#3730a3',
       botColor: '#6b21a8',
     });
@@ -503,6 +504,7 @@ export default function PopupChatBot() {
         fontSize: params.get('fontSize') || '24px',
         fontColor: params.get('fontColor') || '#ffffff',
         bgColor: params.get('bgColor') || '',
+        bgColor1: params.get('bgColor1') || '',
         bubbleColor: params.get('bubbleColor') || '#4338ca',
         botColor: params.get('botColor') || '#6b21a8',
       });
@@ -623,7 +625,7 @@ export default function PopupChatBot() {
         '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>' // Add a line break before the URL
       );
   };
-  const { fontSize, fontColor, bgColor, bubbleColor, botColor } = styleParams;
+  const { fontSize, fontColor, bgColor, bgColor1, bubbleColor, botColor } = styleParams;
 
   return (
     <div className="relative">
@@ -649,11 +651,12 @@ export default function PopupChatBot() {
         </button>
         {isPopoverOpen && (
           <div
-            className={`p-0 border-none w-[360px] lg:h-[480px] md:h-[445px] h-[440px] lg:bottom-12 md:bottom-6 bottom-8 sm:right-8 right-[6px] fixed z-40 rounded-3xl bg-gradient-to-r from-indigo-900 to-purple-900 ${
+            className={`p-0 border-none w-[360px] lg:h-[480px] md:h-[445px] h-[440px] lg:bottom-12 md:bottom-6 bottom-8 sm:right-8 right-[6px] fixed z-40 rounded-3xl ${bgColor1 ? '' : 'bg-gradient-to-r from-indigo-900 to-purple-900'} ${
               closing
                 ? "animate__animated animate__fadeOutBottomRight"
                 : "animate__animated animate__fadeInBottomRight animate__faster"
             }`}
+            style={bgColor1 ? { backgroundColor: bgColor1 } : {}}
           >
             {!isSecondPage ? (
               <div className={`${bgColor ? '' :'bg-indigo-800' } rounded-t-3xl px-5 flex justify-between items-center h-16`} style={bgColor ? { backgroundColor: bgColor } : {}}>

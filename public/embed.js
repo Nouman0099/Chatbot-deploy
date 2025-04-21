@@ -128,6 +128,7 @@ function createChatWidget(options) {
       fontSize: options.fontSize || "16px",
       fontColor: options.fontColor || "#ffffff",
       bgColor: options.bgColor || "#1e1b4b",
+      bgColor1: options.bgColor1 || "#1e1b4b",
       bubbleColor: options.bubbleColor || "#3730a3",
       botColor: options.botColor || "#6b21a8",
       embed: "true", // 👈 this marks iframe for conditional styling
