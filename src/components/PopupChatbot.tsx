@@ -923,7 +923,7 @@ export default function PopupChatBot() {
               )}
             </ScrollArea>
             {!isSecondPage && (
-              <div className="flex items-center space-x-3 bg-indigo-800 h-16 rounded-b-3xl px-4">
+              <div className={`flex items-center space-x-3 ${bgColor ? '' :'bg-indigo-800'} h-16 rounded-b-3xl px-4`} style={bgColor ? { backgroundColor: bgColor } : {}}>
                 <input
                   type="text"
                   value={message}
