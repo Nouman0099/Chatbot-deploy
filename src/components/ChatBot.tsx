@@ -544,7 +544,7 @@ export default function ChatBot() {
       fontSize: params.get('fontSize') || '24px',
       fontColor: params.get('fontColor') || '#ffffff',
       bgColor: params.get('bgColor') || '',
-      bubbleColor: params.get('bubbleColor') || '#3730a3',
+      bubbleColor: params.get('bubbleColor') || '#4338ca',
       botColor: params.get('botColor') || '#6b21a8',
     });
   }, []);
@@ -613,7 +613,7 @@ export default function ChatBot() {
     <div className="max-w-screen-sm mx-auto pt-20">
       <div
         className={`pt-1 rounded-xl pb-10 border border-indigo-700 ${
-          bgColor ? '' : 'bg-gradient-to-br from-indigo-950 to-purple-950'
+          bgColor ? '' : 'bg-gradient-to-br from-indigo-900 to-purple-950'
         }`}
         style={bgColor ? { backgroundColor: bgColor } : {}}
       >
