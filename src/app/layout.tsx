@@ -34,12 +34,48 @@
 // }
 
 
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
+// import "./globals.css";
+// import BackgroundWrapper from "@/components/BackgroundWrapper";
+
+// const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+// const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+
+// export const metadata = {
+//   title: "C1m.ai",
+//   description: "Finance For Founders",
+// };
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <html lang="en">
+//       <body
+//         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen m-0 p-0`}
+//       >
+//         <BackgroundWrapper>{children}</BackgroundWrapper>
+//       </body>
+//     </html>
+//   );
+// }
+
 import "./globals.css";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "C1m.ai",
@@ -53,10 +89,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen m-0 p-0`}
-      >
-        <BackgroundWrapper>{children}</BackgroundWrapper>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Suspense fallback={null}>
+          <BackgroundWrapper>
+            {children}
+          </BackgroundWrapper>
+        </Suspense>
       </body>
     </html>
   );
