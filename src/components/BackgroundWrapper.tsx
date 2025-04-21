@@ -26,7 +26,7 @@ export default function BackgroundWrapper({ children }: { children: ReactNode })
   const isEmbedded = searchParams.get("embed") === "true";
 
   return (
-    <div className={isEmbedded ? "bg-transparent" : "bg-indigo-950"}>
+    <div className={isEmbedded ? "bg-transparent" : "bg-indigo-950 h-screen"}>
       {children}
     </div>
   );
