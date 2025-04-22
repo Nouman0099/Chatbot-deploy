@@ -5,7 +5,7 @@ import axios from 'axios';
 import Loading1 from '@/components/Loading1';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-export default function ChatBot() {
+export default function ChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
     fontSize: '14px',
     fontColor: '#ffffff',
@@ -55,12 +55,13 @@ export default function ChatBot() {
   const sendMessage = async (newMessage: { user: string; botRes: string | null }) => {
     setLoading(true);
     try {
-      const payload = { chatInput: newMessage.user };
+      const payload = { input: {question: newMessage.user, sessionid: 'exco22'} };
       const res = await axios.post(
-        `https://agent1.c1m.ai/webhook/a9f23ed9-0a2f-4ea0-b64c-0b166e32b296`,
+        `https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0`,
         payload
       );
-      const botResponse = res.data[0].output;
+      // console.log(res)
+      const botResponse = res.data.output;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
           index === prevMessages.length - 1 ? { ...msg, botRes: botResponse } : msg
@@ -106,7 +107,7 @@ export default function ChatBot() {
             className="font-extrabold text-2xl capitalize mx-auto pb-2"
             style={{ color: fontColor, fontSize:fontSize }}
           >
-            Finance For Founders
+            C1M Presales
           </p>
         </div>
         <div className="mt-2 border border-purple-400 rounded-xl max-w-xl h-[330px] overflow-y-auto mx-auto p-3 flex flex-col relative">

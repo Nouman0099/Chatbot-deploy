@@ -10,7 +10,7 @@ import "animate.css";
 import Loading1 from "./Loading1";
 import { IoSendOutline } from "react-icons/io5";
 
-export default function PopupChatBot() {
+export default function PopupChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
     fontSize: "14px",
     fontColor: "#ffffff",
@@ -81,14 +81,14 @@ export default function PopupChatBot() {
     setIsLoading(true);
     try {
       const res = await fetch(
-        "https://agent1.c1m.ai/webhook/a9f23ed9-0a2f-4ea0-b64c-0b166e32b296",
+        "https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify({ chatInput: newMessage.user }),
+          body: JSON.stringify({ input: {question: newMessage.user, sessionid: 'exco22'} }),
         }
       );
 
@@ -97,7 +97,7 @@ export default function PopupChatBot() {
       }
 
       const data = await res.json();
-      const botResponse = data[0].output;
+      const botResponse = data.output;
       //   console.log(botResponse);
       // res.data[0].output
 
@@ -218,7 +218,7 @@ export default function PopupChatBot() {
                   className="text-white font-bold text-xl"
                   style={{ color: fontColor, fontSize: fontSize }}
                 >
-                  Finance For Founders
+                  C1M Presales
                 </p>
                 <div className="flex space-x-2 text-white">
                   <span>
@@ -267,7 +267,7 @@ export default function PopupChatBot() {
                     className="text-white font-bold text-xl"
                     style={{ color: fontColor, fontSize: fontSize }}
                   >
-                    Finance For Founders
+                    C1M Presales
                   </p>
                 </div>
                 <span>
