@@ -349,11 +349,11 @@ export default function PopupChatBotC1m() {
                         className="text-[12px] text-white"
                         style={{ color: fontColor }}
                       >
-                        FinanceForFounder Representative
+                        C1M Presales Representative
                       </p>
                       <div className="bg-purple-600 rounded-2xl p-3">
                         <p className="text-[13px] text-white">
-                          Hello , thank you for contacting FinanceForFounder!
+                          Hello , thank you for contacting C1M Presales!
                         </p>
                       </div>
                       {/* <div className="bg-purple-600 rounded-r-2xl rounded-b-2xl p-3 mt-1">
