@@ -12,17 +12,16 @@
         script.onload = function () {
           if (window.Chatbot) {
             window.Chatbot.init({
-              apiUrl: "https://cai.c1m.ai/popup/Chat-C1M-Presales",
+              apiUrl: "https://cai.c1m.ai/Chat-C1M-Presales",
               welcomeMessage: "Hey there! How can I help you today?",
               position: "right",
-              sidePadding: "20px",
+              sidePadding: "30px",
               bottom: "0px",
-              width: "550px",
-              height: "550px",
+              width: "700px",
+              height: "600px",
               fontSize: "24px",
               fontColor: "white",
-              bgColor: "#4338ca", // header, footer color
-              bgColor1: "#35225d", // gradient here
+              bgColor: "#35225d", // Gradient here
               bubbleColor: "#4338ca", // user message
               botColor: "#6b21a8", // chatbot response
             });
@@ -32,7 +31,7 @@
       });
     </script>
   </head>
-  <body>
+  <body style="background-color: transparent; margin: 0; padding: 0">
     <p>Hello World!</p>
   </body>
 </html>

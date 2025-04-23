@@ -512,7 +512,7 @@ export default function PopupChatBot() {
               <div
                 className={`flex items-center space-x-3 ${
                   bgColor ? "" : "bg-indigo-800"
-                } h-16 rounded-b-3xl px-4`}
+                } h-16 rounded-b-3xl px-4 fixed bottom-0 w-full`}
                 style={bgColor ? { backgroundColor: bgColor } : {}}
               >
                 <input

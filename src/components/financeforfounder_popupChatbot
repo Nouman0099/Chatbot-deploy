@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
-    <script>
+<script>
       window.addEventListener("DOMContentLoaded", function () {
         const script = document.createElement("script");
         script.src = "https://cai.c1m.ai/embed.js";
         script.onload = function () {
           if (window.Chatbot) {
             window.Chatbot.init({
-              apiUrl: "https://cai.c1m.ai/popup/Chat-C1M-Presales",
+              apiUrl: "https://cai.c1m.ai/popup/financeforfounder",
               welcomeMessage: "Hey there! How can I help you today?",
               position: "right",
               sidePadding: "20px",
               bottom: "0px",
               width: "550px",
-              height: "550px",
+              height: "560px",
               fontSize: "24px",
               fontColor: "white",
               bgColor: "#4338ca", // header, footer color
@@ -31,8 +24,3 @@
         document.head.appendChild(script);
       });
     </script>
-  </head>
-  <body>
-    <p>Hello World!</p>
-  </body>
-</html>
