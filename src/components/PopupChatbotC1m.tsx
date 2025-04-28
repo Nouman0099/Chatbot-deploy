@@ -486,7 +486,7 @@ export default function PopupChatBotC1m() {
                                   }}
                                 >
                                   <p
-                                    className="text-white text-sm"
+                                    className="text-white text-sm break-all overflow-hidden"
                                     dangerouslySetInnerHTML={{
                                       __html: formatMessage(msg.bot),
                                     }}

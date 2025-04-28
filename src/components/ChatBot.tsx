@@ -51,7 +51,6 @@ export default function ChatBot() {
       await sendMessage(newMessage);
     }
   };
-
   const sendMessage = async (newMessage: { user: string; botRes: string | null }) => {
     setLoading(true);
     try {

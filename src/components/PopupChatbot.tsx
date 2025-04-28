@@ -253,16 +253,7 @@ export default function PopupChatBot() {
                       className="cursor-pointer hover:bg-black/25 rounded-full p-1 text-white"
                     />
                   </span>
-                  {/* <div>
-                  <Image
-                    src={"/logo-tagline.jpg"}
-                    alt="logo"
-                    height={40}
-                    width={40}
-                    className="rounded-full h-12 w-12"
-                    priority
-                  />
-                  </div> */}
+
                   <p
                     className="text-white font-bold text-xl"
                     style={{ color: fontColor, fontSize: fontSize }}
@@ -286,30 +277,11 @@ export default function PopupChatBot() {
                     className="text-white text-sm"
                     style={{ color: fontColor }}
                   >
-                    Sync your conversation and continue messaging us through your favorite app.
+                    Sync your conversation and continue messaging us through
+                    your favorite app.
                   </p>
                   <div className="flex items-center space-x-3">
-                    <div
-                      className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center my-4 cursor-pointer"
-                      //   onClick={() => {
-                      //     const phoneNumber = "923224944833";
-                      //     const message = encodeURIComponent(
-                      //       "Hello, I would like to chat with you!"
-                      //     );
-                      //     window.location.href = `https://wa.me/${phoneNumber}?text=${message}`;
-                      //   }}
-                    >
-                      {/* <Image
-                        src={"/whatsapp.svg"}
-                        alt="whatsapp"
-                        height={24}
-                        width={24}
-                        priority
-                      /> */}
-                    </div>
-                    {/* <p className="text text-white" style={{ color: fontColor }}>
-                      WhatsApp
-                    </p> */}
+                    <div className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center my-4 cursor-pointer"></div>
                   </div>
                 </div>
               ) : (
@@ -322,25 +294,7 @@ export default function PopupChatBot() {
                       Sync your conversation and continue messaging us through
                       your favorite app.
                     </p>
-                    {/* <div
-                      className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center mx-auto my-4 cursor-pointer"
-                      //   onClick={() => {
-                      //     const phoneNumber = "923224944833";
-                      //     const message = encodeURIComponent(
-                      //       "Hello, I would like to chat with you!"
-                      //     );
-                      //     const whatsappURI = `https://wa.me/${phoneNumber}?text=${message}`;
-                      //     window.open(whatsappURI, "_blank");
-                      //   }}
-                    >
-                      <Image
-                        src={"/whatsapp.svg"}
-                        alt="whatsapp"
-                        height={24}
-                        width={24}
-                        priority
-                      />
-                    </div> */}
+
                     <p className="text-center text-white text-sm py-10">
                       {date}
                     </p>
@@ -356,21 +310,12 @@ export default function PopupChatBot() {
                           Hello , thank you for contacting FinanceForFounder!
                         </p>
                       </div>
-                      {/* <div className="bg-purple-600 rounded-r-2xl rounded-b-2xl p-3 mt-1">
-                        <p className="text-[13px] text-white">
-                          Please confirm your contact information in case we get
-                          disconnected, and we will transfer you to a
-                          FinanceForFounder representative.
-                        </p>
-                      </div> */}
                     </div>
                   </div>
 
                   <div className="flex items-center justify-center space-x-2 mb-5">
                     <div className="h-3 w-5 rounded-t-full bg-purple-600"></div>
-                    <p className="text-[12px] text-white pl-1">
-                      Powered by{" "}
-                    </p>
+                    <p className="text-[12px] text-white pl-1">Powered by </p>
                     <a href="https://c1m.ai/" target="_blank">
                       <Image
                         src={"/logo-tagline.jpg"}
@@ -380,7 +325,7 @@ export default function PopupChatBot() {
                         priority
                         className="h-5 w-5 rounded-full"
                       />
-                      </a>
+                    </a>
                   </div>
                   <div className="ms-4 me-9 flex flex-col">
                     {messages.map((msg, index) => (
@@ -486,7 +431,7 @@ export default function PopupChatBot() {
                                   }}
                                 >
                                   <p
-                                    className="text-white text-sm"
+                                    className="text-white text-sm break-all overflow-hidden"
                                     dangerouslySetInnerHTML={{
                                       __html: formatMessage(msg.bot),
                                     }}
