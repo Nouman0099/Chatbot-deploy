@@ -93,18 +93,23 @@ export default function ChatBotC1m() {
   // };
   const formatMessage = (message: string) => {
     return message
-      // Wrap bullet headings in <p> tags and bold the text
-      .replace(/•\s*\*\*(.*?)\*\*:/g, '<p>• <strong>$1</strong>:</p>')
-      // Any other bold text
-      .replace(/(\*\*)(.*?)(\*\*)/g, '<strong>$2</strong>')
-      // Handle ### headings as bullets too
+      // Convert double line breaks to paragraphs
+      .replace(/\n{2,}/g, '</p><p>')
+      // Wrap entire message in <p> to start properly
+      .replace(/^/, '<p>')
+      .replace(/$/, '</p>')
+      // Replace bullet-style bold headings with proper formatting
+      .replace(/\*\*(.*?)\*\*:/g, '<strong>$1</strong>:')
+      // Replace remaining bold syntax
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // Handle ### as bullets too
       .replace(/### (.*?)(?=\s|$)/g, '<p>• <strong>$1</strong></p>')
-      // Clean markdown-style links
+      // Convert markdown-style links
       .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
-      // Auto-link URLs
+      // Convert plain links to anchor tags
       .replace(
         /(https?:\/\/[^\s]+)/g,
-        '<p><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a></p>'
+        '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
       );
   };
   
