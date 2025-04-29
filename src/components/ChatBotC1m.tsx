@@ -91,27 +91,56 @@ export default function ChatBotC1m() {
   //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
   //     );
   // };
+  // const formatMessage = (message: string) => {
+  //   return message
+  //     // Convert double line breaks to paragraphs
+  //     .replace(/\n{2,}/g, '</p><p>')
+  //     // Wrap entire message in <p> to start properly
+  //     .replace(/^/, '<p>')
+  //     .replace(/$/, '</p>')
+  //     // Replace bullet-style bold headings with proper formatting
+  //     .replace(/\*\*(.*?)\*\*:/g, '<strong>$1</strong>:')
+  //     // Replace remaining bold syntax
+  //     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  //     // Handle ### as bullets too
+  //     .replace(/### (.*?)(?=\s|$)/g, '<p>• <strong>$1</strong></p>')
+  //     // Convert markdown-style links
+  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
+  //     // Convert plain links to anchor tags
+  //     .replace(
+  //       /(https?:\/\/[^\s]+)/g,
+  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+  //     );
+  // };
+  
+
   const formatMessage = (message: string) => {
     return message
-      // Convert double line breaks to paragraphs
+      .replace(/</g, "&lt;") // prevent XSS
+      .replace(/>/g, "&gt;")
+      
+      // Paragraphs: double line breaks become new <p> blocks
       .replace(/\n{2,}/g, '</p><p>')
-      // Wrap entire message in <p> to start properly
-      .replace(/^/, '<p>')
-      .replace(/$/, '</p>')
-      // Replace bullet-style bold headings with proper formatting
+      
+      // Line breaks: single \n becomes <br/>
+      .replace(/\n/g, '<br/>')
+      
+      // Start and end with <p> to wrap the message
+      .replace(/^/, '<p>').replace(/$/, '</p>')
+  
+      // Make bullet point titles bold if surrounded by **
       .replace(/\*\*(.*?)\*\*:/g, '<strong>$1</strong>:')
-      // Replace remaining bold syntax
+      
+      // Handle any other **text**
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      // Handle ### as bullets too
-      .replace(/### (.*?)(?=\s|$)/g, '<p>• <strong>$1</strong></p>')
-      // Convert markdown-style links
-      .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
-      // Convert plain links to anchor tags
+  
+      // Convert URLs to anchor links
       .replace(
         /(https?:\/\/[^\s]+)/g,
-        '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+        '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
       );
   };
+  
   
   
   
