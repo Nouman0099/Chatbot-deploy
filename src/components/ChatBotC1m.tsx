@@ -81,16 +81,35 @@ export default function ChatBotC1m() {
     }
   };
 
+  // const formatMessage = (message: string) => {
+  //   return message
+  //     .replace(/(\*\*)(.*?)(\*\*)/g, '<strong>$2</strong>')
+  //     .replace(/### (.*?)(?=\s|$)/g, '<h2><strong>$1</strong></h2>')
+  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
+  //     .replace(
+  //       /(https?:\/\/[^\s]+)/g,
+  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+  //     );
+  // };
   const formatMessage = (message: string) => {
     return message
+      // Wrap bullet headings in <p> tags and bold the text
+      .replace(/•\s*\*\*(.*?)\*\*:/g, '<p>• <strong>$1</strong>:</p>')
+      // Any other bold text
       .replace(/(\*\*)(.*?)(\*\*)/g, '<strong>$2</strong>')
-      .replace(/### (.*?)(?=\s|$)/g, '<h2><strong>$1</strong></h2>')
+      // Handle ### headings as bullets too
+      .replace(/### (.*?)(?=\s|$)/g, '<p>• <strong>$1</strong></p>')
+      // Clean markdown-style links
       .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
+      // Auto-link URLs
       .replace(
         /(https?:\/\/[^\s]+)/g,
-        '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+        '<p><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a></p>'
       );
   };
+  
+  
+  
 
   const { fontSize, fontColor, bgColor, bubbleColor, botColor } = styleParams;
 
