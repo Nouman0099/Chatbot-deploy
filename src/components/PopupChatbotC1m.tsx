@@ -367,8 +367,8 @@ export default function PopupChatBotC1m() {
                   </div>
 
                   <div className="flex items-center justify-center space-x-2 mb-5">
-                    <div className="h-3 w-5 rounded-t-full bg-purple-600"></div>
-                    <p className="text-[12px] text-white pl-1">
+                    <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
+                    <p className="text-[14px] text-white pl-1">
                       Powered by{" "}
                     </p>
                     <a href="https://c1m.ai/" target="_blank">
@@ -378,7 +378,7 @@ export default function PopupChatBotC1m() {
                         height={20}
                         width={20}
                         priority
-                        className="h-5 w-5 rounded-full"
+                        className="h-7 w-7 rounded-full"
                       />
                       </a>
                   </div>
@@ -486,7 +486,7 @@ export default function PopupChatBotC1m() {
                                   }}
                                 >
                                   <p
-                                    className="text-white text-sm break-all overflow-hidden"
+                                    className="text-white text-sm break-words overflow-hidden"
                                     dangerouslySetInnerHTML={{
                                       __html: formatMessage(msg.bot),
                                     }}
