@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import "animate.css";
 import Loading1 from "./Loading1";
 import { IoSendOutline } from "react-icons/io5";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function PopupChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
@@ -33,6 +34,7 @@ export default function PopupChatBotC1m() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
+  const [randomId, setRandomId] = useState('')
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -49,6 +51,12 @@ export default function PopupChatBotC1m() {
   useEffect(() => {
     messageScrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    const id = uuidv4();
+    setRandomId(id);
+  }, []);
+
 
   const date = new Date().toLocaleTimeString([], {
     month: "long", // Full month name
@@ -88,7 +96,7 @@ export default function PopupChatBotC1m() {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify({ input: {question: newMessage.user, sessionid: 'exco22'} }),
+          body: JSON.stringify({ input: {question: newMessage.user, sessionid: randomId} }),
         }
       );
 

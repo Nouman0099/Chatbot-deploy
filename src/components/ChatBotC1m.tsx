@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Loading1 from '@/components/Loading1';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
@@ -19,6 +20,7 @@ export default function ChatBotC1m() {
   const [messages, setMessages] = useState<
     { user: string; botRes: string | null; time: string }[]
   >([]);
+  const [randomId, setRandomId] = useState('')
 
   const messageRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,6 +38,16 @@ export default function ChatBotC1m() {
   useEffect(() => {
     messageRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // useEffect(() => {
+  //   const randomId = Math.random().toString(36).substring(2, 15);
+  //   setRandomId(randomId)
+  // }, [])
+
+  useEffect(() => {
+    const id = uuidv4();
+    setRandomId(id);
+  }, []);
 
   const handleMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +67,8 @@ export default function ChatBotC1m() {
   const sendMessage = async (newMessage: { user: string; botRes: string | null }) => {
     setLoading(true);
     try {
-      const payload = { input: {question: newMessage.user, sessionid: 'exco22'} };
+      console.log(randomId)
+      const payload = { input: {question: newMessage.user, sessionid: randomId} };
       const res = await axios.post(
         `https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0`,
         payload
