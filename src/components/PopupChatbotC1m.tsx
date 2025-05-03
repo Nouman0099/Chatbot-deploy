@@ -105,7 +105,7 @@ export default function PopupChatBotC1m() {
       }
 
       const data = await res.json();
-      const botResponse = data.output;
+      const botResponse = data[0].text;
       //   console.log(botResponse);
       // res.data[0].output
 
