@@ -67,13 +67,25 @@ export default function ChatBotC1m() {
   const sendMessage = async (newMessage: { user: string; botRes: string | null }) => {
     setLoading(true);
     try {
-      console.log(randomId)
-      const payload = { inpput: {question: newMessage.user, sessionid: randomId} };
+      // console.log(randomId)
+      const history = messages.flatMap((mes => [
+        {role: 'userMessage', content: mes.user},
+        ...(mes.botRes ? [{ role: 'apiMessage', content: mes.botRes }] : [])
+      ]))
+      // console.log(history)
+      const payload = {
+        input: {
+          question: newMessage.user,
+          sessionid: randomId,
+          history: history,
+        }
+      };
+      // console.log(payload)
       const res = await axios.post(
         `https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0`,
         payload
       );
-      // console.log(res)
+      // console.log(res.data)
       const botResponse = res.data[0].text;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
@@ -93,39 +105,6 @@ export default function ChatBotC1m() {
       setLoading(false);
     }
   };
-
-  // const formatMessage = (message: string) => {
-  //   return message
-  //     .replace(/(\*\*)(.*?)(\*\*)/g, '<strong>$2</strong>')
-  //     .replace(/### (.*?)(?=\s|$)/g, '<h2><strong>$1</strong></h2>')
-  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
-  //     .replace(
-  //       /(https?:\/\/[^\s]+)/g,
-  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-  //     );
-  // };
-  // const formatMessage = (message: string) => {
-  //   return message
-  //     // Convert double line breaks to paragraphs
-  //     .replace(/\n{2,}/g, '</p><p>')
-  //     // Wrap entire message in <p> to start properly
-  //     .replace(/^/, '<p>')
-  //     .replace(/$/, '</p>')
-  //     // Replace bullet-style bold headings with proper formatting
-  //     .replace(/\*\*(.*?)\*\*:/g, '<strong>$1</strong>:')
-  //     // Replace remaining bold syntax
-  //     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-  //     // Handle ### as bullets too
-  //     .replace(/### (.*?)(?=\s|$)/g, '<p>• <strong>$1</strong></p>')
-  //     // Convert markdown-style links
-  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, '$1')
-  //     // Convert plain links to anchor tags
-  //     .replace(
-  //       /(https?:\/\/[^\s]+)/g,
-  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-  //     );
-  // };
-  
 
   const formatMessage = (message: string) => {
     return message
@@ -153,10 +132,6 @@ export default function ChatBotC1m() {
         '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
       );
   };
-  
-  
-  
-  
 
   const { fontSize, fontColor, bgColor, bubbleColor, botColor } = styleParams;
 
