@@ -9,7 +9,7 @@ function createChatWidget(options) {
       bgColor1: options.bgColor1 || "#1e1b4b",
       bubbleColor: options.bubbleColor || "#3730a3",
       botColor: options.botColor || "#6b21a8",
-      inputBgColor: options.inputColor || "#4f46e5",
+      inputBgColor: options.inputBgColor || "#4f46e5",
       inputTextColor: options.inputTextColor || "#ffffff",
       submitBgColor: options.submitBgColor || "#4338ca",
       submitTextColor: options.submitTextColor || "#ffffff",
