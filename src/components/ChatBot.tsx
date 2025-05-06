@@ -29,6 +29,7 @@ export default function ChatBot() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    console.log("inputBgColor:", params.get("inputBgColor"));
     setStyleParams({
       fontSize: params.get("fontSize") || "24px",
       fontColor: params.get("fontColor") || "#ffffff",
@@ -42,6 +43,8 @@ export default function ChatBot() {
       messageBorderColor: params.get("messageBorderColor") || "#C084FC",
     });
   }, []);
+
+  console.log(styleParams)
 
   useEffect(() => {
     messageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -145,7 +148,7 @@ export default function ChatBot() {
                   <div className="max-w-[60%]">
                     <p
                       className="rounded-xl px-3 py-[6px] text-sm mr-3"
-                      style={{
+                      style={{ 
                         backgroundColor: bubbleColor,
                         // fontSize,
                         color: fontColor,
@@ -189,11 +192,11 @@ export default function ChatBot() {
               disabled={loading}
               placeholder="Type a message..."
               className="rounded-lg px-3 py-2 w-full outline-none border border-indigo-600"
-              style={{
-                backgroundColor: inputBgColor,
+              style={inputBgColor ? {
+                 backgroundColor: inputBgColor,
                 color: inputTextColor,
                 // fontSize,
-              }}
+              }: {}}
               required
             />
             {loading ? (

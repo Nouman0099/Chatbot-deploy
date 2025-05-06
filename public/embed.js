@@ -11,14 +11,15 @@ function createChatWidget(options) {
       botColor: options.botColor || "#6b21a8",
       inputBgColor: options.inputColor || "#4f46e5",
       inputTextColor: options.inputTextColor || "#ffffff",
-      submitBgColor: options.inputColor || "#4338ca",
-      submitTextColor: options.inputTextColor || "#ffffff",
+      submitBgColor: options.submitBgColor || "#4338ca",
+      submitTextColor: options.submitTextColor || "#ffffff",
       messageBorderColor: options.messageBorderColor || "#C084FC",
       embed: "true", // 👈 this marks iframe for conditional styling
     };
   
     const params = new URLSearchParams(styleParams);
     iframe.src = `${options.apiUrl}?${params.toString()}`;
+    console.log(iframe.src);
   
     iframe.style.position = "fixed";
     iframe.style.bottom = options.bottom || "24px";
