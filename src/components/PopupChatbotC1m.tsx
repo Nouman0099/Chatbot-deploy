@@ -19,6 +19,9 @@ export default function PopupChatBotC1m() {
     bgColor1: "",
     bubbleColor: "#3730a3",
     botColor: "#6b21a8",
+    inputBgColor: "#4f46e5",
+    inputTextColor: "#ffffff",
+    submitTextColor: "#ffffff",
   });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -45,6 +48,9 @@ export default function PopupChatBotC1m() {
       bgColor1: params.get("bgColor1") || "",
       bubbleColor: params.get("bubbleColor") || "#4338ca",
       botColor: params.get("botColor") || "#6b21a8",
+      inputBgColor: params.get("inputBgColor") || "#4f46e5",
+      inputTextColor: params.get("inputTextColor") || "#ffffff",
+      submitTextColor: params.get("submitTextColor") || "#ffffff",
     });
   }, []);
 
@@ -203,7 +209,9 @@ export default function PopupChatBotC1m() {
       );
   };
   
-  const { fontSize, fontColor, bgColor, bgColor1, bubbleColor, botColor } =
+  const { fontSize, fontColor, bgColor, bgColor1, bubbleColor, botColor, inputBgColor,
+    inputTextColor,
+    submitTextColor, } =
     styleParams;
 
   return (
@@ -570,8 +578,8 @@ export default function PopupChatBotC1m() {
                   placeholder="Type a message..."
                   className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border border-indigo-600"
                   style={{
-                    backgroundColor: "#4f46e5",
-                    color: fontColor,
+                    backgroundColor: inputBgColor,
+                    color: inputTextColor,
                     // fontSize,
                   }}
                 />
@@ -582,6 +590,7 @@ export default function PopupChatBotC1m() {
                     <IoSendOutline
                       onClick={handleMessage}
                       className="text-white h-7 w-7 cursor-pointer"
+                      style={{ color: submitTextColor }}
                     />
                   </span>
                 )}

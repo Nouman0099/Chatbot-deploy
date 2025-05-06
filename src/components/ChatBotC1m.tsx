@@ -1,42 +1,52 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-import Loading1 from '@/components/Loading1';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import Loading1 from "@/components/Loading1";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
-    fontSize: '14px',
-    fontColor: '#ffffff',
-    bgColor: '',
-    bubbleColor: '#3730a3',
-    botColor: '#6b21a8',
+    fontSize: "14px",
+    fontColor: "#ffffff",
+    bgColor: "",
+    bubbleColor: "#3730a3",
+    botColor: "#6b21a8",
+    inputBgColor: "#4f46e5",
+    inputTextColor: "#ffffff",
+    submitBgColor: "#4338ca",
+    submitTextColor: "#ffffff",
+    messageBorderColor: "#C084FC",
   });
 
   const [loading, setLoading] = useState(false);
-  const [userMessage, setUserMessage] = useState('');
+  const [userMessage, setUserMessage] = useState("");
   const [messages, setMessages] = useState<
     { user: string; botRes: string | null; time: string }[]
   >([]);
-  const [randomId, setRandomId] = useState('')
+  const [randomId, setRandomId] = useState("");
 
   const messageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStyleParams({
-      fontSize: params.get('fontSize') || '24px',
-      fontColor: params.get('fontColor') || '#ffffff',
-      bgColor: params.get('bgColor') || '',
-      bubbleColor: params.get('bubbleColor') || '#4338ca',
-      botColor: params.get('botColor') || '#6b21a8',
+      fontSize: params.get("fontSize") || "24px",
+      fontColor: params.get("fontColor") || "#ffffff",
+      bgColor: params.get("bgColor") || "",
+      bubbleColor: params.get("bubbleColor") || "#4338ca",
+      botColor: params.get("botColor") || "#6b21a8",
+      inputBgColor: params.get("inputBgColor") || "#4f46e5",
+      inputTextColor: params.get("inputTextColor") || "#ffffff",
+      submitBgColor: params.get("submitBgColor") || "#4338ca",
+      submitTextColor: params.get("submitTextColor") || "#ffffff",
+      messageBorderColor: params.get("messageBorderColor") || "#C084FC",
     });
   }, []);
 
   useEffect(() => {
-    messageRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   // useEffect(() => {
@@ -53,32 +63,35 @@ export default function ChatBotC1m() {
     e.preventDefault();
     if (userMessage.trim()) {
       const currentTime = new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
+        hour: "2-digit",
+        minute: "2-digit",
         hour12: true,
       });
       const newMessage = { user: userMessage, botRes: null, time: currentTime };
       setMessages((prevMessages) => [...prevMessages, newMessage]);
-      setUserMessage('');
+      setUserMessage("");
       await sendMessage(newMessage);
     }
   };
 
-  const sendMessage = async (newMessage: { user: string; botRes: string | null }) => {
+  const sendMessage = async (newMessage: {
+    user: string;
+    botRes: string | null;
+  }) => {
     setLoading(true);
     try {
       // console.log(randomId)
-      const history = messages.flatMap((mes => [
-        {role: 'userMessage', content: mes.user},
-        ...(mes.botRes ? [{ role: 'apiMessage', content: mes.botRes }] : [])
-      ]))
+      const history = messages.flatMap((mes) => [
+        { role: "userMessage", content: mes.user },
+        ...(mes.botRes ? [{ role: "apiMessage", content: mes.botRes }] : []),
+      ]);
       // console.log(history)
       const payload = {
         input: {
           question: newMessage.user,
           sessionid: randomId,
           history: history,
-        }
+        },
       };
       // console.log(payload)
       const res = await axios.post(
@@ -89,15 +102,17 @@ export default function ChatBotC1m() {
       const botResponse = res.data[0].text;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
-          index === prevMessages.length - 1 ? { ...msg, botRes: botResponse } : msg
+          index === prevMessages.length - 1
+            ? { ...msg, botRes: botResponse }
+            : msg
         )
       );
     } catch (error) {
-      console.error('Failed to send message:', error);
+      console.error("Failed to send message:", error);
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
           index === prevMessages.length - 1
-            ? { ...msg, botRes: 'Sorry, something went wrong.' }
+            ? { ...msg, botRes: "Sorry, something went wrong." }
             : msg
         )
       );
@@ -107,51 +122,68 @@ export default function ChatBotC1m() {
   };
 
   const formatMessage = (message: string) => {
-    return message
-      .replace(/</g, "&lt;") // prevent XSS
-      .replace(/>/g, "&gt;")
-      
-      // Paragraphs: double line breaks become new <p> blocks
-      .replace(/\n{2,}/g, '</p><p>')
-      
-      // Line breaks: single \n becomes <br/>
-      .replace(/\n/g, '<br/>')
-      
-      // Start and end with <p> to wrap the message
-      .replace(/^/, '<p>').replace(/$/, '</p>')
-  
-      // Make bullet point titles bold if surrounded by **
-      .replace(/\*\*(.*?)\*\*:/g, '<strong>$1</strong>:')
-      
-      // Handle any other **text**
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-  
-      // Convert URLs to anchor links
-      .replace(
-        /(https?:\/\/[^\s]+)/g,
-        '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-      );
+    return (
+      message
+        .replace(/</g, "&lt;") // prevent XSS
+        .replace(/>/g, "&gt;")
+
+        // Paragraphs: double line breaks become new <p> blocks
+        .replace(/\n{2,}/g, "</p><p>")
+
+        // Line breaks: single \n becomes <br/>
+        .replace(/\n/g, "<br/>")
+
+        // Start and end with <p> to wrap the message
+        .replace(/^/, "<p>")
+        .replace(/$/, "</p>")
+
+        // Make bullet point titles bold if surrounded by **
+        .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
+
+        // Handle any other **text**
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+
+        // Convert URLs to anchor links
+        .replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+        )
+    );
   };
 
-  const { fontSize, fontColor, bgColor, bubbleColor, botColor } = styleParams;
+  const {
+    fontSize,
+    fontColor,
+    bgColor,
+    bubbleColor,
+    botColor,
+    inputBgColor,
+    inputTextColor,
+    submitBgColor,
+    submitTextColor,
+    messageBorderColor,
+  } = styleParams;
 
   return (
     <div className="max-w-screen-sm mx-auto pt-20">
       <div
         className={`pt-1 rounded-xl pb-10 border border-indigo-700 ${
-          bgColor ? '' : 'bg-gradient-to-br from-indigo-900 to-purple-950'
+          bgColor ? "" : "bg-gradient-to-br from-indigo-900 to-purple-950"
         }`}
         style={bgColor ? { backgroundColor: bgColor } : {}}
       >
         <div className="flex justify-between items-center pr-10">
           <p
             className="font-extrabold text-2xl capitalize mx-auto pb-2"
-            style={{ color: fontColor, fontSize:fontSize }}
+            style={{ color: fontColor, fontSize: fontSize }}
           >
             C1M Presales
           </p>
         </div>
-        <div className="mt-2 border border-purple-400 rounded-xl max-w-xl h-[330px] overflow-y-auto mx-auto p-3 flex flex-col relative">
+        <div
+          className="mt-2 border border-purple-400 rounded-xl max-w-xl h-[330px] overflow-y-auto mx-auto p-3 flex flex-col relative"
+          style={{ borderColor: messageBorderColor }}
+        >
           <ScrollArea className="h-[250px]">
             {messages.map((msg, index) => (
               <div key={index} className="space-y-3 p-2">
@@ -196,7 +228,7 @@ export default function ChatBotC1m() {
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   handleMessage(e);
                 }
               }}
@@ -204,8 +236,8 @@ export default function ChatBotC1m() {
               placeholder="Type a message..."
               className="rounded-lg px-3 py-2 w-full outline-none border border-indigo-600"
               style={{
-                backgroundColor: '#4f46e5',
-                color: fontColor,
+                backgroundColor: inputBgColor,
+                color: inputTextColor,
                 // fontSize,
               }}
               required
@@ -216,7 +248,10 @@ export default function ChatBotC1m() {
               <button
                 onClick={handleMessage}
                 className="rounded-lg px-3 py-2 font-semibold w-24 text-white cursor-pointer"
-                style={{ backgroundColor: '#4338ca' }}
+                style={{
+                  backgroundColor: submitBgColor,
+                  color: submitTextColor,
+                }}
               >
                 Send
               </button>
@@ -227,6 +262,3 @@ export default function ChatBotC1m() {
     </div>
   );
 }
-
-
-
