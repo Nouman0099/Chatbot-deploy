@@ -18,6 +18,7 @@ export default function ChatBotC1m() {
     submitBgColor: "#4338ca",
     submitTextColor: "#ffffff",
     messageBorderColor: "#C084FC",
+    inputBorderColor: "#4f46e5",
   });
 
   const [loading, setLoading] = useState(false);
@@ -42,6 +43,7 @@ export default function ChatBotC1m() {
       submitBgColor: params.get("submitBgColor") || "#4338ca",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
       messageBorderColor: params.get("messageBorderColor") || "#C084FC",
+      inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
     });
   }, []);
 
@@ -162,6 +164,7 @@ export default function ChatBotC1m() {
     submitBgColor,
     submitTextColor,
     messageBorderColor,
+    inputBorderColor
   } = styleParams;
 
   return (
@@ -234,10 +237,11 @@ export default function ChatBotC1m() {
               }}
               disabled={loading}
               placeholder="Type a message..."
-              className="rounded-lg px-3 py-2 w-full outline-none border border-indigo-600"
+              className="rounded-lg px-3 py-2 w-full outline-none border"
               style={{
                 backgroundColor: inputBgColor,
                 color: inputTextColor,
+                borderColor: inputBorderColor,
                 // fontSize,
               }}
               required

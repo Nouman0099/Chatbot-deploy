@@ -17,6 +17,7 @@ export default function ChatBot() {
     submitTextColor: "#ffffff",
     submitBgColor: "#4338ca",
     messageBorderColor: "#C084FC",
+    inputBorderColor: "#4f46e5",
   });
 
   const [loading, setLoading] = useState(false);
@@ -41,10 +42,11 @@ export default function ChatBot() {
       submitTextColor: params.get("submitTextColor") || "#ffffff",
       submitBgColor: params.get("submitBgColor") || "#4338ca",
       messageBorderColor: params.get("messageBorderColor") || "#C084FC",
+      inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
     });
   }, []);
 
-  console.log(styleParams)
+  console.log(styleParams);
 
   useEffect(() => {
     messageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -119,6 +121,7 @@ export default function ChatBot() {
     submitBgColor,
     submitTextColor,
     messageBorderColor,
+    inputBorderColor,
   } = styleParams;
 
   return (
@@ -148,7 +151,7 @@ export default function ChatBot() {
                   <div className="max-w-[60%]">
                     <p
                       className="rounded-xl px-3 py-[6px] text-sm mr-3"
-                      style={{ 
+                      style={{
                         backgroundColor: bubbleColor,
                         // fontSize,
                         color: fontColor,
@@ -191,12 +194,17 @@ export default function ChatBot() {
               }}
               disabled={loading}
               placeholder="Type a message..."
-              className="rounded-lg px-3 py-2 w-full outline-none border border-indigo-600"
-              style={inputBgColor ? {
-                 backgroundColor: inputBgColor,
-                color: inputTextColor,
-                // fontSize,
-              }: {}}
+              className="rounded-lg px-3 py-2 w-full outline-none border"
+              style={
+                inputBgColor
+                  ? {
+                      backgroundColor: inputBgColor,
+                      color: inputTextColor,
+                      borderColor: inputBorderColor,
+                      // fontSize,
+                    }
+                  : {}
+              }
               required
             />
             {loading ? (

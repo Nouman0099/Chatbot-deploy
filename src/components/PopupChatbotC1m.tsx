@@ -9,7 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import "animate.css";
 import Loading1 from "./Loading1";
 import { IoSendOutline } from "react-icons/io5";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default function PopupChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
@@ -22,6 +22,7 @@ export default function PopupChatBotC1m() {
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
     submitTextColor: "#ffffff",
+    inputBorderColor: "#4f46e5",
   });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function PopupChatBotC1m() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
-  const [randomId, setRandomId] = useState('')
+  const [randomId, setRandomId] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -51,6 +52,7 @@ export default function PopupChatBotC1m() {
       inputBgColor: params.get("inputBgColor") || "#4f46e5",
       inputTextColor: params.get("inputTextColor") || "#ffffff",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
+      inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
     });
   }, []);
 
@@ -62,7 +64,6 @@ export default function PopupChatBotC1m() {
     const id = uuidv4();
     setRandomId(id);
   }, []);
-
 
   const date = new Date().toLocaleTimeString([], {
     month: "long", // Full month name
@@ -94,10 +95,10 @@ export default function PopupChatBotC1m() {
   }) => {
     setIsLoading(true);
     try {
-      const history = messages.flatMap((mes => [
-        {role: 'userMessage', content: mes.user},
-        ...(mes.bot ? [{ role: 'apiMessage', content: mes.bot }] : [])
-      ]))
+      const history = messages.flatMap((mes) => [
+        { role: "userMessage", content: mes.user },
+        ...(mes.bot ? [{ role: "apiMessage", content: mes.bot }] : []),
+      ]);
       // console.log(history)
       const res = await fetch(
         "https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0",
@@ -107,7 +108,13 @@ export default function PopupChatBotC1m() {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify({ input: {question: newMessage.user, sessionid: randomId, history: history} }),
+          body: JSON.stringify({
+            input: {
+              question: newMessage.user,
+              sessionid: randomId,
+              history: history,
+            },
+          }),
         }
       );
 
@@ -183,36 +190,47 @@ export default function PopupChatBotC1m() {
   // };
 
   const formatMessage = (message: string) => {
-    return message
-      .replace(/</g, "&lt;") // prevent XSS
-      .replace(/>/g, "&gt;")
-      
-      // Paragraphs: double line breaks become new <p> blocks
-      .replace(/\n{2,}/g, '</p><p>')
-      
-      // Line breaks: single \n becomes <br/>
-      .replace(/\n/g, '<br/>')
-      
-      // Start and end with <p> to wrap the message
-      .replace(/^/, '<p>').replace(/$/, '</p>')
-  
-      // Make bullet point titles bold if surrounded by **
-      .replace(/\*\*(.*?)\*\*:/g, '<strong>$1</strong>:')
-      
-      // Handle any other **text**
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-  
-      // Convert URLs to anchor links
-      .replace(
-        /(https?:\/\/[^\s]+)/g,
-        '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-      );
+    return (
+      message
+        .replace(/</g, "&lt;") // prevent XSS
+        .replace(/>/g, "&gt;")
+
+        // Paragraphs: double line breaks become new <p> blocks
+        .replace(/\n{2,}/g, "</p><p>")
+
+        // Line breaks: single \n becomes <br/>
+        .replace(/\n/g, "<br/>")
+
+        // Start and end with <p> to wrap the message
+        .replace(/^/, "<p>")
+        .replace(/$/, "</p>")
+
+        // Make bullet point titles bold if surrounded by **
+        .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
+
+        // Handle any other **text**
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+
+        // Convert URLs to anchor links
+        .replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+        )
+    );
   };
-  
-  const { fontSize, fontColor, bgColor, bgColor1, bubbleColor, botColor, inputBgColor,
+
+  const {
+    fontSize,
+    fontColor,
+    bgColor,
+    bgColor1,
+    bubbleColor,
+    botColor,
+    inputBgColor,
     inputTextColor,
-    submitTextColor, } =
-    styleParams;
+    submitTextColor,
+    inputBorderColor,
+  } = styleParams;
 
   return (
     <div className="relative">
@@ -336,7 +354,8 @@ export default function PopupChatBotC1m() {
                     className="text-white text-sm"
                     style={{ color: fontColor }}
                   >
-                    Sync your conversation and continue messaging us through your favorite app.
+                    Sync your conversation and continue messaging us through
+                    your favorite app.
                   </p>
                   <div className="flex items-center space-x-3">
                     <div
@@ -418,9 +437,7 @@ export default function PopupChatBotC1m() {
 
                   <div className="flex items-center justify-center space-x-2 mb-5">
                     <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
-                    <p className="text-[14px] text-white pl-1">
-                      Powered by{" "}
-                    </p>
+                    <p className="text-[14px] text-white pl-1">Powered by </p>
                     <a href="https://c1m.ai/" target="_blank">
                       <Image
                         src={"/logo-tagline.jpg"}
@@ -430,7 +447,7 @@ export default function PopupChatBotC1m() {
                         priority
                         className="h-7 w-7 rounded-full"
                       />
-                      </a>
+                    </a>
                   </div>
                   <div className="ms-4 me-9 flex flex-col">
                     {messages.map((msg, index) => (
@@ -576,10 +593,11 @@ export default function PopupChatBotC1m() {
                   }}
                   disabled={isLoading}
                   placeholder="Type a message..."
-                  className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border border-indigo-600"
+                  className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border"
                   style={{
                     backgroundColor: inputBgColor,
                     color: inputTextColor,
+                    borderColor: inputBorderColor,
                     // fontSize,
                   }}
                 />

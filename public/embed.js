@@ -11,6 +11,7 @@ function createChatWidget(options) {
       botColor: options.botColor || "#6b21a8",
       inputBgColor: options.inputBgColor || "#4f46e5",
       inputTextColor: options.inputTextColor || "#ffffff",
+      inputBorderColor: options.inputBorderColor || "#4f46e5",
       submitBgColor: options.submitBgColor || "#4338ca",
       submitTextColor: options.submitTextColor || "#ffffff",
       messageBorderColor: options.messageBorderColor || "#C084FC",

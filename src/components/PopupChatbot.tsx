@@ -21,6 +21,7 @@ export default function PopupChatBot() {
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
     submitTextColor: "#ffffff",
+    inputBorderColor: "#4f46e5",
   });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -49,6 +50,7 @@ export default function PopupChatBot() {
       inputBgColor: params.get("inputBgColor") || "#4f46e5",
       inputTextColor: params.get("inputTextColor") || "#ffffff",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
+      inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
     });
   }, []);
 
@@ -177,6 +179,7 @@ export default function PopupChatBot() {
     inputBgColor,
     inputTextColor,
     submitTextColor,
+    inputBorderColor,
   } = styleParams;
 
   return (
@@ -486,10 +489,11 @@ export default function PopupChatBot() {
                   }}
                   disabled={isLoading}
                   placeholder="Type a message..."
-                  className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border border-indigo-600"
+                  className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border"
                   style={{
                     backgroundColor: inputBgColor,
                     color: inputTextColor,
+                    borderColor: inputBorderColor,
                     // fontSize,
                   }}
                 />

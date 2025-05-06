@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", function () {
         botColor: "#6b21a8", // chatbot response
         inputBgColor: "#4f46e5", // input field background color
         inputTextColor: "#ffffff", // input field text color
+        inputBorderColor: "#4f46e5", // input field border color
         submitTextColor: "#ffffff", // submit button text color
         submitBgColor: "#4338ca", // submit button background color
         messageBorderColor: "#C084FC", // message border color
