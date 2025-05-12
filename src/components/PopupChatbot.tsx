@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import "animate.css";
 import Loading1 from "./Loading1";
 import { IoSendOutline } from "react-icons/io5";
+import { v4 as uuidv4 } from "uuid";
 
 export default function PopupChatBot() {
   const [styleParams, setStyleParams] = useState({
@@ -37,6 +38,7 @@ export default function PopupChatBot() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
+  const [randomId, setRandomId] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -57,6 +59,11 @@ export default function PopupChatBot() {
   useEffect(() => {
     messageScrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    const id = uuidv4();
+    setRandomId(id);
+  }, []);
 
   const date = new Date().toLocaleTimeString([], {
     month: "long", // Full month name
@@ -88,15 +95,25 @@ export default function PopupChatBot() {
   }) => {
     setIsLoading(true);
     try {
+      const history = messages.flatMap((mes) => [
+        { role: "userMessage", content: mes.user },
+        ...(mes.bot ? [{ role: "apiMessage", content: mes.bot }] : []),
+      ]);
       const res = await fetch(
-        "https://agent1.c1m.ai/webhook/a9f23ed9-0a2f-4ea0-b64c-0b166e32b296",
+        "https://agent1.c1m.ai/webhook/6e0bd33a-9fe7-45e8-92f0-35d4999a93c7",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify({ chatInput: newMessage.user }),
+          body: JSON.stringify({
+            input: {
+              question: newMessage.user,
+              sessionid: randomId,
+              history: history,
+            },
+          }),
         }
       );
 
@@ -105,7 +122,7 @@ export default function PopupChatBot() {
       }
 
       const data = await res.json();
-      const botResponse = data[0].output;
+      const botResponse = data.text;
       //   console.log(botResponse);
       // res.data[0].output
 

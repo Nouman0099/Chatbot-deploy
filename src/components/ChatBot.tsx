@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Loading1 from "@/components/Loading1";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ChatBot() {
   const [styleParams, setStyleParams] = useState({
@@ -25,6 +26,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<
     { user: string; botRes: string | null; time: string }[]
   >([]);
+  const [randomId, setRandomId] = useState("");
 
   const messageRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,11 +48,16 @@ export default function ChatBot() {
     });
   }, []);
 
-  console.log(styleParams);
+  // console.log(styleParams);
 
   useEffect(() => {
     messageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+   useEffect(() => {
+      const id = uuidv4();
+      setRandomId(id);
+    }, []);
 
   const handleMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,12 +79,26 @@ export default function ChatBot() {
   }) => {
     setLoading(true);
     try {
-      const payload = { chatInput: newMessage.user };
+       // console.log(randomId)
+      const history = messages.flatMap((mes) => [
+        { role: "userMessage", content: mes.user },
+        ...(mes.botRes ? [{ role: "apiMessage", content: mes.botRes }] : []),
+      ]);
+      // console.log(history)
+      const payload = {
+        input: {
+          question: newMessage.user,
+          sessionid: randomId,
+          history: history,
+        },
+      };
+      console.log(payload)
       const res = await axios.post(
-        `https://agent1.c1m.ai/webhook/a9f23ed9-0a2f-4ea0-b64c-0b166e32b296`,
+        `https://agent1.c1m.ai/webhook/6e0bd33a-9fe7-45e8-92f0-35d4999a93c7`,
         payload
       );
-      const botResponse = res.data[0].output;
+      console.log(res.data);
+      const botResponse = res.data.text;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
           index === prevMessages.length - 1

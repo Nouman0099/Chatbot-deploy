@@ -95,12 +95,12 @@ export default function ChatBotC1m() {
           history: history,
         },
       };
-      // console.log(payload)
+      console.log(payload)
       const res = await axios.post(
         `https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0`,
         payload
       );
-      // console.log(res.data)
+      console.log(res.data)
       const botResponse = res.data[0].text;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
