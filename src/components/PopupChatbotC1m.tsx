@@ -440,12 +440,12 @@ export default function PopupChatBotC1m() {
                     <p className="text-[14px] text-white pl-1">Powered by </p>
                     <a href="https://c1m.ai/" target="_blank">
                       <Image
-                        src={"/logo-tagline.jpg"}
+                        src={"/logo-tagline.png"}
                         alt="logo"
-                        height={20}
-                        width={20}
+                        height={32}
+                        width={56}
                         priority
-                        className="h-7 w-7 rounded-full"
+                        className="h-8 w-14"
                       />
                     </a>
                   </div>
