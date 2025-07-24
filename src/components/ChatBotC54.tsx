@@ -6,7 +6,7 @@ import Loading1 from "@/components/Loading1";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { v4 as uuidv4 } from "uuid";
 
-export default function ChatBot() {
+export default function ChatBotC54() {
   const [styleParams, setStyleParams] = useState({
     fontSize: "14px",
     fontColor: "#ffffff",
@@ -15,8 +15,8 @@ export default function ChatBot() {
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
-    submitTextColor: "#ffffff",
     submitBgColor: "#4338ca",
+    submitTextColor: "#ffffff",
     messageBorderColor: "#C084FC",
     inputBorderColor: "#4f46e5",
   });
@@ -32,7 +32,6 @@ export default function ChatBot() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    console.log("inputBgColor:", params.get("inputBgColor"));
     setStyleParams({
       fontSize: params.get("fontSize") || "24px",
       fontColor: params.get("fontColor") || "#ffffff",
@@ -41,18 +40,21 @@ export default function ChatBot() {
       botColor: params.get("botColor") || "#6b21a8",
       inputBgColor: params.get("inputBgColor") || "#4f46e5",
       inputTextColor: params.get("inputTextColor") || "#ffffff",
-      submitTextColor: params.get("submitTextColor") || "#ffffff",
       submitBgColor: params.get("submitBgColor") || "#4338ca",
+      submitTextColor: params.get("submitTextColor") || "#ffffff",
       messageBorderColor: params.get("messageBorderColor") || "#C084FC",
       inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
     });
   }, []);
 
-  // console.log(styleParams);
-
   useEffect(() => {
     messageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // useEffect(() => {
+  //   const randomId = Math.random().toString(36).substring(2, 15);
+  //   setRandomId(randomId)
+  // }, [])
 
   useEffect(() => {
     const id = uuidv4();
@@ -73,6 +75,7 @@ export default function ChatBot() {
       await sendMessage(newMessage);
     }
   };
+
   const sendMessage = async (newMessage: {
     user: string;
     botRes: string | null;
@@ -80,25 +83,22 @@ export default function ChatBot() {
     setLoading(true);
     try {
       // console.log(randomId)
-      const history = messages.flatMap((mes) => [
-        { role: "userMessage", content: mes.user },
-        ...(mes.botRes ? [{ role: "apiMessage", content: mes.botRes }] : []),
-      ]);
+      // const history = messages.flatMap((mes) => [
+      //   { role: "userMessage", content: mes.user },
+      //   ...(mes.botRes ? [{ role: "apiMessage", content: mes.botRes }] : []),
+      // ]);
       // console.log(history)
       const payload = {
-        input: {
           question: newMessage.user,
           sessionid: randomId,
-          history: history,
-        },
       };
-      console.log(payload);
+      console.log(payload)
       const res = await axios.post(
-        `https://agent1.c1m.ai/webhook/6e0bd33a-9fe7-45e8-92f0-35d4999a93c7`,
+        `https://agent1.c1m.ai/webhook/ea7a9565-4c00-4ae3-9a33-1a40b56069cd`,
         payload
       );
-      console.log(res.data);
-      const botResponse = res.data.text;
+      console.log(res.data)
+      const botResponse = res.data[0].output;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
           index === prevMessages.length - 1
@@ -121,14 +121,33 @@ export default function ChatBot() {
   };
 
   const formatMessage = (message: string) => {
-    return message
-      .replace(/(\*\*)(.*?)(\*\*)/g, "<strong>$2</strong>")
-      .replace(/### (.*?)(?=\s|$)/g, "<h2><strong>$1</strong></h2>")
-      .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, "$1")
-      .replace(
-        /(https?:\/\/[^\s]+)/g,
-        '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-      );
+    return (
+      message
+        .replace(/</g, "&lt;") // prevent XSS
+        .replace(/>/g, "&gt;")
+
+        // Paragraphs: double line breaks become new <p> blocks
+        .replace(/\n{2,}/g, "</p><p>")
+
+        // Line breaks: single \n becomes <br/>
+        .replace(/\n/g, "<br/>")
+
+        // Start and end with <p> to wrap the message
+        .replace(/^/, "<p>")
+        .replace(/$/, "</p>")
+
+        // Make bullet point titles bold if surrounded by **
+        .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
+
+        // Handle any other **text**
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+
+        // Convert URLs to anchor links
+        .replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+        )
+    );
   };
 
   const {
@@ -142,7 +161,7 @@ export default function ChatBot() {
     submitBgColor,
     submitTextColor,
     messageBorderColor,
-    inputBorderColor,
+    inputBorderColor
   } = styleParams;
 
   return (
@@ -158,7 +177,7 @@ export default function ChatBot() {
             className="font-extrabold text-2xl capitalize mx-auto pb-2"
             style={{ color: fontColor, fontSize: fontSize }}
           >
-            Finance For Founders
+            C1M C54
           </p>
         </div>
         <div
@@ -216,16 +235,12 @@ export default function ChatBot() {
               disabled={loading}
               placeholder="Type a message..."
               className="rounded-lg px-3 py-2 w-full outline-none border"
-              style={
-                inputBgColor
-                  ? {
-                      backgroundColor: inputBgColor,
-                      color: inputTextColor,
-                      borderColor: inputBorderColor,
-                      // fontSize,
-                    }
-                  : {}
-              }
+              style={{
+                backgroundColor: inputBgColor,
+                color: inputTextColor,
+                borderColor: inputBorderColor,
+                // fontSize,
+              }}
               required
             />
             {loading ? (

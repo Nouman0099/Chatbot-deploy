@@ -1,0 +1,31 @@
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  const script = document.createElement("script");
+  script.src = "https://cai.c1m.ai/embed.js";
+  script.onload = function () {
+    if (window.Chatbot) {
+      window.Chatbot.init({
+        apiUrl: "https://cai.c1m.ai/Chat-C1M-C54",
+        welcomeMessage: "Hey there! How can I help you today?",
+        position: "right",
+        sidePadding: "30px",
+        bottom: "0px",
+        width: "700px",
+        height: "600px",
+        fontSize: "24px",
+        fontColor: "white",
+        bgColor: "#35225d", // Gradient here
+        bubbleColor: "#4338ca", // user message
+        botColor: "#6b21a8", // chatbot response
+        inputBgColor: "#4f46e5", // input field background color
+        inputTextColor: "#ffffff", // input field text color
+        inputBorderColor: "#4f46e5", // input field border color
+        submitTextColor: "#ffffff", // submit button text color
+        submitBgColor: "#4338ca", // submit button background color
+        messageBorderColor: "#C084FC", // message border color
+      });
+    }
+  };
+  document.head.appendChild(script);
+});
+</script>
