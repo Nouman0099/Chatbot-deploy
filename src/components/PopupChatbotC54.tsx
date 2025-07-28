@@ -35,9 +35,9 @@ export default function PopupChatBotC54() {
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const messageScrollRef = useRef<HTMLDivElement | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [number, setNumber] = useState("");
   const [randomId, setRandomId] = useState("");
 
   useEffect(() => {
@@ -160,9 +160,9 @@ export default function PopupChatBotC54() {
     // };
     // console.log(userInfo);
 
-    setName("");
-    setEmail("");
-    setNumber("");
+    // setName("");
+    // setEmail("");
+    // setNumber("");
   };
 
   const handleOpen = () => {
