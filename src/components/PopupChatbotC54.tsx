@@ -43,7 +43,7 @@ export default function PopupChatBotC54() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStyleParams({
-      fontSize: params.get("fontSize") || "24px",
+      fontSize: params.get("fontSize") || "20px",
       fontColor: params.get("fontColor") || "#ffffff",
       bgColor: params.get("bgColor") || "",
       bgColor1: params.get("bgColor1") || "",
@@ -285,10 +285,10 @@ export default function PopupChatBotC54() {
                   />
                 </div> */}
                 <p
-                  className="text-white font-bold text-xl"
+                  className="text-white font-bold text-[20px]"
                   style={{ color: fontColor, fontSize: fontSize }}
                 >
-                  C1M C54
+                  COLLECTIVE 54
                 </p>
                 <div className="flex space-x-2 text-white">
                   <span>
@@ -334,10 +334,10 @@ export default function PopupChatBotC54() {
                   />
                   </div> */}
                   <p
-                    className="text-white font-bold text-xl"
+                    className="text-white font-bold text-[20px]"
                     style={{ color: fontColor, fontSize: fontSize }}
                   >
-                    C1M C54
+                    COLLECTIVE 54
                   </p>
                 </div>
                 <span>
