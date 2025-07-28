@@ -60,6 +60,23 @@ export default function PopupChatBotC54() {
     messageScrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+//   useEffect(() => {
+//   const links = document.querySelectorAll(".bot-message a");
+
+//   links.forEach((link) => {
+//     link.addEventListener("click", (e) => {
+//       const href = (e.target as HTMLAnchorElement).getAttribute("href");
+//       console.log("Clicked link:", href);
+//     });
+//   });
+
+//   return () => {
+//     links.forEach((link) => {
+//       link.removeEventListener("click", () => {});
+//     });
+//   };
+// }, [messages]);
+
   useEffect(() => {
     const id = uuidv4();
     setRandomId(id);
@@ -127,7 +144,7 @@ export default function PopupChatBotC54() {
       const data = await res.json();
       // console.log(data)
       const botResponse = data[0].output;
-      //   console.log(botResponse);
+        // console.log(botResponse);
       // res.data[0].output
 
       // Update the bot response for the latest user message
@@ -191,35 +208,61 @@ export default function PopupChatBotC54() {
   //     );
   // };
 
-  const formatMessage = (message: string) => {
-    return (
-      message
-        .replace(/</g, "&lt;") // prevent XSS
-        .replace(/>/g, "&gt;")
+  // const formatMessage = (message: string) => {
+  //   return (
+  //     message
+  //       .replace(/</g, "&lt;") // prevent XSS
+  //       .replace(/>/g, "&gt;")
 
-        // Paragraphs: double line breaks become new <p> blocks
-        .replace(/\n{2,}/g, "</p><p>")
+  //       // Paragraphs: double line breaks become new <p> blocks
+  //       .replace(/\n{2,}/g, "</p><p>")
 
-        // Line breaks: single \n becomes <br/>
-        .replace(/\n/g, "<br/>")
+  //       // Line breaks: single \n becomes <br/>
+  //       .replace(/\n/g, "<br/>")
 
-        // Start and end with <p> to wrap the message
-        .replace(/^/, "<p>")
-        .replace(/$/, "</p>")
+  //       // Start and end with <p> to wrap the message
+  //       .replace(/^/, "<p>")
+  //       .replace(/$/, "</p>")
 
-        // Make bullet point titles bold if surrounded by **
-        .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
+  //       // Make bullet point titles bold if surrounded by **
+  //       .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
 
-        // Handle any other **text**
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  //       // Handle any other **text**
+  //       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
 
-        // Convert URLs to anchor links
-        .replace(
-          /(https?:\/\/[^\s]+)/g,
-          '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-        )
-    );
-  };
+  //       // Convert URLs to anchor links
+  //       .replace(
+  //         /(https?:\/\/[^\s]+)/g,
+  //         '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+  //       )
+  //   );
+  // };
+const formatMessage = (message: string) => {
+  // Sanitize input to prevent XSS
+  let safe = message
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Bold formatting
+  safe = safe.replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:");
+  safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+  // Convert URLs to anchor tags (no console now)
+  safe = safe.replace(
+    /(https?:\/\/[^\s]+)/g,
+    `<a href="$1" target="_blank" class="text-blue-400 underline block" onclick="event.stopPropagation();">$1</a>`
+  );
+
+  // Split into paragraphs using two or more newlines
+  const paragraphs = safe
+    .split(/\n{2,}/)
+    .map((para) => `<p>${para.replace(/\n/g, "<br/>")}</p>`)
+    .join("");
+
+  return paragraphs;
+};
+
+
 
   const {
     fontSize,
