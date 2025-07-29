@@ -39,6 +39,7 @@ export default function PopupChatBotC54() {
   // const [email, setEmail] = useState("");
   // const [number, setNumber] = useState("");
   const [randomId, setRandomId] = useState("");
+  const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -60,22 +61,22 @@ export default function PopupChatBotC54() {
     messageScrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-//   useEffect(() => {
-//   const links = document.querySelectorAll(".bot-message a");
+  //   useEffect(() => {
+  //   const links = document.querySelectorAll(".bot-message a");
 
-//   links.forEach((link) => {
-//     link.addEventListener("click", (e) => {
-//       const href = (e.target as HTMLAnchorElement).getAttribute("href");
-//       console.log("Clicked link:", href);
-//     });
-//   });
+  //   links.forEach((link) => {
+  //     link.addEventListener("click", (e) => {
+  //       const href = (e.target as HTMLAnchorElement).getAttribute("href");
+  //       console.log("Clicked link:", href);
+  //     });
+  //   });
 
-//   return () => {
-//     links.forEach((link) => {
-//       link.removeEventListener("click", () => {});
-//     });
-//   };
-// }, [messages]);
+  //   return () => {
+  //     links.forEach((link) => {
+  //       link.removeEventListener("click", () => {});
+  //     });
+  //   };
+  // }, [messages]);
 
   useEffect(() => {
     const id = uuidv4();
@@ -111,12 +112,8 @@ export default function PopupChatBotC54() {
     bot: string | null;
   }) => {
     setIsLoading(true);
+    setHasUserSentMessage(true);
     try {
-      // const history = messages.flatMap((mes) => [
-      //   { role: "userMessage", content: mes.user },
-      //   ...(mes.bot ? [{ role: "apiMessage", content: mes.bot }] : []),
-      // ]);
-      // console.log(history)
       const res = await fetch(
         "https://agent1.c1m.ai/webhook/ea7a9565-4c00-4ae3-9a33-1a40b56069cd",
         {
@@ -129,11 +126,6 @@ export default function PopupChatBotC54() {
             question: newMessage.user,
             sessionid: randomId,
           }),
-          // body: JSON.stringify({
-          //   question: newMessage.user,
-          //   sessionid: randomId,
-          //   history: history,
-          // }),
         }
       );
 
@@ -144,7 +136,7 @@ export default function PopupChatBotC54() {
       const data = await res.json();
       // console.log(data)
       const botResponse = data[0].output;
-        // console.log(botResponse);
+      // console.log(botResponse);
       // res.data[0].output
 
       // Update the bot response for the latest user message
@@ -237,32 +229,28 @@ export default function PopupChatBotC54() {
   //       )
   //   );
   // };
-const formatMessage = (message: string) => {
-  // Sanitize input to prevent XSS
-  let safe = message
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  const formatMessage = (message: string) => {
+    // Sanitize input to prevent XSS
+    let safe = message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-  // Bold formatting
-  safe = safe.replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:");
-  safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    // Bold formatting
+    safe = safe.replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:");
+    safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 
-  // Convert URLs to anchor tags (no console now)
-  safe = safe.replace(
-    /(https?:\/\/[^\s]+)/g,
-    `<a href="$1" target="_blank" class="text-blue-400 underline block" onclick="event.stopPropagation();">$1</a>`
-  );
+    // Convert URLs to anchor tags (no console now)
+    safe = safe.replace(
+      /(https?:\/\/[^\s]+)/g,
+      `<a href="$1" target="_blank" class="text-blue-400 underline block" onclick="event.stopPropagation();">$1</a>`
+    );
 
-  // Split into paragraphs using two or more newlines
-  const paragraphs = safe
-    .split(/\n{2,}/)
-    .map((para) => `<p>${para.replace(/\n/g, "<br/>")}</p>`)
-    .join("");
+    // Split into paragraphs using two or more newlines
+    const paragraphs = safe
+      .split(/\n{2,}/)
+      .map((para) => `<p>${para.replace(/\n/g, "<br/>")}</p>`)
+      .join("");
 
-  return paragraphs;
-};
-
-
+    return paragraphs;
+  };
 
   const {
     fontSize,
@@ -317,16 +305,6 @@ const formatMessage = (message: string) => {
                 } rounded-t-3xl px-5 flex justify-between items-center h-16`}
                 style={bgColor ? { backgroundColor: bgColor } : {}}
               >
-                {/* <div>
-                  <Image
-                    src={"/logo-tagline.jpg"}
-                    alt="logo"
-                    height={40}
-                    width={40}
-                    className="rounded-full h-12 w-12"
-                    priority
-                  />
-                </div> */}
                 <p
                   className="text-white font-bold text-[20px]"
                   style={{ color: fontColor, fontSize: fontSize }}
@@ -366,16 +344,7 @@ const formatMessage = (message: string) => {
                       className="cursor-pointer hover:bg-black/25 rounded-full p-1 text-white"
                     />
                   </span>
-                  {/* <div>
-                  <Image
-                    src={"/logo-tagline.jpg"}
-                    alt="logo"
-                    height={40}
-                    width={40}
-                    className="rounded-full h-12 w-12"
-                    priority
-                  />
-                  </div> */}
+
                   <p
                     className="text-white font-bold text-[20px]"
                     style={{ color: fontColor, fontSize: fontSize }}
@@ -403,27 +372,7 @@ const formatMessage = (message: string) => {
                     your favorite app.
                   </p>
                   <div className="flex items-center space-x-3">
-                    <div
-                      className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center my-4 cursor-pointer"
-                      //   onClick={() => {
-                      //     const phoneNumber = "923224944833";
-                      //     const message = encodeURIComponent(
-                      //       "Hello, I would like to chat with you!"
-                      //     );
-                      //     window.location.href = `https://wa.me/${phoneNumber}?text=${message}`;
-                      //   }}
-                    >
-                      {/* <Image
-                        src={"/whatsapp.svg"}
-                        alt="whatsapp"
-                        height={24}
-                        width={24}
-                        priority
-                      /> */}
-                    </div>
-                    {/* <p className="text text-white" style={{ color: fontColor }}>
-                      WhatsApp
-                    </p> */}
+                    <div className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center my-4 cursor-pointer"></div>
                   </div>
                 </div>
               ) : (
@@ -436,25 +385,7 @@ const formatMessage = (message: string) => {
                       Sync your conversation and continue messaging us through
                       your favorite app.
                     </p>
-                    {/* <div
-                      className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center mx-auto my-4 cursor-pointer"
-                      //   onClick={() => {
-                      //     const phoneNumber = "923224944833";
-                      //     const message = encodeURIComponent(
-                      //       "Hello, I would like to chat with you!"
-                      //     );
-                      //     const whatsappURI = `https://wa.me/${phoneNumber}?text=${message}`;
-                      //     window.open(whatsappURI, "_blank");
-                      //   }}
-                    >
-                      <Image
-                        src={"/whatsapp.svg"}
-                        alt="whatsapp"
-                        height={24}
-                        width={24}
-                        priority
-                      />
-                    </div> */}
+
                     <p className="text-center text-white text-sm py-10">
                       {date}
                     </p>
@@ -467,33 +398,29 @@ const formatMessage = (message: string) => {
                       </p>
                       <div className="bg-purple-600 rounded-2xl p-3">
                         <p className="text-[13px] text-white">
-                          Hello , thank you for contacting C1M C54!
+                          Hello, thank you for contacting. How can I help you?
                         </p>
                       </div>
-                      {/* <div className="bg-purple-600 rounded-r-2xl rounded-b-2xl p-3 mt-1">
-                        <p className="text-[13px] text-white">
-                          Please confirm your contact information in case we get
-                          disconnected, and we will transfer you to a
-                          FinanceForFounder representative.
-                        </p>
-                      </div> */}
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center space-x-2 mb-5">
-                    <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
-                    <p className="text-[14px] text-white pl-1">Powered by </p>
-                    <a href="https://c1m.ai/" target="_blank">
-                      <Image
-                        src={"/logo-tagline.png"}
-                        alt="logo"
-                        height={32}
-                        width={56}
-                        priority
-                        className="h-8 w-14"
-                      />
-                    </a>
-                  </div>
+                  {messages.length === 0 && !hasUserSentMessage && (
+                    <div className="flex items-center justify-center space-x-2 mb-5">
+                      <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
+                      <p className="text-[14px] text-white pl-1">Powered by </p>
+                      <a href="https://c1m.ai/" target="_blank">
+                        <Image
+                          src={"/logo-tagline.png"}
+                          alt="logo"
+                          height={32}
+                          width={56}
+                          priority
+                          className="h-8 w-14"
+                        />
+                      </a>
+                    </div>
+                  )}
+
                   <div className="ms-4 me-9 flex flex-col">
                     {messages.map((msg, index) => (
                       <div key={index} className="my-2 space-y-3">
@@ -514,105 +441,6 @@ const formatMessage = (message: string) => {
                           </div>
                         </div>
                         {/* Bot Response */}
-                        {/* {msg.bot && (
-                          <div className="flex justify-start">
-                            {msg.bot === "Show form." ? (
-                              <div className="flex space-x-11 relative max-w-[70%]">
-                                <div className="absolute bottom-1">
-                                  <Image
-                                    src={"/chatbot.jpeg"}
-                                    alt={"chatbot"}
-                                    height={40}
-                                    width={40}
-                                    priority
-                                    className="rounded-full h-7 w-7"
-                                  />
-                                </div>
-                                <form
-                                  onSubmit={handleSubmit}
-                                  className="p-5 shadow-xl rounded-3xl border bg-gradient-to-r from-indigo-900 to-purple-900 max-w-[60%]"
-                                >
-                                  <div className="flex flex-col space-y-1">
-                                    <label>Full Name</label>
-                                    <input
-                                      type="text"
-                                      className="px-3 py-[6px] rounded-full my-2 outline-none bg-indigo-800/70 text-white placeholder:text-indigo-400 border border-indigo-600"
-                                      value={name}
-                                      onChange={(e) => {
-                                        setName(e.target.value);
-                                      }}
-                                      required
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1 my-3">
-                                    <label>Email</label>
-                                    <input
-                                      type="email"
-                                      className="px-3 py-[6px] rounded-full my-2 outline-none bg-indigo-800/70 text-white placeholder:text-indigo-400 border border-indigo-600"
-                                      value={email}
-                                      onChange={(e) => {
-                                        setEmail(e.target.value);
-                                      }}
-                                      required
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <label>Phone</label>
-                                    <input
-                                      type="number"
-                                      className="px-3 py-[6px] rounded-full my-2 outline-none bg-indigo-800/70 text-white placeholder:text-indigo-400 border border-indigo-600"
-                                      value={number}
-                                      onChange={(e) => {
-                                        setNumber(e.target.value);
-                                      }}
-                                      required
-                                    />
-                                  </div>
-                                  <button
-                                    type="submit"
-                                    className="border mt-3 bg-indigo-600 hover:bg-indigo-500 text-white flex justify-center items-center font-medium duration-200 px-3 py-1 rounded-lg mx-auto"
-                                  >
-                                    Submit
-                                  </button>
-                                </form>
-                              </div>
-                            ) : (
-                              <div className="flex relative">
-                                <div className="absolute bottom-0">
-                                  <Image
-                                    src={"/chatbot.jpeg"}
-                                    alt={"chatbot"}
-                                    height={40}
-                                    width={40}
-                                    priority
-                                    className="rounded-full h-7 w-7"
-                                  />
-                                </div>
-
-                                <div
-                                  className=" flex flex-col px-3 pt-3 pb-1 rounded-3xl max-w-[60%] ms-7"
-                                  style={{
-                                    backgroundColor: botColor,
-                                  
-                                    color: fontColor,
-                                  }}
-                                >
-                                  <p
-                                    className="text-white text-sm break-words overflow-hidden"
-                                    dangerouslySetInnerHTML={{
-                                      __html: formatMessage(msg.bot),
-                                    }}
-                                  >
-                                    
-                                  </p>
-                                  <span className="text-[9px] text-end text-white">
-                                    {msg.time}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )} */}
                         {msg.bot && (
                           <div className="flex justify-start">
                             {msg.bot === "Show form." ? (
@@ -671,7 +499,26 @@ const formatMessage = (message: string) => {
                         )}
                       </div>
                     ))}
+
+                    {/* Powered by after messages */}
+                    {messages.length > 0 && (
+                       <div className="flex items-center justify-center space-x-2 my-5">
+                      <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
+                      <p className="text-[14px] text-white pl-1">Powered by </p>
+                      <a href="https://c1m.ai/" target="_blank">
+                        <Image
+                          src={"/logo-tagline.png"}
+                          alt="logo"
+                          height={32}
+                          width={56}
+                          priority
+                          className="h-8 w-14"
+                        />
+                      </a>
+                    </div>
+                    )}
                   </div>
+
                   <div ref={messageScrollRef}></div>
                 </div>
               )}
