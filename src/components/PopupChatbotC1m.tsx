@@ -95,13 +95,13 @@ export default function PopupChatBotC1m() {
   }) => {
     setIsLoading(true);
     try {
-      const history = messages.flatMap((mes) => [
-        { role: "userMessage", content: mes.user },
-        ...(mes.bot ? [{ role: "apiMessage", content: mes.bot }] : []),
-      ]);
+      // const history = messages.flatMap((mes) => [
+      //   { role: "userMessage", content: mes.user },
+      //   ...(mes.bot ? [{ role: "apiMessage", content: mes.bot }] : []),
+      // ]);
       // console.log(history)
       const res = await fetch(
-        "https://n8n.c1m.ai/webhook/02e84451-d545-48a3-96c9-3e56c5c8c9b0",
+        "https://n8n.c1m.ai/webhook/3cd6b332-fe97-4339-80e3-e97fc3471492",
         {
           method: "POST",
           headers: {
@@ -109,11 +109,8 @@ export default function PopupChatBotC1m() {
             Accept: "application/json",
           },
           body: JSON.stringify({
-            input: {
-              question: newMessage.user,
-              sessionid: randomId,
-              history: history,
-            },
+            question: newMessage.user,
+            sessionid: randomId,
           }),
         }
       );
@@ -124,7 +121,7 @@ export default function PopupChatBotC1m() {
 
       const data = await res.json();
       // console.log(data)
-      const botResponse = data[0].text;
+      const botResponse = data[0].output;
       //   console.log(botResponse);
       // res.data[0].output
 
