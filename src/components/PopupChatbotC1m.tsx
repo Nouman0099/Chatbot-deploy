@@ -99,7 +99,7 @@ export default function PopupChatBotC1m() {
     try {
       // console.log(history)
       const res = await fetch(
-        "https://n8n.c1m.ai/webhook/3cd6b332-fe97-4339-80e3-e97fc3471492",
+        "https://agent1.c1m.ai/webhook/3cd6b332-fe97-4339-80e3-e97fc3471492",
         {
           method: "POST",
           headers: {
