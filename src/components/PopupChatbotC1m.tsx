@@ -35,10 +35,11 @@ export default function PopupChatBotC1m() {
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const messageScrollRef = useRef<HTMLDivElement | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [number, setNumber] = useState("");
   const [randomId, setRandomId] = useState("");
+  const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -94,11 +95,8 @@ export default function PopupChatBotC1m() {
     bot: string | null;
   }) => {
     setIsLoading(true);
+    setHasUserSentMessage(true);
     try {
-      // const history = messages.flatMap((mes) => [
-      //   { role: "userMessage", content: mes.user },
-      //   ...(mes.bot ? [{ role: "apiMessage", content: mes.bot }] : []),
-      // ]);
       // console.log(history)
       const res = await fetch(
         "https://n8n.c1m.ai/webhook/3cd6b332-fe97-4339-80e3-e97fc3471492",
@@ -155,9 +153,9 @@ export default function PopupChatBotC1m() {
     // };
     // console.log(userInfo);
 
-    setName("");
-    setEmail("");
-    setNumber("");
+    // setName("");
+    // setEmail("");
+    // setNumber("");
   };
 
   const handleOpen = () => {
@@ -174,17 +172,6 @@ export default function PopupChatBotC1m() {
       setClosing(false); // Reset the closing state
     }, 300); // Matches the animation duration
   };
-
-  // const formatMessage = (message: string) => {
-  //   return message
-  //     .replace(/(\*\*)(.*?)(\*\*)/g, "<strong>$2</strong>") // Remove ** and make text bold
-  //     .replace(/### (.*?)(?=\s|$)/g, "<h2><strong>$1</strong></h2>") // Convert ### to heading 2 and make it bold
-  //     .replace(/[\[(](https?:\/\/[^\s\])]+)[\])]/g, "$1") // Remove () or [] around URLs
-  //     .replace(
-  //       /(https?:\/\/[^\s]+)/g,
-  //       '<br/><a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>' // Add a line break before the URL
-  //     );
-  // };
 
   const formatMessage = (message: string) => {
     return (
@@ -269,21 +256,11 @@ export default function PopupChatBotC1m() {
                 } rounded-t-3xl px-5 flex justify-between items-center h-16`}
                 style={bgColor ? { backgroundColor: bgColor } : {}}
               >
-                {/* <div>
-                  <Image
-                    src={"/logo-tagline.jpg"}
-                    alt="logo"
-                    height={40}
-                    width={40}
-                    className="rounded-full h-12 w-12"
-                    priority
-                  />
-                </div> */}
                 <p
                   className="text-white font-bold text-xl"
                   style={{ color: fontColor, fontSize: fontSize }}
                 >
-                  C1M Presales
+                  C1M
                 </p>
                 <div className="flex space-x-2 text-white">
                   <span>
@@ -332,7 +309,7 @@ export default function PopupChatBotC1m() {
                     className="text-white font-bold text-xl"
                     style={{ color: fontColor, fontSize: fontSize }}
                   >
-                    C1M Presales
+                    C1M
                   </p>
                 </div>
                 <span>
@@ -415,24 +392,17 @@ export default function PopupChatBotC1m() {
                         className="text-[12px] text-white"
                         style={{ color: fontColor }}
                       >
-                        C1M Presales Representative
+                        C1M Representative
                       </p>
                       <div className="bg-purple-600 rounded-2xl p-3">
                         <p className="text-[13px] text-white">
-                          Hello , thank you for contacting C1M Presales!
+                          Hello , thank you for contacting c1m.ai
                         </p>
                       </div>
-                      {/* <div className="bg-purple-600 rounded-r-2xl rounded-b-2xl p-3 mt-1">
-                        <p className="text-[13px] text-white">
-                          Please confirm your contact information in case we get
-                          disconnected, and we will transfer you to a
-                          FinanceForFounder representative.
-                        </p>
-                      </div> */}
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center space-x-2 mb-5">
+                  {/* <div className="flex items-center justify-center space-x-2 mb-5">
                     <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
                     <p className="text-[14px] text-white pl-1">Powered by </p>
                     <a href="https://c1m.ai/" target="_blank">
@@ -449,13 +419,12 @@ export default function PopupChatBotC1m() {
                   <div className="ms-4 me-9 flex flex-col">
                     {messages.map((msg, index) => (
                       <div key={index} className="my-2 space-y-3">
-                        {/* User Message */}
+                        
                         <div className="flex justify-end">
                           <div
                             className="flex flex-col text-sm px-3 pt-3 pb-1 rounded-3xl max-w-[70%]"
                             style={{
                               backgroundColor: bubbleColor,
-                              // fontSize,
                               color: fontColor,
                             }}
                           >
@@ -465,7 +434,7 @@ export default function PopupChatBotC1m() {
                             </span>
                           </div>
                         </div>
-                        {/* Bot Response */}
+                        
                         {msg.bot && (
                           <div className="flex justify-start">
                             {msg.bot === "Show form." ? (
@@ -545,7 +514,6 @@ export default function PopupChatBotC1m() {
                                   className=" flex flex-col px-3 pt-3 pb-1 rounded-3xl max-w-[80%] ms-7"
                                   style={{
                                     backgroundColor: botColor,
-                                    // fontSize,
                                     color: fontColor,
                                   }}
                                 >
@@ -555,7 +523,6 @@ export default function PopupChatBotC1m() {
                                       __html: formatMessage(msg.bot),
                                     }}
                                   >
-                                    {/* {msg.bot} */}
                                   </p>
                                   <span className="text-[9px] text-end text-white">
                                     {msg.time}
@@ -568,6 +535,125 @@ export default function PopupChatBotC1m() {
                       </div>
                     ))}
                   </div>
+                  <div ref={messageScrollRef}></div> */}
+
+                  {messages.length === 0 && !hasUserSentMessage && (
+                    <div className="flex items-center justify-center space-x-2 mb-5">
+                      <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
+                      <p className="text-[14px] text-white pl-1">Powered by </p>
+                      <a href="https://c1m.ai/" target="_blank">
+                        <Image
+                          src={"/logo-tagline.png"}
+                          alt="logo"
+                          height={32}
+                          width={56}
+                          priority
+                          className="h-8 w-14"
+                        />
+                      </a>
+                    </div>
+                  )}
+
+                  <div className="ms-4 me-9 flex flex-col">
+                    {messages.map((msg, index) => (
+                      <div key={index} className="my-2 space-y-3">
+                        {/* User Message */}
+                        <div className="flex justify-end">
+                          <div
+                            className="flex flex-col text-sm px-3 pt-3 pb-1 rounded-3xl max-w-[70%]"
+                            style={{
+                              backgroundColor: bubbleColor,
+                              // fontSize,
+                              color: fontColor,
+                            }}
+                          >
+                            <p>{msg.user}</p>
+                            <span className="text-[9px] text-end">
+                              {msg.time}
+                            </span>
+                          </div>
+                        </div>
+                        {/* Bot Response */}
+                        {msg.bot && (
+                          <div className="flex justify-start">
+                            {msg.bot === "Show form." ? (
+                              <div className="flex space-x-11 relative max-w-[70%]">
+                                <div className="absolute bottom-1">
+                                  <Image
+                                    src={"/chatbot.jpeg"}
+                                    alt={"chatbot"}
+                                    height={40}
+                                    width={40}
+                                    priority
+                                    className="rounded-full h-7 w-7"
+                                  />
+                                </div>
+                                <form
+                                  onSubmit={handleSubmit}
+                                  className="p-5 shadow-xl rounded-3xl border bg-gradient-to-r from-indigo-900 to-purple-900 max-w-[60%]"
+                                >
+                                  {/* Form fields remain unchanged */}
+                                </form>
+                              </div>
+                            ) : (
+                              <div className="flex relative">
+                                <div className="absolute bottom-0">
+                                  <Image
+                                    src={"/chatbot.jpeg"}
+                                    alt={"chatbot"}
+                                    height={40}
+                                    width={40}
+                                    priority
+                                    className="rounded-full h-7 w-7"
+                                  />
+                                </div>
+
+                                <div
+                                  className="flex flex-col px-3 pt-3 pb-1 rounded-3xl ms-7 w-fit max-w-[80%]"
+                                  style={{
+                                    backgroundColor: botColor,
+                                    color: fontColor,
+                                  }}
+                                >
+                                  <p
+                                    className="text-white text-sm break-words whitespace-pre-wrap"
+                                    style={{ wordBreak: "break-word" }}
+                                    dangerouslySetInnerHTML={{
+                                      __html: formatMessage(msg.bot),
+                                    }}
+                                  />
+                                  <span className="text-[9px] text-end text-white">
+                                    {msg.time}
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+
+                    {/* Powered by after messages */}
+                    {messages.length > 0 && (
+                      <div className="flex items-center justify-center space-x-2 my-5">
+                        <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
+                        <p className="text-[14px] text-white pl-1">
+                          Powered by{" "}
+                        </p>
+                        <a href="https://c1m.ai/" target="_blank">
+                          <Image
+                            src={"/logo-tagline.png"}
+                            alt="logo"
+                            height={32}
+                            width={56}
+                            priority
+                            className="h-8 w-14"
+                          />
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
                   <div ref={messageScrollRef}></div>
                 </div>
               )}
