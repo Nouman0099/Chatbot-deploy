@@ -64,9 +64,9 @@
 
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
-import Script from "next/script";
+// import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
