@@ -25,6 +25,8 @@ export default function PopupChatBotC54() {
     fontColorPoweredBy: "",
     bgColorPoweredByIcon: "",
     inputPlaceHolderColor: "",
+    userMessageFontColor: "",
+    chatbotResponseFontColor: "",
     bubbleColor: "#3730a3",
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
@@ -72,7 +74,9 @@ export default function PopupChatBotC54() {
       bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#9333EA",
       inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#4f46e5",
       loaderColor: params.get("loaderColor") || "#9333EA",
-
+      userMessageFontColor: params.get("userMessageFontColor") || "#9333EA",
+      chatbotResponseFontColor:
+        params.get("chatbotResponseFontColor") || "#9333EA",
     });
   }, []);
 
@@ -291,6 +295,8 @@ export default function PopupChatBotC54() {
     fontColorMessage,
     inputPlaceHolderColor,
     loaderColor,
+    chatbotResponseFontColor,
+    userMessageFontColor,
   } = styleParams;
 
   return (
@@ -476,7 +482,7 @@ export default function PopupChatBotC54() {
                             style={{
                               backgroundColor: bubbleColor,
                               // fontSize,
-                              color: fontColor,
+                              color: userMessageFontColor,
                             }}
                           >
                             <p>{msg.user}</p>
@@ -524,11 +530,11 @@ export default function PopupChatBotC54() {
                                   className="flex flex-col px-3 pt-3 pb-1 rounded-3xl ms-7 w-fit max-w-[80%]"
                                   style={{
                                     backgroundColor: botColor,
-                                    color: fontColor,
+                                    color: chatbotResponseFontColor,
                                   }}
                                 >
                                   <p
-                                    className="text-white text-sm break-words whitespace-pre-wrap"
+                                    className="text-sm break-words whitespace-pre-wrap"
                                     style={{ wordBreak: "break-word" }}
                                     dangerouslySetInnerHTML={{
                                       __html: formatMessage(msg.bot),
@@ -594,15 +600,15 @@ export default function PopupChatBotC54() {
                   }}
                   disabled={isLoading}
                   placeholder="Type a message..."
-                  className={`px-4 py-2 rounded-full text-sm w-full outline-none border
-    placeholder:${inputPlaceHolderColor}
-  `}
-                  style={{
-                    backgroundColor: inputBgColor,
-                    color: inputTextColor,
-                    borderColor: inputBorderColor,
-                    // fontSize,
-                  }}
+                  className="px-4 py-2 rounded-full text-sm w-full outline-none border placeholder:text-[var(--placeholder-color)]"
+                  style={
+                    {
+                      "--placeholder-color": inputPlaceHolderColor, // dynamic
+                      backgroundColor: inputBgColor,
+                      color: inputTextColor,
+                      borderColor: inputBorderColor,
+                    } as React.CSSProperties
+                  }
                 />
                 {isLoading ? (
                   <Loading1 color={loaderColor} />
