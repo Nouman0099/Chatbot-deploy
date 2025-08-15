@@ -17,12 +17,21 @@ export default function PopupChatBotC54() {
     fontColor: "#ffffff",
     bgColor: "",
     bgColor1: "",
+    bgColorFooter: "",
+    bgColorMessage: "",
+    fontColorMessage: "",
+    fontColorHeader: "",
+    fontColorDate: "",
+    fontColorPoweredBy: "",
+    bgColorPoweredByIcon: "",
+    inputPlaceHolderColor: "",
     bubbleColor: "#3730a3",
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
     submitTextColor: "#ffffff",
     inputBorderColor: "#4f46e5",
+    loaderColor: "#9333EA",
   });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -54,6 +63,16 @@ export default function PopupChatBotC54() {
       inputTextColor: params.get("inputTextColor") || "#ffffff",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
       inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
+      bgColorFooter: params.get("bgColorFooter") || "#4f46e5",
+      bgColorMessage: params.get("bgColorMessage") || "#9333EA",
+      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
+      fontColorHeader: params.get("fontColorHeader") || "#4f46e5",
+      fontColorDate: params.get("fontColorDate") || "#4f46e5",
+      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#4f46e5",
+      bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#9333EA",
+      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#4f46e5",
+      loaderColor: params.get("loaderColor") || "#9333EA",
+
     });
   }, []);
 
@@ -263,6 +282,15 @@ export default function PopupChatBotC54() {
     inputTextColor,
     submitTextColor,
     inputBorderColor,
+    bgColorFooter,
+    bgColorMessage,
+    bgColorPoweredByIcon,
+    fontColorDate,
+    fontColorHeader,
+    fontColorPoweredBy,
+    fontColorMessage,
+    inputPlaceHolderColor,
+    loaderColor,
   } = styleParams;
 
   return (
@@ -307,7 +335,7 @@ export default function PopupChatBotC54() {
               >
                 <p
                   className="text-white font-bold text-[20px]"
-                  style={{ color: fontColor, fontSize: fontSize }}
+                  style={{ color: fontColorHeader, fontSize: fontSize }}
                 >
                   COLLECTIVE 54
                 </p>
@@ -386,7 +414,10 @@ export default function PopupChatBotC54() {
                       your favorite app.
                     </p>
 
-                    <p className="text-center text-white text-sm py-10">
+                    <p
+                      className="text-center text-white text-sm py-10"
+                      style={{ color: fontColorDate }}
+                    >
                       {date}
                     </p>
                     <div className="max-w-[80%]">
@@ -396,8 +427,14 @@ export default function PopupChatBotC54() {
                       >
                         C1M C54 Representative
                       </p>
-                      <div className="bg-purple-600 rounded-2xl p-3">
-                        <p className="text-[13px] text-white">
+                      <div
+                        className="rounded-2xl p-3"
+                        style={{
+                          backgroundColor: bgColorMessage,
+                          color: fontColorMessage,
+                        }}
+                      >
+                        <p className="text-[13px]">
                           Hello, thank you for contacting. How can I help you?
                         </p>
                       </div>
@@ -406,8 +443,16 @@ export default function PopupChatBotC54() {
 
                   {messages.length === 0 && !hasUserSentMessage && (
                     <div className="flex items-center justify-center space-x-2 mb-5">
-                      <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
-                      <p className="text-[14px] text-white pl-1">Powered by </p>
+                      <div
+                        className="h-[14px] w-6 rounded-t-full"
+                        style={{ backgroundColor: bgColorPoweredByIcon }}
+                      ></div>
+                      <p
+                        className="text-[14px] text-white pl-1"
+                        style={{ color: fontColorPoweredBy }}
+                      >
+                        Powered by{" "}
+                      </p>
                       <a href="https://c1m.ai/" target="_blank">
                         <Image
                           src={"/logo-tagline.png"}
@@ -502,20 +547,28 @@ export default function PopupChatBotC54() {
 
                     {/* Powered by after messages */}
                     {messages.length > 0 && (
-                       <div className="flex items-center justify-center space-x-2 my-5">
-                      <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
-                      <p className="text-[14px] text-white pl-1">Powered by </p>
-                      <a href="https://c1m.ai/" target="_blank">
-                        <Image
-                          src={"/logo-tagline.png"}
-                          alt="logo"
-                          height={32}
-                          width={56}
-                          priority
-                          className="h-8 w-14"
-                        />
-                      </a>
-                    </div>
+                      <div className="flex items-center justify-center space-x-2 my-5">
+                        <div
+                          className="h-[14px] w-6 rounded-t-full"
+                          style={{ backgroundColor: bgColorPoweredByIcon }}
+                        ></div>
+                        <p
+                          className="text-[14px] text-white pl-1"
+                          style={{ color: fontColorPoweredBy }}
+                        >
+                          Powered by{" "}
+                        </p>
+                        <a href="https://c1m.ai/" target="_blank">
+                          <Image
+                            src={"/logo-tagline.png"}
+                            alt="logo"
+                            height={32}
+                            width={56}
+                            priority
+                            className="h-8 w-14"
+                          />
+                        </a>
+                      </div>
                     )}
                   </div>
 
@@ -526,9 +579,9 @@ export default function PopupChatBotC54() {
             {!isSecondPage && (
               <div
                 className={`flex items-center space-x-3 ${
-                  bgColor ? "" : "bg-indigo-800"
+                  bgColorFooter ? "" : "bg-indigo-800"
                 } h-16 rounded-b-3xl px-4 fixed bottom-0 w-full`}
-                style={bgColor ? { backgroundColor: bgColor } : {}}
+                style={bgColorFooter ? { backgroundColor: bgColorFooter } : {}}
               >
                 <input
                   type="text"
@@ -541,7 +594,9 @@ export default function PopupChatBotC54() {
                   }}
                   disabled={isLoading}
                   placeholder="Type a message..."
-                  className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border"
+                  className={`px-4 py-2 rounded-full text-sm w-full outline-none border
+    placeholder:${inputPlaceHolderColor}
+  `}
                   style={{
                     backgroundColor: inputBgColor,
                     color: inputTextColor,
@@ -550,7 +605,7 @@ export default function PopupChatBotC54() {
                   }}
                 />
                 {isLoading ? (
-                  <Loading1 />
+                  <Loading1 color={loaderColor} />
                 ) : (
                   <span>
                     <IoSendOutline

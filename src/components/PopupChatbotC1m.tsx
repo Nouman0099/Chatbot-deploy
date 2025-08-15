@@ -16,6 +16,7 @@ export default function PopupChatBotC1m() {
     fontSize: "14px",
     fontColor: "#ffffff",
     bgColor: "",
+    bgColorFooter: "",
     bgColor1: "",
     bubbleColor: "#3730a3",
     botColor: "#6b21a8",
@@ -47,6 +48,7 @@ export default function PopupChatBotC1m() {
       fontSize: params.get("fontSize") || "24px",
       fontColor: params.get("fontColor") || "#ffffff",
       bgColor: params.get("bgColor") || "",
+      bgColorFooter: params.get("bgColorFooter") || "",
       bgColor1: params.get("bgColor1") || "",
       bubbleColor: params.get("bubbleColor") || "#4338ca",
       botColor: params.get("botColor") || "#6b21a8",
@@ -207,6 +209,7 @@ export default function PopupChatBotC1m() {
     fontSize,
     fontColor,
     bgColor,
+    bgColorFooter,
     bgColor1,
     bubbleColor,
     botColor,
@@ -663,7 +666,7 @@ export default function PopupChatBotC1m() {
                 className={`flex items-center space-x-3 ${
                   bgColor ? "" : "bg-indigo-800"
                 } h-16 rounded-b-3xl px-4 fixed bottom-0 w-full`}
-                style={bgColor ? { backgroundColor: bgColor } : {}}
+                style={bgColorFooter ? { backgroundColor: bgColorFooter } : {}}
               >
                 <input
                   type="text"
