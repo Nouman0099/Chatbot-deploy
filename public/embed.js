@@ -30,7 +30,9 @@ function createChatWidget(options) {
   iframe.style.border = "none";
   iframe.style.borderRadius = "10px";
   iframe.style.zIndex = "9999";
-  iframe.style.background = "transparent"; // important
+  iframe.style.background = 'transparent'; // important
+  iframe.style.backgroundColor = "transparent";
+  iframe.style.overflow = "visible";
   iframe.setAttribute("allowtransparency", "true"); // legacy support for transparency
   iframe.setAttribute("id", "custom-chatbot");
 

@@ -6,84 +6,84 @@
     <title>Document</title>
 
     <script>
-      // window.addEventListener("DOMContentLoaded", function () {
-      //   const script = document.createElement("script");
-      //   script.src = "https://cai.c1m.ai/embed.js";
-      //   script.onload = function () {
-      //     if (window.Chatbot) {
-      //       window.Chatbot.init({
-      //         apiUrl: "https://cai.c1m.ai/popup/Chat-C1M-Presales",
-      //         welcomeMessage: "Hey there! How can I help you today?",
-      //         position: "right",
-      //         sidePadding: "20px",
-      //         bottom: "0px",
-      //         width: "550px",
-      //         height: "550px",
-      //         fontSize: "24px",
-      //         fontColor: "white",
-      //         bgColor: "#4338ca", // header, footer color
-      //         bgColor1: "#35225d", // gradient here
-      //         bubbleColor: "#4338ca", // user message
-      //         botColor: "#6b21a8", // chatbot responses
-      //         inputBgColor: "#4f46e5", // input field background color
-      //         inputTextColor: "#ffffff", // input field text color
-      //         inputBorderColor: "#4f46e5", // input field border color
-      //         submitTextColor: "#ffffff", // submit button text color
-      //       });
-      //     }
-      //   };
-      //   document.head.appendChild(script);
-      // });
       window.addEventListener("DOMContentLoaded", function () {
-  const script = document.createElement("script");
-  script.src = "https://cai.c1m.ai/embed.js";
-  script.onload = function () {
-    if (window.Chatbot) {
-      window.Chatbot.init({
-        apiUrl: "https://cai.c1m.ai/popup/Chat-C1M-Presales",
-        welcomeMessage: "Hey there! How can I help you today?",
-        position: "right",
-        sidePadding: "20px",
-        bottom: "0px",
-        width: "550px",
-        height: "550px",
-        fontSize: "24px",
-        fontColor: "white",
-        bgColor: "#4338ca",
-        bgColor1: "#35225d",
-        bubbleColor: "#4338ca",
-        botColor: "#6b21a8",
-        inputBgColor: "#4f46e5",
-        inputTextColor: "#ffffff",
-        inputBorderColor: "#4f46e5",
-        submitTextColor: "#ffffff",
+        const script = document.createElement("script");
+        script.src = "https://cai.c1m.ai/embed.js";
+        script.onload = function () {
+          if (window.Chatbot) {
+            window.Chatbot.init({
+              apiUrl: "https://cai.c1m.ai/popup/Chat-C1M-Presales",
+              welcomeMessage: "Hey there! How can I help you today?",
+              position: "right",
+              sidePadding: "20px",
+              bottom: "0px",
+              width: "550px",
+              height: "550px",
+              fontSize: "24px",
+              fontColor: "white",
+              bgColor: "#4338ca", // header, footer color
+              bgColor1: "#35225d", // gradient here
+              bubbleColor: "#4338ca", // user message
+              botColor: "#6b21a8", // chatbot responses
+              inputBgColor: "#4f46e5", // input field background color
+              inputTextColor: "#ffffff", // input field text color
+              inputBorderColor: "#4f46e5", // input field border color
+              submitTextColor: "#ffffff", // submit button text color
+            });
+          }
+        };
+        document.head.appendChild(script);
       });
-    }
+//       window.addEventListener("DOMContentLoaded", function () {
+//   const script = document.createElement("script");
+//   script.src = "https://cai.c1m.ai/embed.js";
+//   script.onload = function () {
+//     if (window.Chatbot) {
+//       window.Chatbot.init({
+//         apiUrl: "https://cai.c1m.ai/popup/Chat-C1M-Presales",
+//         welcomeMessage: "Hey there! How can I help you today?",
+//         position: "right",
+//         sidePadding: "20px",
+//         bottom: "0px",
+//         width: "550px",
+//         height: "550px",
+//         fontSize: "24px",
+//         fontColor: "white",
+//         bgColor: "#4338ca",
+//         bgColor1: "#35225d",
+//         bubbleColor: "#4338ca",
+//         botColor: "#6b21a8",
+//         inputBgColor: "#4f46e5",
+//         inputTextColor: "#ffffff",
+//         inputBorderColor: "#4f46e5",
+//         submitTextColor: "#ffffff",
+//       });
+//     }
 
-    // Try to remove any unwanted white overlay or wrapper after it appears
-    const cleanseOverlay = () => {
-      document.querySelectorAll("div").forEach(div => {
-        const style = getComputedStyle(div);
-        // heuristic: large white block, high z-index, not your page content
-        if (
-          style.backgroundColor === "rgb(255, 255, 255)" &&
-          parseInt(style.zIndex || "0", 10) >= 1000 &&
-          div.offsetWidth > 200 && div.offsetHeight > 200
-        ) {
-          div.style.background = "transparent";
-          // optionally hide if it's clearly an overlay
-          // div.style.display = "none";
-        }
-      });
-    };
+//     // Try to remove any unwanted white overlay or wrapper after it appears
+//     const cleanseOverlay = () => {
+//       document.querySelectorAll("div").forEach(div => {
+//         const style = getComputedStyle(div);
+//         // heuristic: large white block, high z-index, not your page content
+//         if (
+//           style.backgroundColor === "rgb(255, 255, 255)" &&
+//           parseInt(style.zIndex || "0", 10) >= 1000 &&
+//           div.offsetWidth > 200 && div.offsetHeight > 200
+//         ) {
+//           div.style.background = "transparent";
+//           // optionally hide if it's clearly an overlay
+//           // div.style.display = "none";
+//         }
+//       });
+//     };
 
-    // run a few times in case it appears slightly delayed
-    setTimeout(cleanseOverlay, 300);
-    setTimeout(cleanseOverlay, 800);
-    setTimeout(cleanseOverlay, 1500);
-  };
-  document.head.appendChild(script);
-});
+//     // run a few times in case it appears slightly delayed
+//     setTimeout(cleanseOverlay, 300);
+//     setTimeout(cleanseOverlay, 800);
+//     setTimeout(cleanseOverlay, 1500);
+//   };
+//   document.head.appendChild(script);
+// });
 
     </script>
   </head>
