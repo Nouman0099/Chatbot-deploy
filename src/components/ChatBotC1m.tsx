@@ -15,10 +15,14 @@ export default function ChatBotC1m() {
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
+    inputPlaceHolderColor: "",
+    userMessageFontColor: "",
+    chatbotResponseFontColor: "",
     submitBgColor: "#4338ca",
     submitTextColor: "#ffffff",
     messageBorderColor: "#C084FC",
     inputBorderColor: "#4f46e5",
+    loaderColor: "#9333EA",
   });
 
   const [loading, setLoading] = useState(false);
@@ -44,6 +48,11 @@ export default function ChatBotC1m() {
       submitTextColor: params.get("submitTextColor") || "#ffffff",
       messageBorderColor: params.get("messageBorderColor") || "#C084FC",
       inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
+      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#4f46e5",
+      loaderColor: params.get("loaderColor") || "#9333EA",
+      userMessageFontColor: params.get("userMessageFontColor") || "#9333EA",
+      chatbotResponseFontColor:
+        params.get("chatbotResponseFontColor") || "#9333EA",
     });
   }, []);
 
@@ -92,12 +101,12 @@ export default function ChatBotC1m() {
         question: newMessage.user,
         sessionid: randomId,
       };
-      console.log(payload)
+      console.log(payload);
       const res = await axios.post(
         `https://n8n.c1m.ai/webhook/3cd6b332-fe97-4339-80e3-e97fc3471492`,
         payload
       );
-      console.log(res.data)
+      console.log(res.data);
       const botResponse = res.data[0].output;
       setMessages((prevMessages) =>
         prevMessages.map((msg, index) =>
@@ -161,7 +170,11 @@ export default function ChatBotC1m() {
     submitBgColor,
     submitTextColor,
     messageBorderColor,
-    inputBorderColor
+    inputBorderColor,
+    inputPlaceHolderColor,
+    loaderColor,
+    chatbotResponseFontColor,
+    userMessageFontColor,
   } = styleParams;
 
   return (
@@ -194,7 +207,7 @@ export default function ChatBotC1m() {
                       style={{
                         backgroundColor: bubbleColor,
                         // fontSize,
-                        color: fontColor,
+                        color: userMessageFontColor,
                       }}
                     >
                       {msg.user}
@@ -209,7 +222,7 @@ export default function ChatBotC1m() {
                         style={{
                           backgroundColor: botColor,
                           // fontSize,
-                          color: fontColor,
+                          color: chatbotResponseFontColor,
                         }}
                         dangerouslySetInnerHTML={{
                           __html: formatMessage(msg.botRes),
@@ -234,17 +247,19 @@ export default function ChatBotC1m() {
               }}
               disabled={loading}
               placeholder="Type a message..."
-              className="rounded-lg px-3 py-2 w-full outline-none border"
-              style={{
-                backgroundColor: inputBgColor,
-                color: inputTextColor,
-                borderColor: inputBorderColor,
-                // fontSize,
-              }}
+              className="rounded-lg px-3 py-2 w-full outline-none border placeholder:text-[var(--placeholder-color)]"
+              style={
+                {
+                  "--placeholder-color": inputPlaceHolderColor, // dynamic
+                  backgroundColor: inputBgColor,
+                  color: inputTextColor,
+                  borderColor: inputBorderColor,
+                } as React.CSSProperties
+              }
               required
             />
             {loading ? (
-              <Loading1 />
+              <Loading1 color={loaderColor} />
             ) : (
               <button
                 onClick={handleMessage}

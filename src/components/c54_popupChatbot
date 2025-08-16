@@ -10,18 +10,31 @@ window.addEventListener("DOMContentLoaded", function () {
         position: "right",
         sidePadding: "20px",
         bottom: "0px",
-        width: "900px",
-        height: "550px",
+        width: "700px",
+        height: "600px",
         fontSize: "24px",
-        fontColor: "white",
-        bgColor: "#4338ca", // header, footer color
-        bgColor1: "#35225d", // gradient here
-        bubbleColor: "#4338ca", // user message
-        botColor: "#6b21a8", // chatbot response
+        fontColor: "#ffffff", // body font color
+        bgColor: "#4338ca", // header background Gradient here 
+        bgColor1: "#35225d", // body background
+        bubbleColor: "#6b21a8", // user message bg color
+        userMessageFontColor: "#ffffff", // user message font color
+        botColor: "#6b21a8", // chatbot response bg color
+        chatbotResponseFontColor: "#ffffff", // chatbot response font color
         inputBgColor: "#4f46e5", // input field background color
         inputTextColor: "#ffffff", // input field text color
         inputBorderColor: "#4f46e5", // input field border color
+        inputPlaceHolderColor: "#ffffff", // input placeholder color
         submitTextColor: "#ffffff", // submit button text color
+        submitBgColor: "#4338ca", // submit button background color
+        messageBorderColor: "#C084FC", // message border color
+        bgColorFooter: "#4338ca", // bg footer color
+        bgColorPoweredByIcon: "purple", //  bgColorPoweredByIcon
+        fontColorDate: "#ffffff", // date color
+        fontColorHeader: "black", // header font color
+        fontColorPoweredBy: "#ffffff", // font color PoweredBy
+        bgColorMessage: "purple", // bg color of greeting message
+        fontColorMessage: "#ffffff", // font color of greeting message
+        loaderColor: "purple", // loader color
       });
     }
   };

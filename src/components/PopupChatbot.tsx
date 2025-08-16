@@ -17,12 +17,23 @@ export default function PopupChatBot() {
     fontColor: "#ffffff",
     bgColor: "",
     bgColor1: "",
+    bgColorFooter: "",
+    bgColorMessage: "",
+    fontColorMessage: "",
+    fontColorHeader: "",
+    fontColorDate: "",
+    fontColorPoweredBy: "",
+    bgColorPoweredByIcon: "",
+    inputPlaceHolderColor: "",
+    userMessageFontColor: "",
+    chatbotResponseFontColor: "",
     bubbleColor: "#3730a3",
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
     submitTextColor: "#ffffff",
     inputBorderColor: "#4f46e5",
+    loaderColor: "#9333EA",
   });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -39,11 +50,13 @@ export default function PopupChatBot() {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [randomId, setRandomId] = useState("");
+  const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
+  
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStyleParams({
-      fontSize: params.get("fontSize") || "24px",
+      fontSize: params.get("fontSize") || "20px",
       fontColor: params.get("fontColor") || "#ffffff",
       bgColor: params.get("bgColor") || "",
       bgColor1: params.get("bgColor1") || "",
@@ -53,6 +66,18 @@ export default function PopupChatBot() {
       inputTextColor: params.get("inputTextColor") || "#ffffff",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
       inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
+      bgColorFooter: params.get("bgColorFooter") || "#4f46e5",
+      bgColorMessage: params.get("bgColorMessage") || "#9333EA",
+      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
+      fontColorHeader: params.get("fontColorHeader") || "#4f46e5",
+      fontColorDate: params.get("fontColorDate") || "#4f46e5",
+      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#4f46e5",
+      bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#9333EA",
+      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#4f46e5",
+      loaderColor: params.get("loaderColor") || "#9333EA",
+      userMessageFontColor: params.get("userMessageFontColor") || "#9333EA",
+      chatbotResponseFontColor:
+        params.get("chatbotResponseFontColor") || "#9333EA",
     });
   }, []);
 
@@ -94,6 +119,7 @@ export default function PopupChatBot() {
     bot: string | null;
   }) => {
     setIsLoading(true);
+     setHasUserSentMessage(true);
     try {
       const history = messages.flatMap((mes) => [
         { role: "userMessage", content: mes.user },
@@ -187,7 +213,7 @@ export default function PopupChatBot() {
       );
   };
   const {
-    fontSize,
+  fontSize,
     fontColor,
     bgColor,
     bgColor1,
@@ -197,6 +223,17 @@ export default function PopupChatBot() {
     inputTextColor,
     submitTextColor,
     inputBorderColor,
+    bgColorFooter,
+    bgColorMessage,
+    bgColorPoweredByIcon,
+    fontColorDate,
+    fontColorHeader,
+    fontColorPoweredBy,
+    fontColorMessage,
+    inputPlaceHolderColor,
+    loaderColor,
+    chatbotResponseFontColor,
+    userMessageFontColor,
   } = styleParams;
 
   return (
@@ -251,7 +288,7 @@ export default function PopupChatBot() {
                 </div> */}
                 <p
                   className="text-white font-bold text-xl"
-                  style={{ color: fontColor, fontSize: fontSize }}
+                  style={{ color: fontColorHeader, fontSize: fontSize }}
                 >
                   Finance For Founders
                 </p>
@@ -291,7 +328,7 @@ export default function PopupChatBot() {
 
                   <p
                     className="text-white font-bold text-xl"
-                    style={{ color: fontColor, fontSize: fontSize }}
+                    style={{ color: fontColorHeader, fontSize: fontSize }}
                   >
                     Finance For Founders
                   </p>
@@ -330,7 +367,7 @@ export default function PopupChatBot() {
                       your favorite app.
                     </p>
 
-                    <p className="text-center text-white text-sm py-10">
+                    <p className="text-center text-white text-sm py-10" style={{ color: fontColorDate }}>
                       {date}
                     </p>
                     <div className="max-w-[80%]">
@@ -340,7 +377,11 @@ export default function PopupChatBot() {
                       >
                         FinanceForFounder Representative
                       </p>
-                      <div className="bg-purple-600 rounded-2xl p-3">
+                      <div className=" rounded-2xl p-3"  style={{
+                          backgroundColor: bgColorMessage,
+                          color: fontColorMessage,
+                        }}  
+                        >
                         <p className="text-[13px] text-white">
                           Hello , thank you for contacting FinanceForFounder!
                         </p>
@@ -348,20 +389,31 @@ export default function PopupChatBot() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center space-x-2 mb-5">
-                    <div className="h-[14px] w-6 rounded-t-full bg-purple-600"></div>
-                    <p className="text-[14px] text-white pl-1">Powered by </p>
-                    <a href="https://c1m.ai/" target="_blank">
-                      <Image
-                        src={"/logo-tagline.png"}
-                        alt="logo"
-                        height={32}
-                        width={56}
-                        priority
-                        className="h-8 w-14"
-                      />
-                    </a>
-                  </div>
+                  {messages.length === 0 && !hasUserSentMessage && (
+                                     <div className="flex items-center justify-center space-x-2 mb-5">
+                                       <div
+                                         className="h-[14px] w-6 rounded-t-full"
+                                         style={{ backgroundColor: bgColorPoweredByIcon }}
+                                       ></div>
+                                       <p
+                                         className="text-[14px] text-white pl-1"
+                                         style={{ color: fontColorPoweredBy }}
+                                       >
+                                         Powered by{" "}
+                                       </p>
+                                       <a href="https://c1m.ai/" target="_blank">
+                                         <Image
+                                           src={"/logo-tagline.png"}
+                                           alt="logo"
+                                           height={32}
+                                           width={56}
+                                           priority
+                                           className="h-8 w-14"
+                                         />
+                                       </a>
+                                     </div>
+                                   )}
+                 
                   <div className="ms-4 me-9 flex flex-col">
                     {messages.map((msg, index) => (
                       <div key={index} className="my-2 space-y-3">
@@ -372,7 +424,7 @@ export default function PopupChatBot() {
                             style={{
                               backgroundColor: bubbleColor,
                               // fontSize,
-                              color: fontColor,
+                              color: userMessageFontColor,
                             }}
                           >
                             <p>{msg.user}</p>
@@ -462,11 +514,11 @@ export default function PopupChatBot() {
                                   style={{
                                     backgroundColor: botColor,
                                     // fontSize,
-                                    color: fontColor,
+                                    color: chatbotResponseFontColor,
                                   }}
                                 >
                                   <p
-                                    className="text-white text-sm break-words overflow-hidden"
+                                    className="text-sm break-words overflow-hidden"
                                     dangerouslySetInnerHTML={{
                                       __html: formatMessage(msg.bot),
                                     }}
@@ -483,6 +535,32 @@ export default function PopupChatBot() {
                         )}
                       </div>
                     ))}
+
+                     {/* Powered by after messages */}
+                                        {messages.length > 0 && (
+                                          <div className="flex items-center justify-center space-x-2 my-5">
+                                            <div
+                                              className="h-[14px] w-6 rounded-t-full"
+                                              style={{ backgroundColor: bgColorPoweredByIcon }}
+                                            ></div>
+                                            <p
+                                              className="text-[14px] text-white pl-1"
+                                              style={{ color: fontColorPoweredBy }}
+                                            >
+                                              Powered by{" "}
+                                            </p>
+                                            <a href="https://c1m.ai/" target="_blank">
+                                              <Image
+                                                src={"/logo-tagline.png"}
+                                                alt="logo"
+                                                height={32}
+                                                width={56}
+                                                priority
+                                                className="h-8 w-14"
+                                              />
+                                            </a>
+                                          </div>
+                                        )}
                   </div>
                   <div ref={messageScrollRef}></div>
                 </div>
@@ -491,9 +569,9 @@ export default function PopupChatBot() {
             {!isSecondPage && (
               <div
                 className={`flex items-center space-x-3 ${
-                  bgColor ? "" : "bg-indigo-800"
+                  bgColorFooter ? "" : "bg-indigo-800"
                 } h-16 rounded-b-3xl px-4 fixed bottom-0 w-full`}
-                style={bgColor ? { backgroundColor: bgColor } : {}}
+                style={bgColorFooter ? { backgroundColor: bgColorFooter } : {}}
               >
                 <input
                   type="text"
@@ -506,16 +584,18 @@ export default function PopupChatBot() {
                   }}
                   disabled={isLoading}
                   placeholder="Type a message..."
-                  className="px-4 py-2 rounded-full text-sm w-full outline-none placeholder:text-indigo-400 border"
-                  style={{
-                    backgroundColor: inputBgColor,
-                    color: inputTextColor,
-                    borderColor: inputBorderColor,
-                    // fontSize,
-                  }}
+                   className="px-4 py-2 rounded-full text-sm w-full outline-none border placeholder:text-[var(--placeholder-color)]"
+                                    style={
+                                      {
+                                        "--placeholder-color": inputPlaceHolderColor, // dynamic
+                                        backgroundColor: inputBgColor,
+                                        color: inputTextColor,
+                                        borderColor: inputBorderColor,
+                                      } as React.CSSProperties
+                                    }
                 />
                 {isLoading ? (
-                  <Loading1 />
+                  <Loading1 color={loaderColor}/>
                 ) : (
                   <span>
                     <IoSendOutline

@@ -15,10 +15,14 @@ export default function ChatBot() {
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
+    inputPlaceHolderColor: "",
+    userMessageFontColor: "",
+    chatbotResponseFontColor: "",
     submitTextColor: "#ffffff",
     submitBgColor: "#4338ca",
     messageBorderColor: "#C084FC",
     inputBorderColor: "#4f46e5",
+    loaderColor: "#9333EA",
   });
 
   const [loading, setLoading] = useState(false);
@@ -45,6 +49,11 @@ export default function ChatBot() {
       submitBgColor: params.get("submitBgColor") || "#4338ca",
       messageBorderColor: params.get("messageBorderColor") || "#C084FC",
       inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
+      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#4f46e5",
+      loaderColor: params.get("loaderColor") || "#9333EA",
+      userMessageFontColor: params.get("userMessageFontColor") || "#9333EA",
+      chatbotResponseFontColor:
+        params.get("chatbotResponseFontColor") || "#9333EA",
     });
   }, []);
 
@@ -143,6 +152,10 @@ export default function ChatBot() {
     submitTextColor,
     messageBorderColor,
     inputBorderColor,
+    inputPlaceHolderColor,
+    loaderColor,
+    chatbotResponseFontColor,
+    userMessageFontColor,
   } = styleParams;
 
   return (
@@ -175,7 +188,7 @@ export default function ChatBot() {
                       style={{
                         backgroundColor: bubbleColor,
                         // fontSize,
-                        color: fontColor,
+                        color: userMessageFontColor,
                       }}
                     >
                       {msg.user}
@@ -190,7 +203,7 @@ export default function ChatBot() {
                         style={{
                           backgroundColor: botColor,
                           // fontSize,
-                          color: fontColor,
+                          color: chatbotResponseFontColor,
                         }}
                         dangerouslySetInnerHTML={{
                           __html: formatMessage(msg.botRes),
@@ -215,21 +228,19 @@ export default function ChatBot() {
               }}
               disabled={loading}
               placeholder="Type a message..."
-              className="rounded-lg px-3 py-2 w-full outline-none border"
+              className="rounded-lg px-3 py-2 w-full outline-none border placeholder:text-[var(--placeholder-color)]"
               style={
-                inputBgColor
-                  ? {
-                      backgroundColor: inputBgColor,
-                      color: inputTextColor,
-                      borderColor: inputBorderColor,
-                      // fontSize,
-                    }
-                  : {}
+                {
+                  "--placeholder-color": inputPlaceHolderColor, // dynamic
+                  backgroundColor: inputBgColor,
+                  color: inputTextColor,
+                  borderColor: inputBorderColor,
+                } as React.CSSProperties
               }
               required
             />
             {loading ? (
-              <Loading1 />
+              <Loading1 color={loaderColor} />
             ) : (
               <button
                 onClick={handleMessage}

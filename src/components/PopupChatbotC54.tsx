@@ -133,6 +133,7 @@ export default function PopupChatBotC54() {
   const chatBotResponse = async (newMessage: {
     user: string;
     bot: string | null;
+    
   }) => {
     setIsLoading(true);
     setHasUserSentMessage(true);
@@ -340,7 +341,7 @@ export default function PopupChatBotC54() {
                 style={bgColor ? { backgroundColor: bgColor } : {}}
               >
                 <p
-                  className="text-white font-bold text-[20px]"
+                  className="text-white font-bold text-xl"
                   style={{ color: fontColorHeader, fontSize: fontSize }}
                 >
                   COLLECTIVE 54
@@ -381,7 +382,7 @@ export default function PopupChatBotC54() {
 
                   <p
                     className="text-white font-bold text-[20px]"
-                    style={{ color: fontColor, fontSize: fontSize }}
+                    style={{ color: fontColorHeader, fontSize: fontSize }}
                   >
                     COLLECTIVE 54
                   </p>
