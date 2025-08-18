@@ -12,7 +12,7 @@ import { IoSendOutline } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 
 export default function PopupChatBot() {
-  const [styleParams, setStyleParams] = useState({
+const [styleParams, setStyleParams] = useState({
     fontSize: "14px",
     fontColor: "#ffffff",
     bgColor: "",
@@ -20,19 +20,19 @@ export default function PopupChatBot() {
     bgColorFooter: "",
     bgColorMessage: "",
     fontColorMessage: "",
-    fontColorHeader: "",
-    fontColorDate: "",
-    fontColorPoweredBy: "",
+    fontColorHeader: "#ffffff",
+    fontColorDate: "#ffffff",
+    fontColorPoweredBy: "#ffffff",
     bgColorPoweredByIcon: "",
-    inputPlaceHolderColor: "",
-    userMessageFontColor: "",
-    chatbotResponseFontColor: "",
+    inputPlaceHolderColor: "#ffffff",
+    userMessageFontColor: "#ffffff",
+    chatbotResponseFontColor: "#ffffff",
     bubbleColor: "#3730a3",
     botColor: "#6b21a8",
     inputBgColor: "#4f46e5",
     inputTextColor: "#ffffff",
     submitTextColor: "#ffffff",
-    inputBorderColor: "#4f46e5",
+    inputBorderColor: "purple",
     loaderColor: "#9333EA",
   });
 
@@ -65,19 +65,19 @@ export default function PopupChatBot() {
       inputBgColor: params.get("inputBgColor") || "#4f46e5",
       inputTextColor: params.get("inputTextColor") || "#ffffff",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
-      inputBorderColor: params.get("inputBorderColor") || "#4f46e5",
+      inputBorderColor: params.get("inputBorderColor") || "purple",
       bgColorFooter: params.get("bgColorFooter") || "#4f46e5",
       bgColorMessage: params.get("bgColorMessage") || "#9333EA",
       fontColorMessage: params.get("fontColorMessage") || "#ffffff",
-      fontColorHeader: params.get("fontColorHeader") || "#4f46e5",
-      fontColorDate: params.get("fontColorDate") || "#4f46e5",
-      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#4f46e5",
+      fontColorHeader: params.get("fontColorHeader") || "#ffffff",
+      fontColorDate: params.get("fontColorDate") || "#ffffff",
+      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#ffffff",
       bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#9333EA",
-      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#4f46e5",
+      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#ffffff",
       loaderColor: params.get("loaderColor") || "#9333EA",
-      userMessageFontColor: params.get("userMessageFontColor") || "#9333EA",
+      userMessageFontColor: params.get("userMessageFontColor") || "#ffffff",
       chatbotResponseFontColor:
-        params.get("chatbotResponseFontColor") || "#9333EA",
+        params.get("chatbotResponseFontColor") || "#ffffff",
     });
   }, []);
 
