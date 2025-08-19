@@ -12,28 +12,29 @@ import { IoSendOutline } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 
 export default function PopupChatBotC1m() {
- const [styleParams, setStyleParams] = useState({
+  const [styleParams, setStyleParams] = useState({
      fontSize: "14px",
      fontColor: "#ffffff",
-     bgColor: "",
-     bgColor1: "",
-     bgColorFooter: "",
-     bgColorMessage: "",
-     fontColorMessage: "",
-     fontColorHeader: "#ffffff",
+     bgColor: "#303134",
+     bubbleColor: "#40414F",
+     botColor: "#40414F",
+     inputBgColor: "#40414F",
+     inputTextColor: "#ECECF1",
+     inputPlaceHolderColor: "#9CA3AF",
+     userMessageFontColor: "",
+     chatbotResponseFontColor: "",
+     submitTextColor: "#ffffff",
+     inputBorderColor: "#565869",
+     loaderColor: "#ffffff",
      fontColorDate: "#ffffff",
+     bgColorMessage: "#40414F",
+     fontColorMessage: "",
      fontColorPoweredBy: "#ffffff",
      bgColorPoweredByIcon: "",
-     inputPlaceHolderColor: "#ffffff",
-     userMessageFontColor: "#ffffff",
-     chatbotResponseFontColor: "#ffffff",
-     bubbleColor: "#3730a3",
-     botColor: "#6b21a8",
-     inputBgColor: "#4f46e5",
-     inputTextColor: "#ffffff",
-     submitTextColor: "#ffffff",
-     inputBorderColor: "purple",
-     loaderColor: "#9333EA",
+     bgColor1: "#343541",
+     fontColorHeader: "#ffffff",
+     bgColorFooter: "#303134",
+     welcomeMessage: 'Hello , thank you for contacting c1m.ai'
    });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -54,29 +55,30 @@ export default function PopupChatBotC1m() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-     setStyleParams({
-      fontSize: params.get("fontSize") || "20px",
+      setStyleParams({
+      fontSize: params.get("fontSize") || "24px",
       fontColor: params.get("fontColor") || "#ffffff",
-      bgColor: params.get("bgColor") || "",
-      bgColor1: params.get("bgColor1") || "",
-      bubbleColor: params.get("bubbleColor") || "#4338ca",
-      botColor: params.get("botColor") || "#6b21a8",
-      inputBgColor: params.get("inputBgColor") || "#4f46e5",
-      inputTextColor: params.get("inputTextColor") || "#ffffff",
+      bgColor: params.get("bgColor") || "#303134",
+      bubbleColor: params.get("bubbleColor") || "#40414F",
+      botColor: params.get("botColor") || "#40414F",
+      inputBgColor: params.get("inputBgColor") || "#40414F",
+      inputTextColor: params.get("inputTextColor") || "#ECECF1",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
-      inputBorderColor: params.get("inputBorderColor") || "purple",
-      bgColorFooter: params.get("bgColorFooter") || "#4f46e5",
-      bgColorMessage: params.get("bgColorMessage") || "#9333EA",
-      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
-      fontColorHeader: params.get("fontColorHeader") || "#ffffff",
+      inputBorderColor: params.get("inputBorderColor") || "#565869",
+      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#9CA3AF",
+      loaderColor: params.get("loaderColor") || "#ffffff",
+      userMessageFontColor: params.get("userMessageFontColor") || "#ECECF1",
       fontColorDate: params.get("fontColorDate") || "#ffffff",
+      bgColorMessage: params.get("bgColorMessage") || "#40414F",
+      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
       fontColorPoweredBy: params.get("fontColorPoweredBy") || "#ffffff",
-      bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#9333EA",
-      inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#ffffff",
-      loaderColor: params.get("loaderColor") || "#9333EA",
-      userMessageFontColor: params.get("userMessageFontColor") || "#ffffff",
+      bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
-        params.get("chatbotResponseFontColor") || "#ffffff",
+      params.get("chatbotResponseFontColor") || "#ECECF1",
+      fontColorHeader: params.get("fontColorHeader") || "#ffffff",
+      bgColor1: params.get("bgColor1") || "#343541",
+      bgColorFooter: params.get("bgColorFooter") || "#303134",
+      welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting c1m.ai",
     });
   }, []);
 
@@ -239,22 +241,23 @@ export default function PopupChatBotC1m() {
     inputBorderColor,
     bgColorFooter,
     bgColorMessage,
+    fontColorMessage,
     bgColorPoweredByIcon,
+    fontColorPoweredBy,
     fontColorDate,
     fontColorHeader,
-    fontColorPoweredBy,
-    fontColorMessage,
     inputPlaceHolderColor,
     loaderColor,
     chatbotResponseFontColor,
     userMessageFontColor,
+    welcomeMessage,
   } = styleParams;
 
   return (
     <div className="relative">
       <div className="flex justify-center relative">
         <button
-          className={`bg-indigo-900 p-1 rounded-full fixed z-50 bottom-4 right-4 ${
+          className={`bg-black p-1 rounded-full fixed z-50 bottom-4 right-4 ${
             isPopoverOpen
               ? "opacity-0 pointer-events-none"
               : iconAnimation
@@ -358,13 +361,13 @@ export default function PopupChatBotC1m() {
             <ScrollArea className="lg:w-[360px] w-[350px] lg:h-[350px] h-[300px] rounded-md">
               {isSecondPage ? (
                 <div className="px-8 py-5">
-                  <p
+                  {/* <p
                     className="text-white text-sm"
                     style={{ color: fontColor }}
                   >
                     Sync your conversation and continue messaging us through
                     your favorite app.
-                  </p>
+                  </p> */}
                   <div className="flex items-center space-x-3">
                     <div
                       className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center my-4 cursor-pointer"
@@ -391,14 +394,14 @@ export default function PopupChatBotC1m() {
                 </div>
               ) : (
                 <div>
-                  <div className="px-12 py-10">
-                    <p
+                  <div className="px-12 pt-5 pb-10">
+                    {/* <p
                       className="text-white text-[12px]"
                       style={{ color: fontColor }}
                     >
                       Sync your conversation and continue messaging us through
                       your favorite app.
-                    </p>
+                    </p> */}
                     {/* <div
                       className="hover:bg-indigo-400 h-8 w-8 rounded-full flex items-center justify-center mx-auto my-4 cursor-pointer"
                       //   onClick={() => {
@@ -418,7 +421,7 @@ export default function PopupChatBotC1m() {
                         priority
                       />
                     </div> */}
-                    <p className="text-center text-white text-sm py-10"  style={{ color: fontColorDate }}>
+                    <p className="text-center text-white text-sm pb-10"  style={{ color: fontColorDate }}>
                       {date}
                     </p>
                     <div className="max-w-[80%]">
@@ -433,7 +436,7 @@ export default function PopupChatBotC1m() {
                           color: fontColorMessage,
                         }}>
                         <p className="text-[13px] text-white">
-                          Hello , thank you for contacting c1m.ai
+                          {welcomeMessage}
                         </p>
                       </div>
                     </div>

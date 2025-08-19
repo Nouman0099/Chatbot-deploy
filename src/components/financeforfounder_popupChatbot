@@ -12,29 +12,28 @@
               bottom: "0px",
               width: "700px",
               height: "600px",
-              fontSize: "24px",
-              fontColor: "#ffffff", // body font color
-              bgColor: "#4338ca", // header background Gradient here 
-              bgColor1: "#35225d", // body background
-              bubbleColor: "#6b21a8", // user message bg color
-              userMessageFontColor: "#ffffff", // user message font color
-              botColor: "#6b21a8", // chatbot response bg color
-              chatbotResponseFontColor: "#ffffff", // chatbot response font color
-              inputBgColor: "#4f46e5", // input field background color
-              inputTextColor: "#ffffff", // input field text color
-              inputBorderColor: "#4f46e5", // input field border color
-              inputPlaceHolderColor: "#ffffff", // input placeholder color
-              submitTextColor: "#ffffff", // submit button text color
-              submitBgColor: "#4338ca", // submit button background color
-              messageBorderColor: "#C084FC", // message border color
-              bgColorFooter: "#4338ca", // bg footer color
-              bgColorPoweredByIcon: "purple", //  bgColorPoweredByIcon
-              fontColorDate: "#ffffff", // date color
-              fontColorHeader: "black", // header font color
-              fontColorPoweredBy: "#ffffff", // font color PoweredBy
-              bgColorMessage: "purple", // bg color of greeting message
-              fontColorMessage: "#ffffff", // font color of greeting message
-              loaderColor: "purple", // loader color
+       fontSize: "24px",
+       welcomeMessage: "Hello , thank you for contacting FinanceForFounder!",
+        fontColor: "#ffffff", // body font color
+        bgColor: "#303134", // header background Gradient here 
+        bgColor1: "#343541", // body background
+        bubbleColor: "#40414F", // user message bg color
+        userMessageFontColor: "#ECECF1", // user message font color
+        botColor: "#40414F", // chatbot response bg color
+        chatbotResponseFontColor: "#ECECF1", // chatbot response font color
+        inputBgColor: "#40414F", // input field background color
+        inputTextColor: "#ECECF1", // input field text color
+        inputBorderColor: "#565869", // input field border color
+        inputPlaceHolderColor: "#9CA3AF", // input placeholder color
+        submitTextColor: "#ffffff", // submit button text color
+        bgColorFooter: "#303134", // bg footer color
+        bgColorPoweredByIcon: "#202123", //  bgColorPoweredByIcon
+        fontColorDate: "#ffffff", // date color
+        bgColorMessage: "#40414F", // bg color of greeting message
+        fontColorMessage: "#ffffff", // font color of greeting message
+        fontColorPoweredBy: "#ffffff", // font color PoweredBy
+        fontColorHeader: "#ffffff", // header font color
+        loaderColor: "#ffffff", // loader color
             });
           }
         };

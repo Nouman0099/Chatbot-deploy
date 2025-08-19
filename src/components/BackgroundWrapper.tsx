@@ -9,7 +9,7 @@ function BackgroundContent({ children }: { children: ReactNode }) {
   const isEmbedded = searchParams.get("embed") === "true";
 
   return (
-    <div className={isEmbedded ? "bg-transparent" : "bg-indigo-950 h-screen"}>
+    <div className={isEmbedded ? "bg-transparent" : "bg-white h-screen"}>
       {children}
     </div>
   );

@@ -6,27 +6,32 @@ window.addEventListener("DOMContentLoaded", function () {
     if (window.Chatbot) {
       window.Chatbot.init({
         apiUrl: "https://cai.c1m.ai/Chat-C1M-Presales",
-        welcomeMessage: "Hey there! How can I help you today?",
         position: "right",
         sidePadding: "30px",
         bottom: "0px",
         width: "700px",
         height: "600px",
         fontSize: "24px",
-        fontColor: "white",
-        bgColor: "#35225d", // Gradient here
-        bubbleColor: "#4338ca", // user message bg color
-        userMessageFontColor: "#ffffff", // user message font color
-        botColor: "#6b21a8", // chatbot response bg color
-        chatbotResponseFontColor: "#ffffff", // chatbot response font color
-        inputBgColor: "#4f46e5", // input field background color
-        inputTextColor: "#ffffff", // input field text color
-        inputBorderColor: "#4f46e5", // input field border color
-        inputPlaceHolderColor: "#ffffff", // input placeholder color
-        submitTextColor: "#ffffff", // submit button text color
-        submitBgColor: "#4338ca", // submit button background color
-        messageBorderColor: "#C084FC", // message border color
-        loaderColor: "purple", // loader color
+       welcomeMessage: 'Hello , thank you for contacting c1m.ai'
+              fontColor: "#ffffff",
+              bgColor: "#343541", // Gradient here
+              bubbleColor: "#40414F", // user message bg color
+              userMessageFontColor: "#ECECF1", // user message font color
+              botColor: "#40414F", // chatbot response bg color
+              chatbotResponseFontColor: "#ECECF1", // chatbot response font color
+              inputBgColor: "#40414F", // input field background color
+              inputTextColor: "#ECECF1", // input field text color
+              inputBorderColor: "#565869", // input field border color
+              inputPlaceHolderColor: "#9CA3AF", // input placeholder color
+              submitTextColor: "#202123", // submit button text color
+              submitBgColor: "#ffffff", // submit button background color
+              messageBorderColor: "#6B7280", // message border color
+              loaderColor: "#ffffff", // loader color
+              bgColorPoweredByIcon: "#202123", //  bgColorPoweredByIcon
+              fontColorDate: "#ffffff", // date color
+              bgColorMessage: "#40414F", // bg color of greeting message
+              fontColorMessage: "#ffffff", // font color of greeting message
+              fontColorPoweredBy: "#ffffff", // font color PoweredBy
       });
     }
   };
