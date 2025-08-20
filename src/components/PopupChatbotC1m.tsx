@@ -189,64 +189,64 @@ export default function PopupChatBotC1m() {
   };
 // New streaming chat response function using EventSource
   // Streaming chatbot response using SSE
-  const chatBotResponseStreaming = async (newMessage: { user: string }) => {
-    setIsLoading(true);
-    setHasUserSentMessage(true);
-    const currentTime = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-    // Add user message immediately
-    setMessages((prev) => [
-      ...prev,
-      { user: newMessage.user, bot: "", time: currentTime },
-    ]);
-    // Close any existing EventSource connection before starting a new one
-    if (eventSourceRef.current) {
-      eventSourceRef.current.close();
-    }
-    // Build EventSource URL with query parameters (adjust if your API expects differently)
-    const url = new URL(
-      "https://n8n.c1m.ai/webhook/2e236eab-4eda-4a65-ad2f-27c4db01b7fa"
-    );
-    url.searchParams.append("sessionid", randomId);
-    url.searchParams.append("question", newMessage.user);
-    const es = new EventSource(url.toString());
-    eventSourceRef.current = es;
-    let partialBotResponse = "";
-    es.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.type === "item" && typeof data.content === "string") {
-          partialBotResponse += data.content;
-          // Update last message's bot response incrementally
-          setMessages((prev) => {
-            const updated = [...prev];
-            updated[updated.length - 1] = {
-              ...updated[updated.length - 1],
-              bot: partialBotResponse,
-              time: new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              }),
-            };
-            return updated;
-          });
-        }
-      } catch (error) {
-        console.error("Error parsing SSE JSON:", error);
-      }
-    };
-    // Handle errors including connection closure
-    es.onerror = (error) => {
-      console.error("SSE error:", error);
-      setIsLoading(false);
-      es.close();
-    };
-    // No onclose handler as EventSource does not have one (error event determines closure)
-  };
+  // const chatBotResponseStreaming = async (newMessage: { user: string }) => {
+  //   setIsLoading(true);
+  //   setHasUserSentMessage(true);
+  //   const currentTime = new Date().toLocaleTimeString([], {
+  //     hour: "2-digit",
+  //     minute: "2-digit",
+  //     hour12: true,
+  //   });
+  //   // Add user message immediately
+  //   setMessages((prev) => [
+  //     ...prev,
+  //     { user: newMessage.user, bot: "", time: currentTime },
+  //   ]);
+  //   // Close any existing EventSource connection before starting a new one
+  //   if (eventSourceRef.current) {
+  //     eventSourceRef.current.close();
+  //   }
+  //   // Build EventSource URL with query parameters (adjust if your API expects differently)
+  //   const url = new URL(
+  //     "https://n8n.c1m.ai/webhook/2e236eab-4eda-4a65-ad2f-27c4db01b7fa"
+  //   );
+  //   url.searchParams.append("sessionid", randomId);
+  //   url.searchParams.append("question", newMessage.user);
+  //   const es = new EventSource(url.toString());
+  //   eventSourceRef.current = es;
+  //   let partialBotResponse = "";
+  //   es.onmessage = (event) => {
+  //     try {
+  //       const data = JSON.parse(event.data);
+  //       if (data.type === "item" && typeof data.content === "string") {
+  //         partialBotResponse += data.content;
+  //         // Update last message's bot response incrementally
+  //         setMessages((prev) => {
+  //           const updated = [...prev];
+  //           updated[updated.length - 1] = {
+  //             ...updated[updated.length - 1],
+  //             bot: partialBotResponse,
+  //             time: new Date().toLocaleTimeString([], {
+  //               hour: "2-digit",
+  //               minute: "2-digit",
+  //               hour12: true,
+  //             }),
+  //           };
+  //           return updated;
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error("Error parsing SSE JSON:", error);
+  //     }
+  //   };
+  //   // Handle errors including connection closure
+  //   es.onerror = (error) => {
+  //     console.error("SSE error:", error);
+  //     setIsLoading(false);
+  //     es.close();
+  //   };
+  //   // No onclose handler as EventSource does not have one (error event determines closure)
+  // };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // const userInfo = {
