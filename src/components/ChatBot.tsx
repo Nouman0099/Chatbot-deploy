@@ -9,26 +9,26 @@ import Image from "next/image";
 
 export default function ChatBot() {
   const [styleParams, setStyleParams] = useState({
-    fontSize: "14px",
-    fontColor: "#ffffff",
-    bgColor: "#343541",
-    bubbleColor: "#40414F",
-    botColor: "#40414F",
-    inputBgColor: "#40414F",
-    inputTextColor: "#ECECF1",
-    inputPlaceHolderColor: "#9CA3AF",
-    userMessageFontColor: "",
-    chatbotResponseFontColor: "",
-    submitBgColor: "#ffffff",
-    submitTextColor: "#202123",
+     fontSize: "14px",
+     fontColor: "#111827",
+     bgColor: "#F9FAFB",
+     bubbleColor: "#E5E7EB",
+     botColor: "#E5E7EB",
+     inputBgColor: "#FFFFFF",
+     inputTextColor: "#111827",
+     inputPlaceHolderColor: "#9CA3AF",
+     userMessageFontColor: "",
+     chatbotResponseFontColor: "",
+     submitTextColor: "#111827",
+     inputBorderColor: "#D1D5DB",
+     loaderColor: "#111827",
+     fontColorDate: "#111827",
+     bgColorMessage: "#E5E7EB",
+     fontColorMessage: "#111827",
+     fontColorPoweredBy: "#111827",
+     bgColorPoweredByIcon: "",
     messageBorderColor: "#6B7280",
-    inputBorderColor: "#565869",
-    loaderColor: "#ffffff",
-    fontColorDate: "#ffffff",
-    bgColorMessage: "#40414F",
-    fontColorMessage: "",
-    fontColorPoweredBy: "#ffffff",
-    bgColorPoweredByIcon: "",
+    submitBgColor: "#ffffff",
     welcomeMessage: 'Hello , thank you for contacting FinanceForFounder!'
   });
   const [loading, setLoading] = useState(false);
@@ -54,27 +54,27 @@ export default function ChatBot() {
     const params = new URLSearchParams(window.location.search);
     console.log("inputBgColor:", params.get("inputBgColor"));
      setStyleParams({
-      fontSize: params.get("fontSize") || "24px",
-      fontColor: params.get("fontColor") || "#ffffff",
-      bgColor: params.get("bgColor") || "#343541",
-      bubbleColor: params.get("bubbleColor") || "#40414F",
-      botColor: params.get("botColor") || "#40414F",
-      inputBgColor: params.get("inputBgColor") || "#40414F",
-      inputTextColor: params.get("inputTextColor") || "#ECECF1",
-      submitBgColor: params.get("submitBgColor") || "#ffffff",
-      submitTextColor: params.get("submitTextColor") || "#202123",
-      messageBorderColor: params.get("messageBorderColor") || "#6B7280",
-      inputBorderColor: params.get("inputBorderColor") || "#565869",
+   fontSize: params.get("fontSize") || "24px",
+      fontColor: params.get("fontColor") || "#111827",
+      bgColor: params.get("bgColor") || "#F9FAFB",
+      bubbleColor: params.get("bubbleColor") || "#E5E7EB",
+      botColor: params.get("botColor") || "#E5E7EB",
+      inputBgColor: params.get("inputBgColor") || "#FFFFFF",
+      inputTextColor: params.get("inputTextColor") || "#111827",
+      submitTextColor: params.get("submitTextColor") || "#ffffff",
+      inputBorderColor: params.get("inputBorderColor") || "#D1D5DB",
       inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#9CA3AF",
-      loaderColor: params.get("loaderColor") || "#ffffff",
-      userMessageFontColor: params.get("userMessageFontColor") || "#ECECF1",
-      fontColorDate: params.get("fontColorDate") || "#ffffff",
-      bgColorMessage: params.get("bgColorMessage") || "#40414F",
-      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
-      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#ffffff",
+      loaderColor: params.get("loaderColor") || "#111827",
+      userMessageFontColor: params.get("userMessageFontColor") || "#111827",
+      fontColorDate: params.get("fontColorDate") || "#111827",
+      bgColorMessage: params.get("bgColorMessage") || "#E5E7EB",
+      fontColorMessage: params.get("fontColorMessage") || "#111827",
+      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#111827",
       bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
-        params.get("chatbotResponseFontColor") || "#ECECF1",
+      params.get("chatbotResponseFontColor") || "#111827",
+      messageBorderColor: params.get("messageBorderColor") || "#6B7280",
+      submitBgColor: params.get("submitBgColor") || "#111827",
       welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting FinanceForFounder!",
     });
   }, []);
@@ -236,7 +236,7 @@ export default function ChatBot() {
                     color: fontColorMessage,
                   }}
                 >
-                  <p className="text-[13px] text-white">
+                  <p className="text-[13px]">
                    {welcomeMessage}
                   </p>
                 </div>

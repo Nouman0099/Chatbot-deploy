@@ -13,29 +13,29 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function PopupChatBot() {
   const [styleParams, setStyleParams] = useState({
-    fontSize: "14px",
-    fontColor: "#ffffff",
-    bgColor: "#303134",
-    bubbleColor: "#40414F",
-    botColor: "#40414F",
-    inputBgColor: "#40414F",
-    inputTextColor: "#ECECF1",
-    inputPlaceHolderColor: "#9CA3AF",
-    userMessageFontColor: "",
-    chatbotResponseFontColor: "",
-    submitTextColor: "#ffffff",
-    inputBorderColor: "#565869",
-    loaderColor: "#ffffff",
-    fontColorDate: "#ffffff",
-    bgColorMessage: "#40414F",
-    fontColorMessage: "",
-    fontColorPoweredBy: "#ffffff",
-    bgColorPoweredByIcon: "",
-    bgColor1: "#343541",
-    fontColorHeader: "#ffffff",
-    bgColorFooter: "#303134",
-    welcomeMessage: "Hello , thank you for contacting FinanceForFounder!",
-  });
+       fontSize: "14px",
+       fontColor: "#111827",
+       bgColor: "#E5E7EB",
+       bubbleColor: "#E5E7EB",
+       botColor: "#E5E7EB",
+       inputBgColor: "#FFFFFF",
+       inputTextColor: "#111827",
+       inputPlaceHolderColor: "#9CA3AF",
+       userMessageFontColor: "",
+       chatbotResponseFontColor: "",
+       submitTextColor: "#111827",
+       inputBorderColor: "#D1D5DB",
+       loaderColor: "#111827",
+       fontColorDate: "#111827",
+       bgColorMessage: "#E5E7EB",
+       fontColorMessage: "#111827",
+       fontColorPoweredBy: "#111827",
+       bgColorPoweredByIcon: "",
+       bgColor1: "#F9FAFB",
+       fontColorHeader: "#111827",
+       bgColorFooter: "#E5E7EB",
+       welcomeMessage: 'Hello , thank you for contacting c1m.ai'
+     });
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isSecondPage, setIsSecondPage] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -56,30 +56,28 @@ export default function PopupChatBot() {
     const params = new URLSearchParams(window.location.search);
     setStyleParams({
       fontSize: params.get("fontSize") || "24px",
-      fontColor: params.get("fontColor") || "#ffffff",
-      bgColor: params.get("bgColor") || "#303134",
-      bubbleColor: params.get("bubbleColor") || "#40414F",
-      botColor: params.get("botColor") || "#40414F",
-      inputBgColor: params.get("inputBgColor") || "#40414F",
-      inputTextColor: params.get("inputTextColor") || "#ECECF1",
-      submitTextColor: params.get("submitTextColor") || "#ffffff",
-      inputBorderColor: params.get("inputBorderColor") || "#565869",
+      fontColor: params.get("fontColor") || "#111827",
+      bgColor: params.get("bgColor") || "#E5E7EB",
+      bubbleColor: params.get("bubbleColor") || "#E5E7EB",
+      botColor: params.get("botColor") || "#E5E7EB",
+      inputBgColor: params.get("inputBgColor") || "#FFFFFF",
+      inputTextColor: params.get("inputTextColor") || "#111827",
+      submitTextColor: params.get("submitTextColor") || "#111827",
+      inputBorderColor: params.get("inputBorderColor") || "#D1D5DB",
       inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#9CA3AF",
-      loaderColor: params.get("loaderColor") || "#ffffff",
-      userMessageFontColor: params.get("userMessageFontColor") || "#ECECF1",
-      fontColorDate: params.get("fontColorDate") || "#ffffff",
-      bgColorMessage: params.get("bgColorMessage") || "#40414F",
-      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
-      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#ffffff",
+      loaderColor: params.get("loaderColor") || "#111827",
+      userMessageFontColor: params.get("userMessageFontColor") || "#111827",
+      fontColorDate: params.get("fontColorDate") || "#111827",
+      bgColorMessage: params.get("bgColorMessage") || "#E5E7EB",
+      fontColorMessage: params.get("fontColorMessage") || "#111827",
+      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#111827",
       bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
-        params.get("chatbotResponseFontColor") || "#ECECF1",
-      fontColorHeader: params.get("fontColorHeader") || "#ffffff",
-      bgColor1: params.get("bgColor1") || "#343541",
-      bgColorFooter: params.get("bgColorFooter") || "#303134",
-      welcomeMessage:
-        params.get("welcomeMessage") ||
-        "Hello , thank you for contacting FinanceForFounder!",
+      params.get("chatbotResponseFontColor") || "#111827",
+      fontColorHeader: params.get("fontColorHeader") || "#111827",
+      bgColor1: params.get("bgColor1") || "#F9FAFB",
+      bgColorFooter: params.get("bgColorFooter") || "#E5E7EB",
+      welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting c1m.ai",
     });
   }, []);
 
@@ -295,11 +293,11 @@ export default function PopupChatBot() {
                 >
                   Finance For Founders
                 </p>
-                <div className="flex space-x-2 text-white">
+                <div className="flex space-x-2">
                   <span>
                     <HiDotsVertical
                       size={32}
-                      className="cursor-pointer hover:bg-black/25 rounded-full p-1"
+                      className="cursor-pointer rounded-full p-1"
                       onClick={() => setIsSecondPage(true)}
                     />
                   </span>
@@ -308,7 +306,7 @@ export default function PopupChatBot() {
                     <IoMdClose
                       size={32}
                       onClick={handleClose}
-                      className="cursor-pointer hover:bg-black/25 rounded-full p-1"
+                      className="cursor-pointer rounded-full p-1"
                     />
                   </span>
                 </div>
@@ -378,7 +376,7 @@ export default function PopupChatBot() {
                     </p>
                     <div className="max-w-[80%]">
                       <p
-                        className="text-[12px] text-white"
+                        className="text-[12px] text-black"
                         style={{ color: fontColor }}
                       >
                         FinanceForFounder Representative
@@ -390,7 +388,7 @@ export default function PopupChatBot() {
                           color: fontColorMessage,
                         }}
                       >
-                        <p className="text-[13px] text-white">
+                        <p className="text-[13px]">
                           {welcomeMessage}
                         </p>
                       </div>

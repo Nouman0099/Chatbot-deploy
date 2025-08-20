@@ -14,26 +14,26 @@ import { v4 as uuidv4 } from "uuid";
 export default function PopupChatBotC1m() {
   const [styleParams, setStyleParams] = useState({
      fontSize: "14px",
-     fontColor: "#ffffff",
-     bgColor: "#303134",
-     bubbleColor: "#40414F",
-     botColor: "#40414F",
-     inputBgColor: "#40414F",
-     inputTextColor: "#ECECF1",
+     fontColor: "#111827",
+     bgColor: "#E5E7EB",
+     bubbleColor: "#E5E7EB",
+     botColor: "#E5E7EB",
+     inputBgColor: "#FFFFFF",
+     inputTextColor: "#111827",
      inputPlaceHolderColor: "#9CA3AF",
      userMessageFontColor: "",
      chatbotResponseFontColor: "",
-     submitTextColor: "#ffffff",
-     inputBorderColor: "#565869",
-     loaderColor: "#ffffff",
-     fontColorDate: "#ffffff",
-     bgColorMessage: "#40414F",
-     fontColorMessage: "",
-     fontColorPoweredBy: "#ffffff",
+     submitTextColor: "#111827",
+     inputBorderColor: "#D1D5DB",
+     loaderColor: "#111827",
+     fontColorDate: "#111827",
+     bgColorMessage: "#E5E7EB",
+     fontColorMessage: "#111827",
+     fontColorPoweredBy: "#111827",
      bgColorPoweredByIcon: "",
-     bgColor1: "#343541",
-     fontColorHeader: "#ffffff",
-     bgColorFooter: "#303134",
+     bgColor1: "#F9FAFB",
+     fontColorHeader: "#111827",
+     bgColorFooter: "#E5E7EB",
      welcomeMessage: 'Hello , thank you for contacting c1m.ai'
    });
 
@@ -52,32 +52,41 @@ export default function PopupChatBotC1m() {
   // const [number, setNumber] = useState("");
   const [randomId, setRandomId] = useState("");
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
+  const eventSourceRef = useRef<EventSource | null>(null)
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      eventSourceRef.current?.close();
+    };
+  }, []);
+
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
       setStyleParams({
       fontSize: params.get("fontSize") || "24px",
-      fontColor: params.get("fontColor") || "#ffffff",
-      bgColor: params.get("bgColor") || "#303134",
-      bubbleColor: params.get("bubbleColor") || "#40414F",
-      botColor: params.get("botColor") || "#40414F",
-      inputBgColor: params.get("inputBgColor") || "#40414F",
-      inputTextColor: params.get("inputTextColor") || "#ECECF1",
-      submitTextColor: params.get("submitTextColor") || "#ffffff",
-      inputBorderColor: params.get("inputBorderColor") || "#565869",
+      fontColor: params.get("fontColor") || "#111827",
+      bgColor: params.get("bgColor") || "#E5E7EB",
+      bubbleColor: params.get("bubbleColor") || "#E5E7EB",
+      botColor: params.get("botColor") || "#E5E7EB",
+      inputBgColor: params.get("inputBgColor") || "#FFFFFF",
+      inputTextColor: params.get("inputTextColor") || "#111827",
+      submitTextColor: params.get("submitTextColor") || "#111827",
+      inputBorderColor: params.get("inputBorderColor") || "#D1D5DB",
       inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#9CA3AF",
-      loaderColor: params.get("loaderColor") || "#ffffff",
-      userMessageFontColor: params.get("userMessageFontColor") || "#ECECF1",
-      fontColorDate: params.get("fontColorDate") || "#ffffff",
-      bgColorMessage: params.get("bgColorMessage") || "#40414F",
-      fontColorMessage: params.get("fontColorMessage") || "#ffffff",
-      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#ffffff",
+      loaderColor: params.get("loaderColor") || "#111827",
+      userMessageFontColor: params.get("userMessageFontColor") || "#111827",
+      fontColorDate: params.get("fontColorDate") || "#111827",
+      bgColorMessage: params.get("bgColorMessage") || "#E5E7EB",
+      fontColorMessage: params.get("fontColorMessage") || "#111827",
+      fontColorPoweredBy: params.get("fontColorPoweredBy") || "#111827",
       bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
-      params.get("chatbotResponseFontColor") || "#ECECF1",
-      fontColorHeader: params.get("fontColorHeader") || "#ffffff",
-      bgColor1: params.get("bgColor1") || "#343541",
-      bgColorFooter: params.get("bgColorFooter") || "#303134",
+      params.get("chatbotResponseFontColor") || "#111827",
+      fontColorHeader: params.get("fontColorHeader") || "#111827",
+      bgColor1: params.get("bgColor1") || "#F9FAFB",
+      bgColorFooter: params.get("bgColorFooter") || "#E5E7EB",
       welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting c1m.ai",
     });
   }, []);
@@ -115,6 +124,16 @@ export default function PopupChatBotC1m() {
     }
   };
 
+
+    // Replace your handleMessage to call streaming version:
+  // const handleMessage = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (message.trim()) {
+  //     await chatBotResponseStreaming({ user: message.trim() });
+  //     setMessage("");
+  //   }
+  // };
+
   const chatBotResponse = async (newMessage: {
     user: string;
     bot: string | null;
@@ -124,7 +143,7 @@ export default function PopupChatBotC1m() {
     try {
       // console.log(history)
       const res = await fetch(
-        "https://agent1.c1m.ai/webhook/3cd6b332-fe97-4339-80e3-e97fc3471492",
+        "https://n8n.c1m.ai/webhook/2e236eab-4eda-4a65-ad2f-27c4db01b7fa",
         {
           method: "POST",
           headers: {
@@ -143,7 +162,7 @@ export default function PopupChatBotC1m() {
       }
 
       const data = await res.json();
-      // console.log(data)
+      console.log(data)
       const botResponse = data[0].output;
       //   console.log(botResponse);
       // res.data[0].output
@@ -168,7 +187,66 @@ export default function PopupChatBotC1m() {
       setIsLoading(false);
     }
   };
-
+// New streaming chat response function using EventSource
+  // Streaming chatbot response using SSE
+  const chatBotResponseStreaming = async (newMessage: { user: string }) => {
+    setIsLoading(true);
+    setHasUserSentMessage(true);
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    // Add user message immediately
+    setMessages((prev) => [
+      ...prev,
+      { user: newMessage.user, bot: "", time: currentTime },
+    ]);
+    // Close any existing EventSource connection before starting a new one
+    if (eventSourceRef.current) {
+      eventSourceRef.current.close();
+    }
+    // Build EventSource URL with query parameters (adjust if your API expects differently)
+    const url = new URL(
+      "https://n8n.c1m.ai/webhook/2e236eab-4eda-4a65-ad2f-27c4db01b7fa"
+    );
+    url.searchParams.append("sessionid", randomId);
+    url.searchParams.append("question", newMessage.user);
+    const es = new EventSource(url.toString());
+    eventSourceRef.current = es;
+    let partialBotResponse = "";
+    es.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === "item" && typeof data.content === "string") {
+          partialBotResponse += data.content;
+          // Update last message's bot response incrementally
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = {
+              ...updated[updated.length - 1],
+              bot: partialBotResponse,
+              time: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              }),
+            };
+            return updated;
+          });
+        }
+      } catch (error) {
+        console.error("Error parsing SSE JSON:", error);
+      }
+    };
+    // Handle errors including connection closure
+    es.onerror = (error) => {
+      console.error("SSE error:", error);
+      setIsLoading(false);
+      es.close();
+    };
+    // No onclose handler as EventSource does not have one (error event determines closure)
+  };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // const userInfo = {
@@ -299,11 +377,11 @@ export default function PopupChatBotC1m() {
                 >
                   C1M
                 </p>
-                <div className="flex space-x-2 text-white">
+                <div className="flex space-x-2 text-[#111827]">
                   <span>
                     <HiDotsVertical
                       size={32}
-                      className="cursor-pointer hover:bg-black/25 rounded-full p-1"
+                      className="cursor-pointer rounded-full p-1"
                       onClick={() => setIsSecondPage(true)}
                     />
                   </span>
@@ -312,7 +390,7 @@ export default function PopupChatBotC1m() {
                     <IoMdClose
                       size={32}
                       onClick={handleClose}
-                      className="cursor-pointer hover:bg-black/25 rounded-full p-1"
+                      className="cursor-pointer rounded-full p-1"
                     />
                   </span>
                 </div>
@@ -426,7 +504,7 @@ export default function PopupChatBotC1m() {
                     </p>
                     <div className="max-w-[80%]">
                       <p
-                        className="text-[12px] text-white"
+                        className="text-[12px] text-black"
                         style={{ color: fontColor }}
                       >
                         C1M Representative
@@ -435,7 +513,7 @@ export default function PopupChatBotC1m() {
                           backgroundColor: bgColorMessage,
                           color: fontColorMessage,
                         }}>
-                        <p className="text-[13px] text-white">
+                        <p className="text-[13px]">
                           {welcomeMessage}
                         </p>
                       </div>

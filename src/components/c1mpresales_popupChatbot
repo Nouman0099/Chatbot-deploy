@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
         bottom: "0px",
         width: "700px",
         height: "600px",
-    fontSize: "24px",
+        fontSize: "24px",
         welcomeMessage: 'Hello , thank you for contacting c1m.ai',
         fontColor: "#ffffff", // body font color
         bgColor: "#303134", // header background Gradient here 
