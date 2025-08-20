@@ -228,7 +228,7 @@ export default function ChatBotC1m() {
           style={{ borderColor: messageBorderColor }}
         >
           <ScrollArea className="h-[250px]">
-            <div className="px-16 pt-3 pb-5">
+            <div className="px-2 pt-3 pb-5">
               {/* <p
                 className="text-white text-sm text-center"
                 style={{ color: fontColor }}
