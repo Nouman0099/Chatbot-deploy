@@ -26,7 +26,7 @@ const [styleParams, setStyleParams] = useState({
      bgColorMessage: "#E5E7EB",
      fontColorMessage: "#111827",
      fontColorPoweredBy: "#111827",
-     bgColorPoweredByIcon: "",
+    //  bgColorPoweredByIcon: "",
     messageBorderColor: "#6B7280",
     submitBgColor: "#ffffff",
     welcomeMessage: 'Hello , thank you for contacting FinanceForFounder!'
@@ -70,7 +70,7 @@ const [styleParams, setStyleParams] = useState({
       bgColorMessage: params.get("bgColorMessage") || "#E5E7EB",
       fontColorMessage: params.get("fontColorMessage") || "#111827",
       fontColorPoweredBy: params.get("fontColorPoweredBy") || "#111827",
-      bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
+      // bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
       params.get("chatbotResponseFontColor") || "#111827",
       messageBorderColor: params.get("messageBorderColor") || "#6B7280",
@@ -202,7 +202,7 @@ const [styleParams, setStyleParams] = useState({
     fontColorDate,
     bgColorMessage,
     fontColorMessage,
-    bgColorPoweredByIcon,
+    // bgColorPoweredByIcon,
     fontColorPoweredBy,
     welcomeMessage,
   } = styleParams;
