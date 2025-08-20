@@ -263,28 +263,29 @@ export default function ChatBotC1m() {
               </div>
             </div>
             {messages.length === 0 && !hasUserSentMessage && (
-              <div className="flex items-center justify-center space-x-2 mb-5">
-                <div
-                  className="h-[14px] w-6 rounded-t-full"
-                  style={{ backgroundColor: bgColorPoweredByIcon }}
-                ></div>
-                <p
-                  className="text-[14px] text-white pl-1"
-                  style={{ color: fontColorPoweredBy }}
-                >
-                  Powered by{" "}
-                </p>
-                <a href="https://c1m.ai/" target="_blank">
-                  <Image
-                    src={"/logo-tagline.png"}
-                    alt="logo"
-                    height={32}
-                    width={56}
-                    priority
-                    className="h-8 w-14"
-                  />
-                </a>
-              </div>
+             <div className="flex items-center justify-center space-x-2 mb-5 mt-3">
+                             {/* <div
+                               className="h-[14px] w-6 rounded-t-full"
+                               style={{ backgroundColor: bgColorPoweredByIcon }}
+                             ></div> */}
+                            
+                             <a href="https://c1m.ai/" target="_blank">
+                               <Image
+                                 src={"/logo.png"}
+                                 alt="logo"
+                                 height={35}
+                                 width={60}
+                                 priority
+                                 className="h-[35px] w-[60px]"
+                               />
+                             </a>
+                              <p
+                               className=" text-white font-semibold text-lg"
+                               style={{ color: fontColorPoweredBy }}
+                             >
+                               Powered by C1M
+                             </p>
+                           </div>
             )}
 
             {messages.map((msg, index) => (
@@ -325,28 +326,29 @@ export default function ChatBotC1m() {
             ))}
             {/* Powered by after messages */}
             {messages.length > 0 && (
-              <div className="flex items-center justify-center space-x-2 my-5">
-                <div
-                  className="h-[14px] w-6 rounded-t-full"
-                  style={{ backgroundColor: bgColorPoweredByIcon }}
-                ></div>
-                <p
-                  className="text-[14px] text-white pl-1"
-                  style={{ color: fontColorPoweredBy }}
-                >
-                  Powered by{" "}
-                </p>
-                <a href="https://c1m.ai/" target="_blank">
-                  <Image
-                    src={"/logo-tagline.png"}
-                    alt="logo"
-                    height={32}
-                    width={56}
-                    priority
-                    className="h-8 w-14"
-                  />
-                </a>
-              </div>
+              <div className="flex items-center justify-center space-x-2 mb-5 mt-3">
+                              {/* <div
+                                className="h-[14px] w-6 rounded-t-full"
+                                style={{ backgroundColor: bgColorPoweredByIcon }}
+                              ></div> */}
+                             
+                              <a href="https://c1m.ai/" target="_blank">
+                                <Image
+                                  src={"/logo.png"}
+                                  alt="logo"
+                                  height={35}
+                                  width={60}
+                                  priority
+                                  className="h-[35px] w-[60px]"
+                                />
+                              </a>
+                               <p
+                                className=" text-white font-semibold text-lg"
+                                style={{ color: fontColorPoweredBy }}
+                              >
+                                Powered by C1M
+                              </p>
+                            </div>
             )}
           </ScrollArea>
           <div className="flex items-center space-x-2 ml-1 w-[95%] absolute bottom-2">
@@ -360,7 +362,7 @@ export default function ChatBotC1m() {
                 }
               }}
               disabled={loading}
-              placeholder="Type a message..."
+              placeholder="Ask anything"
               className="rounded-lg px-3 py-2 w-full outline-none border placeholder:text-[var(--placeholder-color)]"
               style={
                 {

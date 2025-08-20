@@ -396,28 +396,29 @@ export default function PopupChatBot() {
                   </div>
 
                   {messages.length === 0 && !hasUserSentMessage && (
-                    <div className="flex items-center justify-center space-x-2 mb-5">
-                      <div
-                        className="h-[14px] w-6 rounded-t-full"
-                        style={{ backgroundColor: bgColorPoweredByIcon }}
-                      ></div>
-                      <p
-                        className="text-[14px] text-white pl-1"
-                        style={{ color: fontColorPoweredBy }}
-                      >
-                        Powered by{" "}
-                      </p>
-                      <a href="https://c1m.ai/" target="_blank">
-                        <Image
-                          src={"/logo-tagline.png"}
-                          alt="logo"
-                          height={32}
-                          width={56}
-                          priority
-                          className="h-8 w-14"
-                        />
-                      </a>
-                    </div>
+                   <div className="flex items-center justify-center space-x-2 mb-5">
+                                   {/* <div
+                                     className="h-[14px] w-6 rounded-t-full"
+                                     style={{ backgroundColor: bgColorPoweredByIcon }}
+                                   ></div> */}
+                                  
+                                   <a href="https://c1m.ai/" target="_blank">
+                                     <Image
+                                       src={"/logo.png"}
+                                       alt="logo"
+                                       height={32}
+                                       width={56}
+                                       priority
+                                       className="h-8 w-14"
+                                     />
+                                   </a>
+                                    <p
+                                     className=" text-white font-semibold"
+                                     style={{ color: fontColorPoweredBy }}
+                                   >
+                                     Powered by C1M
+                                   </p>
+                                 </div>
                   )}
 
                   <div className="ms-4 me-9 flex flex-col">
@@ -544,28 +545,29 @@ export default function PopupChatBot() {
 
                     {/* Powered by after messages */}
                     {messages.length > 0 && (
-                      <div className="flex items-center justify-center space-x-2 my-5">
-                        <div
-                          className="h-[14px] w-6 rounded-t-full"
-                          style={{ backgroundColor: bgColorPoweredByIcon }}
-                        ></div>
-                        <p
-                          className="text-[14px] text-white pl-1"
-                          style={{ color: fontColorPoweredBy }}
-                        >
-                          Powered by{" "}
-                        </p>
-                        <a href="https://c1m.ai/" target="_blank">
-                          <Image
-                            src={"/logo-tagline.png"}
-                            alt="logo"
-                            height={32}
-                            width={56}
-                            priority
-                            className="h-8 w-14"
-                          />
-                        </a>
-                      </div>
+                    <div className="flex items-center justify-center space-x-2 mb-5 mt-2">
+                                   {/* <div
+                                     className="h-[14px] w-6 rounded-t-full"
+                                     style={{ backgroundColor: bgColorPoweredByIcon }}
+                                   ></div> */}
+                                  
+                                   <a href="https://c1m.ai/" target="_blank">
+                                     <Image
+                                       src={"/logo.png"}
+                                       alt="logo"
+                                       height={32}
+                                       width={56}
+                                       priority
+                                       className="h-8 w-14"
+                                     />
+                                   </a>
+                                    <p
+                                     className=" text-white font-semibold"
+                                     style={{ color: fontColorPoweredBy }}
+                                   >
+                                     Powered by C1M
+                                   </p>
+                                 </div>
                     )}
                   </div>
                   <div ref={messageScrollRef}></div>
@@ -589,7 +591,7 @@ export default function PopupChatBot() {
                     }
                   }}
                   disabled={isLoading}
-                  placeholder="Type a message..."
+                  placeholder="Ask anything"
                   className="px-4 py-2 rounded-full text-sm w-full outline-none border placeholder:text-[var(--placeholder-color)]"
                   style={
                     {

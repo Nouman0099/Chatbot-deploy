@@ -13,29 +13,29 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function PopupChatBotC54() {
   const [styleParams, setStyleParams] = useState({
-      fontSize: "14px",
-      fontColor: "#111827",
-      bgColor: "#E5E7EB",
-      bubbleColor: "#E5E7EB",
-      botColor: "#E5E7EB",
-      inputBgColor: "#FFFFFF",
-      inputTextColor: "#111827",
-      inputPlaceHolderColor: "#9CA3AF",
-      userMessageFontColor: "",
-      chatbotResponseFontColor: "",
-      submitTextColor: "#111827",
-      inputBorderColor: "#D1D5DB",
-      loaderColor: "#111827",
-      fontColorDate: "#111827",
-      bgColorMessage: "#E5E7EB",
-      fontColorMessage: "#111827",
-      fontColorPoweredBy: "#111827",
-      bgColorPoweredByIcon: "",
-      bgColor1: "#F9FAFB",
-      fontColorHeader: "#111827",
-      bgColorFooter: "#E5E7EB",
-      welcomeMessage: 'Hello , thank you for contacting c1m.ai'
-    });
+    fontSize: "14px",
+    fontColor: "#111827",
+    bgColor: "#E5E7EB",
+    bubbleColor: "#E5E7EB",
+    botColor: "#E5E7EB",
+    inputBgColor: "#FFFFFF",
+    inputTextColor: "#111827",
+    inputPlaceHolderColor: "#9CA3AF",
+    userMessageFontColor: "",
+    chatbotResponseFontColor: "",
+    submitTextColor: "#111827",
+    inputBorderColor: "#D1D5DB",
+    loaderColor: "#111827",
+    fontColorDate: "#111827",
+    bgColorMessage: "#E5E7EB",
+    fontColorMessage: "#111827",
+    fontColorPoweredBy: "#111827",
+    bgColorPoweredByIcon: "",
+    bgColor1: "#F9FAFB",
+    fontColorHeader: "#111827",
+    bgColorFooter: "#E5E7EB",
+    welcomeMessage: "Hello , thank you for contacting c1m.ai",
+  });
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isSecondPage, setIsSecondPage] = useState(false);
@@ -55,7 +55,7 @@ export default function PopupChatBotC54() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-     setStyleParams({
+    setStyleParams({
       fontSize: params.get("fontSize") || "24px",
       fontColor: params.get("fontColor") || "#111827",
       bgColor: params.get("bgColor") || "#E5E7EB",
@@ -74,11 +74,13 @@ export default function PopupChatBotC54() {
       fontColorPoweredBy: params.get("fontColorPoweredBy") || "#111827",
       bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
-      params.get("chatbotResponseFontColor") || "#111827",
+        params.get("chatbotResponseFontColor") || "#111827",
       fontColorHeader: params.get("fontColorHeader") || "#111827",
       bgColor1: params.get("bgColor1") || "#F9FAFB",
       bgColorFooter: params.get("bgColorFooter") || "#E5E7EB",
-      welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting c1m.ai",
+      welcomeMessage:
+        params.get("welcomeMessage") ||
+        "Hello , thank you for contacting c1m.ai",
     });
   }, []);
 
@@ -135,7 +137,6 @@ export default function PopupChatBotC54() {
   const chatBotResponse = async (newMessage: {
     user: string;
     bot: string | null;
-    
   }) => {
     setIsLoading(true);
     setHasUserSentMessage(true);
@@ -444,28 +445,21 @@ export default function PopupChatBotC54() {
                           color: fontColorMessage,
                         }}
                       >
-                        <p className="text-[13px]">
-                         {welcomeMessage}
-                        </p>
+                        <p className="text-[13px]">{welcomeMessage}</p>
                       </div>
                     </div>
                   </div>
 
                   {messages.length === 0 && !hasUserSentMessage && (
                     <div className="flex items-center justify-center space-x-2 mb-5">
-                      <div
-                        className="h-[14px] w-6 rounded-t-full"
-                        style={{ backgroundColor: bgColorPoweredByIcon }}
-                      ></div>
-                      <p
-                        className="text-[14px] text-white pl-1"
-                        style={{ color: fontColorPoweredBy }}
-                      >
-                        Powered by{" "}
-                      </p>
+                      {/* <div
+                                     className="h-[14px] w-6 rounded-t-full"
+                                     style={{ backgroundColor: bgColorPoweredByIcon }}
+                                   ></div> */}
+
                       <a href="https://c1m.ai/" target="_blank">
                         <Image
-                          src={"/logo-tagline.png"}
+                          src={"/logo.png"}
                           alt="logo"
                           height={32}
                           width={56}
@@ -473,6 +467,12 @@ export default function PopupChatBotC54() {
                           className="h-8 w-14"
                         />
                       </a>
+                      <p
+                        className=" text-white font-semibold"
+                        style={{ color: fontColorPoweredBy }}
+                      >
+                        Powered by C1M
+                      </p>
                     </div>
                   )}
 
@@ -557,20 +557,15 @@ export default function PopupChatBotC54() {
 
                     {/* Powered by after messages */}
                     {messages.length > 0 && (
-                      <div className="flex items-center justify-center space-x-2 my-5">
-                        <div
-                          className="h-[14px] w-6 rounded-t-full"
-                          style={{ backgroundColor: bgColorPoweredByIcon }}
-                        ></div>
-                        <p
-                          className="text-[14px] text-white pl-1"
-                          style={{ color: fontColorPoweredBy }}
-                        >
-                          Powered by{" "}
-                        </p>
+                      <div className="flex items-center justify-center space-x-2 mb-5 mt-2">
+                        {/* <div
+                                                           className="h-[14px] w-6 rounded-t-full"
+                                                           style={{ backgroundColor: bgColorPoweredByIcon }}
+                                                         ></div> */}
+
                         <a href="https://c1m.ai/" target="_blank">
                           <Image
-                            src={"/logo-tagline.png"}
+                            src={"/logo.png"}
                             alt="logo"
                             height={32}
                             width={56}
@@ -578,6 +573,12 @@ export default function PopupChatBotC54() {
                             className="h-8 w-14"
                           />
                         </a>
+                        <p
+                          className=" text-white font-semibold"
+                          style={{ color: fontColorPoweredBy }}
+                        >
+                          Powered by C1M
+                        </p>
                       </div>
                     )}
                   </div>
@@ -603,7 +604,7 @@ export default function PopupChatBotC54() {
                     }
                   }}
                   disabled={isLoading}
-                  placeholder="Type a message..."
+                  placeholder="Ask anything"
                   className="px-4 py-2 rounded-full text-sm w-full outline-none border placeholder:text-[var(--placeholder-color)]"
                   style={
                     {
