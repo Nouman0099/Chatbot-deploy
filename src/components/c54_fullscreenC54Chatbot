@@ -12,10 +12,10 @@ window.addEventListener("DOMContentLoaded", function () {
         width: "700px",
         height: "600px",
        fontSize: "28px",
-        welcomeMessage: 'Hello, thank you for contacting. How can I help you?'
-              fontColor: "#ffffff",
-              bgColor: "#343541", // Gradient here
-              bubbleColor: "#40414F", // user message bg color
+        # welcomeMessage: 'Hello, thank you for contacting. How can I help you?'
+              fontColor: "#111827",
+              # bgColor: "#343541", // Gradient here
+              bubbleColor: "#F7F7F8", // user message bg color
               userMessageFontColor: "#ECECF1", // user message font color
               botColor: "#40414F", // chatbot response bg color
               chatbotResponseFontColor: "#ECECF1", // chatbot response font color

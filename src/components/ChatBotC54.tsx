@@ -40,8 +40,9 @@ export default function ChatBotC54() {
   >([]);
   const [randomId, setRandomId] = useState("");
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
+  const botMessageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const messageRef = useRef<HTMLDivElement | null>(null);
+  // const messageRef = useRef<HTMLDivElement | null>(null);
 
   // const date = new Date().toLocaleTimeString([], {
   //   month: "long", // Full month name
@@ -83,7 +84,16 @@ export default function ChatBotC54() {
   }, []);
 
   useEffect(() => {
-    messageRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messages.length > 0) {
+      const lastIndex = messages.length - 1;
+      if (messages[lastIndex].botRes) {
+        // scroll only when bot response arrives
+        botMessageRefs.current[lastIndex]?.scrollIntoView({
+          behavior: "smooth",
+          block: "start", // scroll to the top of the bot bubble
+        });
+      }
+    }
   }, [messages]);
 
   // useEffect(() => {
@@ -214,7 +224,7 @@ export default function ChatBotC54() {
     <div
       className={`${
         hasUserSentMessage
-          ? "max-w-screen-md mx-auto pt-20"
+          ? "max-w-screen-md mx-auto pt-6"
           : "flex justify-center items-center h-screen"
       }`}
     >
@@ -230,15 +240,15 @@ export default function ChatBotC54() {
         {/* Chat container */}
         <div
           className={`rounded-xl mx-auto flex flex-col relative transition-all duration-300
-      ${
-        hasUserSentMessage
-          ? "h-[350px] max-w-3xl px-2"
-          : "h-auto max-w-screen-md"
-      }`}
-          // style={{ backgroundColor: bgColor }}
+    ${
+      hasUserSentMessage
+        ? "max-w-3xl px-2 h-[calc(100vh-150px)]"
+        : "h-auto max-w-screen-md"
+    }
+  `}
         >
           {hasUserSentMessage && (
-            <ScrollArea className="h-[270px]">
+            <ScrollArea className="h-[calc(100vh-220px)]">
               {messages.map((msg, index) => (
                 <div key={index} className="space-y-3 p-2">
                   {/* user bubble */}
@@ -257,7 +267,11 @@ export default function ChatBotC54() {
                   </div>
                   {/* bot bubble */}
                   <div className="flex justify-start">
-                    <div>
+                    <div
+                      ref={(el) => {
+                        botMessageRefs.current[index] = el;
+                      }} // ✅ no return
+                    >
                       {msg.botRes && (
                         <p
                           className="rounded-xl pe-3 text-[15px] py-[6px] break-words"
@@ -265,16 +279,15 @@ export default function ChatBotC54() {
                           dangerouslySetInnerHTML={{
                             __html: formatMessage(msg.botRes),
                           }}
-                        ></p>
+                        />
                       )}
                     </div>
                   </div>
                 </div>
               ))}
-              <div ref={messageRef}></div>
+              {/* <div ref={messageRef}></div> */}
             </ScrollArea>
           )}
-
           {/* Input with arrow inside */}
           <div className="w-full mx-auto mt-3 relative">
             <textarea
@@ -324,7 +337,7 @@ export default function ChatBotC54() {
         </div>
 
         {/* Powered by */}
-        <div className="flex items-center justify-center space-x-2 mt-2">
+        <div className="flex items-center justify-center space-x-2 mt-2 pb-5">
           <a href="https://c1m.ai/" target="_blank">
             <Image
               src={"/logo.png"}
