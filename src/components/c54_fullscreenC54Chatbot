@@ -7,8 +7,9 @@
         window.Chatbot.init({
           apiUrl: "https://cai.c1m.ai/Chat-C1M-C54",
           position: "center",
+          bottom: '2px',
           width: "768px",
-          height: "550px",
+          height: window.innerHeight + "px",
           welcomeMessage: "COLLECTIVE 54", // edit title
           fontSize: "28px", // title font size
           fontColor: "#111827", // title font color

@@ -29,7 +29,7 @@ export default function ChatBotC1m() {
       //  bgColorPoweredByIcon: "",
       messageBorderColor: "#6B7280",
       submitBgColor: "#ffffff",
-      welcomeMessage: 'Hello , thank you for contacting FinanceForFounder!'
+      welcomeMessage: 'Hello , thank you for contacting c1m.ai'
     });
 
   const [loading, setLoading] = useState(false);
@@ -75,7 +75,7 @@ export default function ChatBotC1m() {
       params.get("chatbotResponseFontColor") || "#111827",
       messageBorderColor: params.get("messageBorderColor") || "#6B7280",
       submitBgColor: params.get("submitBgColor") || "#111827",
-      welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting FinanceForFounder!",
+      welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting c1m.ai",
     });
   }, []);
 
