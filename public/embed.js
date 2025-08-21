@@ -16,7 +16,7 @@ function createChatWidget(options) {
     inputPlaceHolderColor: options.inputPlaceHolderColor || "#ffffff",
     userMessageFontColor: options.userMessageFontColor || "#ffffff",
     chatbotResponseFontColor: options.chatbotResponseFontColor || "#ffffff",
-    loaderColor: options.loaderColor || '#9333EA',
+    loaderColor: options.loaderColor || "#9333EA",
     bgColor1: options.bgColor1 || "#1e1b4b",
     bubbleColor: options.bubbleColor || "#3730a3",
     botColor: options.botColor || "#6b21a8",
@@ -35,25 +35,32 @@ function createChatWidget(options) {
 
   iframe.style.position = "fixed";
   iframe.style.bottom = options.bottom || "24px";
- if (options.position === "center") {
+  if (options.position === "center") {
     iframe.style.left = "50%";
     iframe.style.transform = "translateX(-50%)";
   } else {
     iframe.style[options.position || "right"] = options.sidePadding || "20px";
   }
   iframe.style.width = options.width || "550px";
-  iframe.style.height = options.height || "550px";
+  iframe.style.height = window.innerHeight + "px"; // ✅ full screen height
   iframe.style.border = "none";
   iframe.style.borderRadius = "10px";
   iframe.style.zIndex = "9999";
-  iframe.style.background = 'transparent'; // important
+  iframe.style.background = "transparent"; // important
   iframe.style.backgroundColor = "transparent";
   iframe.style.overflow = "visible";
   iframe.setAttribute("allowtransparency", "true"); // legacy support for transparency
   iframe.setAttribute("id", "custom-chatbot");
 
   document.body.appendChild(iframe);
+  
+  // ✅ Update on resize (mobile / dynamic screens)
+    window.addEventListener("resize", () => {
+      iframe.style.height = window.innerHeight + "px";
+    });
 }
+
+
 
 window.Chatbot = {
   init: createChatWidget,
