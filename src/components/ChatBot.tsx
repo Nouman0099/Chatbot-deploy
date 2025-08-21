@@ -42,14 +42,14 @@ export default function ChatBot() {
 
   const messageRef = useRef<HTMLDivElement | null>(null);
 
-  const date = new Date().toLocaleTimeString([], {
-    month: "long", // Full month name
-    day: "numeric", // Day of the month
-    year: "numeric", // Full year
-    hour: "numeric", // Hour in 12-hour format
-    minute: "2-digit", // Minutes with leading zero if necessary
-    hour12: true, // 12-hour format with AM/PM
-  });
+  // const date = new Date().toLocaleTimeString([], {
+  //   month: "long", // Full month name
+  //   day: "numeric", // Day of the month
+  //   year: "numeric", // Full year
+  //   hour: "numeric", // Hour in 12-hour format
+  //   minute: "2-digit", // Minutes with leading zero if necessary
+  //   hour12: true, // 12-hour format with AM/PM
+  // });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
