@@ -30,7 +30,7 @@ export default function ChatBotC54() {
     //  bgColorPoweredByIcon: "",
     // messageBorderColor: "#6B7280",
     submitBgColor: "#ffffff",
-    // welcomeMessage: "Hello , thank you for contacting c1m.ai",
+    welcomeMessage: "COLLECTIVE 54",
   });
 
   const [loading, setLoading] = useState(false);
@@ -41,17 +41,6 @@ export default function ChatBotC54() {
   const [randomId, setRandomId] = useState("");
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
   const botMessageRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // const messageRef = useRef<HTMLDivElement | null>(null);
-
-  // const date = new Date().toLocaleTimeString([], {
-  //   month: "long", // Full month name
-  //   day: "numeric", // Day of the month
-  //   year: "numeric", // Full year
-  //   hour: "numeric", // Hour in 12-hour format
-  //   minute: "2-digit", // Minutes with leading zero if necessary
-  //   hour12: true, // 12-hour format with AM/PM
-  // });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -77,9 +66,9 @@ export default function ChatBotC54() {
         params.get("chatbotResponseFontColor") || "#111827",
       // messageBorderColor: params.get("messageBorderColor") || "#6B7280",
       submitBgColor: params.get("submitBgColor") || "#111827",
-      // welcomeMessage:
-      //   params.get("welcomeMessage") ||
-      //   "Hello , thank you for contacting c1m.ai",
+      welcomeMessage:
+        params.get("welcomeMessage") ||
+        "COLLECTIVE 54",
     });
   }, []);
 
@@ -217,7 +206,7 @@ export default function ChatBotC54() {
     // fontColorMessage,
     // bgColorPoweredByIcon,
     fontColorPoweredBy,
-    // welcomeMessage,
+    welcomeMessage,
   } = styleParams;
 
   return (

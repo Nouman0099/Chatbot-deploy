@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
-    <script>
-      window.addEventListener("DOMContentLoaded", function () {
-        const script = document.createElement("script");
-        script.src = "https://cai.c1m.ai/embed.js";
-        script.onload = function () {
-          if (window.Chatbot) {
-            window.Chatbot.init({
-              apiUrl: "https://cai.c1m.ai/Chat-C1M-C54",
-              position: "center",
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  const script = document.createElement("script");
+  script.src = "https://cai.c1m.ai/embed.js";
+  script.onload = function () {
+    if (window.Chatbot) {
+      window.Chatbot.init({
+        apiUrl: "https://cai.c1m.ai/Chat-C1M-C54",
+         position: "center",
+          welcomeMessage: 'COLLECTIVE 54',
               sidePadding: "30px",
               bottom: "0px",
               width: "700px",
@@ -31,14 +25,9 @@
               submitBgColor: "#ffffff", // submit button background color
               loaderColor: "#ffffff", // loader color
               fontColorPoweredBy: "#111827", // font color PoweredBy
-            });
-          }
-        };
-        document.head.appendChild(script);
       });
-    </script>
-  </head>
-  <body style="margin: 0; padding: 0">
-    <p>Hello World!</p>
-  </body>
-</html>
+    }
+  };
+  document.head.appendChild(script);
+});
+</script>

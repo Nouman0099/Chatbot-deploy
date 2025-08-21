@@ -35,7 +35,12 @@ function createChatWidget(options) {
 
   iframe.style.position = "fixed";
   iframe.style.bottom = options.bottom || "24px";
-  iframe.style[options.position || "right"] = options.sidePadding || "20px";
+ if (options.position === "center") {
+    iframe.style.left = "50%";
+    iframe.style.transform = "translateX(-50%)";
+  } else {
+    iframe.style[options.position || "right"] = options.sidePadding || "20px";
+  }
   iframe.style.width = options.width || "550px";
   iframe.style.height = options.height || "550px";
   iframe.style.border = "none";
