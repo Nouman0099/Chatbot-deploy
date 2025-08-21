@@ -4,8 +4,8 @@ export default function Loading1({ color = "#9333EA" }: { color?: string }) {
     <div className="flex justify-center">
       <ColorRing
         visible={true}
-        height="50"
-        width="50"
+        height="30"
+        width="30"
         ariaLabel="color-ring-loading"
         wrapperStyle={{}}
         wrapperClass="color-ring-wrapper"

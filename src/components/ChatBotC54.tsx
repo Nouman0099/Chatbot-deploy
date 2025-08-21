@@ -6,30 +6,31 @@ import Loading1 from "@/components/Loading1";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
+import { IoMdArrowUp } from "react-icons/io";
 
 export default function ChatBotC54() {
-const [styleParams, setStyleParams] = useState({
-     fontSize: "14px",
-     fontColor: "#111827",
-     bgColor: "#F9FAFB",
-     bubbleColor: "#E5E7EB",
-     botColor: "#E5E7EB",
-     inputBgColor: "#FFFFFF",
-     inputTextColor: "#111827",
-     inputPlaceHolderColor: "#9CA3AF",
-     userMessageFontColor: "",
-     chatbotResponseFontColor: "",
-     submitTextColor: "#111827",
-     inputBorderColor: "#D1D5DB",
-     loaderColor: "#111827",
-     fontColorDate: "#111827",
-     bgColorMessage: "#E5E7EB",
-     fontColorMessage: "#111827",
-     fontColorPoweredBy: "#111827",
+  const [styleParams, setStyleParams] = useState({
+    fontSize: "28px",
+    fontColor: "#111827",
+    // bgColor: "#FAFAFA",
+    bubbleColor: "#F7F7F8",
+    // botColor: "#E5E7EB",
+    inputBgColor: "#FFFFFF",
+    inputTextColor: "#111827",
+    inputPlaceHolderColor: "#9CA3AF",
+    userMessageFontColor: "",
+    chatbotResponseFontColor: "",
+    submitTextColor: "#111827",
+    inputBorderColor: "#D1D5DB",
+    loaderColor: "#FFFFFF",
+    // fontColorDate: "#111827",
+    // bgColorMessage: "#E5E7EB",
+    // fontColorMessage: "#111827",
+    fontColorPoweredBy: "#111827",
     //  bgColorPoweredByIcon: "",
-    messageBorderColor: "#6B7280",
+    // messageBorderColor: "#6B7280",
     submitBgColor: "#ffffff",
-    welcomeMessage: 'Hello , thank you for contacting FinanceForFounder!'
+    // welcomeMessage: "Hello , thank you for contacting c1m.ai",
   });
 
   const [loading, setLoading] = useState(false);
@@ -42,40 +43,42 @@ const [styleParams, setStyleParams] = useState({
 
   const messageRef = useRef<HTMLDivElement | null>(null);
 
-  const date = new Date().toLocaleTimeString([], {
-    month: "long", // Full month name
-    day: "numeric", // Day of the month
-    year: "numeric", // Full year
-    hour: "numeric", // Hour in 12-hour format
-    minute: "2-digit", // Minutes with leading zero if necessary
-    hour12: true, // 12-hour format with AM/PM
-  });
+  // const date = new Date().toLocaleTimeString([], {
+  //   month: "long", // Full month name
+  //   day: "numeric", // Day of the month
+  //   year: "numeric", // Full year
+  //   hour: "numeric", // Hour in 12-hour format
+  //   minute: "2-digit", // Minutes with leading zero if necessary
+  //   hour12: true, // 12-hour format with AM/PM
+  // });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStyleParams({
-   fontSize: params.get("fontSize") || "24px",
+      fontSize: params.get("fontSize") || "28px",
       fontColor: params.get("fontColor") || "#111827",
-      bgColor: params.get("bgColor") || "#F9FAFB",
-      bubbleColor: params.get("bubbleColor") || "#E5E7EB",
-      botColor: params.get("botColor") || "#E5E7EB",
+      // bgColor: params.get("bgColor") || "#FAFAFA",
+      bubbleColor: params.get("bubbleColor") || "#F7F7F8",
+      // botColor: params.get("botColor") || "#E5E7EB",
       inputBgColor: params.get("inputBgColor") || "#FFFFFF",
       inputTextColor: params.get("inputTextColor") || "#111827",
       submitTextColor: params.get("submitTextColor") || "#ffffff",
       inputBorderColor: params.get("inputBorderColor") || "#D1D5DB",
       inputPlaceHolderColor: params.get("inputPlaceHolderColor") || "#9CA3AF",
-      loaderColor: params.get("loaderColor") || "#111827",
+      loaderColor: params.get("loaderColor") || "#FFFFFF",
       userMessageFontColor: params.get("userMessageFontColor") || "#111827",
-      fontColorDate: params.get("fontColorDate") || "#111827",
-      bgColorMessage: params.get("bgColorMessage") || "#E5E7EB",
-      fontColorMessage: params.get("fontColorMessage") || "#111827",
+      // fontColorDate: params.get("fontColorDate") || "#111827",
+      // bgColorMessage: params.get("bgColorMessage") || "#E5E7EB",
+      // fontColorMessage: params.get("fontColorMessage") || "#111827",
       fontColorPoweredBy: params.get("fontColorPoweredBy") || "#111827",
       // bgColorPoweredByIcon: params.get("bgColorPoweredByIcon") || "#202123",
       chatbotResponseFontColor:
-      params.get("chatbotResponseFontColor") || "#111827",
-      messageBorderColor: params.get("messageBorderColor") || "#6B7280",
+        params.get("chatbotResponseFontColor") || "#111827",
+      // messageBorderColor: params.get("messageBorderColor") || "#6B7280",
       submitBgColor: params.get("submitBgColor") || "#111827",
-      welcomeMessage: params.get("welcomeMessage") || "Hello , thank you for contacting FinanceForFounder!",
+      // welcomeMessage:
+      //   params.get("welcomeMessage") ||
+      //   "Hello , thank you for contacting c1m.ai",
     });
   }, []);
 
@@ -186,208 +189,157 @@ const [styleParams, setStyleParams] = useState({
   const {
     fontSize,
     fontColor,
-    bgColor,
+    // bgColor,
     bubbleColor,
-    botColor,
+    // botColor,
     inputBgColor,
     inputTextColor,
     submitBgColor,
     submitTextColor,
-    messageBorderColor,
+    // messageBorderColor,
     inputBorderColor,
     inputPlaceHolderColor,
     loaderColor,
     chatbotResponseFontColor,
     userMessageFontColor,
-    fontColorDate,
-    bgColorMessage,
-    fontColorMessage,
+    // fontColorDate,
+    // bgColorMessage,
+    // fontColorMessage,
     // bgColorPoweredByIcon,
     fontColorPoweredBy,
-    welcomeMessage,
+    // welcomeMessage,
   } = styleParams;
 
   return (
-    <div className="max-w-screen-sm mx-auto pt-20">
-      <div
-        className={`pt-1 rounded-xl pb-10 ${
-          bgColor ? "" : "#343541"
-        }`}
-        style={bgColor ? { backgroundColor: bgColor } : {}}
-      >
-        <div className="flex justify-between items-center pr-10">
-          <p
-            className="font-extrabold text-2xl capitalize mx-auto pb-2"
-            style={{ color: fontColor, fontSize: fontSize }}
-          >
-            COLLECTIVE 54
-          </p>
-        </div>
-        <div
-          className="mt-2 border border-purple-400 rounded-xl max-w-xl h-[330px] overflow-y-auto mx-auto p-3 flex flex-col relative"
-          style={{ borderColor: messageBorderColor }}
+    <div
+      className={`${
+        hasUserSentMessage
+          ? "max-w-screen-md mx-auto pt-20"
+          : "flex justify-center items-center h-screen"
+      }`}
+    >
+      <div className="w-full">
+        {/* Title */}
+        <p
+          className="font-extrabold text-2xl capitalize text-center mb-4"
+          style={{ color: fontColor, fontSize: fontSize }}
         >
-          <ScrollArea className="h-[250px]">
-            <div className="px-2 pt-3 pb-5">
-              {/* <p
-                className="text-white text-sm text-center"
-                style={{ color: fontColor }}
-              >
-                Sync your conversation and continue messaging us through your
-                favorite app.
-              </p> */}
-              <p
-                className="text-center text-white text-sm pb-8"
-                style={{ color: fontColorDate }}
-              >
-                {date}
-              </p>
-              <div className="max-w-[50%]">
-                <p
-                  className="text-[12px] text-white"
-                  style={{ color: fontColor }}
-                >
-                  COLLECTIVE 54 Representative
-                </p>
-                <div
-                  className="rounded-2xl p-3"
-                  style={{
-                    backgroundColor: bgColorMessage,
-                    color: fontColorMessage,
-                  }}
-                >
-                  <p className="text-[13px]">
-                   {welcomeMessage}
-                  </p>
-                </div>
-              </div>
-            </div>
-            {messages.length === 0 && !hasUserSentMessage && (
-             <div className="flex items-center justify-center space-x-2 mb-5 mt-3">
-                             {/* <div
-                               className="h-[14px] w-6 rounded-t-full"
-                               style={{ backgroundColor: bgColorPoweredByIcon }}
-                             ></div> */}
-                            
-                             <a href="https://c1m.ai/" target="_blank">
-                               <Image
-                                 src={"/logo.png"}
-                                 alt="logo"
-                                 height={35}
-                                 width={60}
-                                 priority
-                                 className="h-[35px] w-[60px]"
-                               />
-                             </a>
-                              <p
-                               className=" text-white font-semibold text-lg"
-                               style={{ color: fontColorPoweredBy }}
-                             >
-                               Powered by C1M
-                             </p>
-                           </div>
-            )}
-            {messages.map((msg, index) => (
-              <div key={index} className="space-y-3 p-2">
-                <div className="flex justify-end">
-                  <div className="max-w-[60%]">
-                    <p
-                      className="rounded-xl px-3 py-[6px] text-sm mr-3"
-                      style={{
-                        backgroundColor: bubbleColor,
-                        // fontSize,
-                        color: userMessageFontColor,
-                      }}
-                    >
-                      {msg.user}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-start">
-                  <div className="max-w-[60%]">
-                    {msg.botRes && (
+          COLLECTIVE 54
+        </p>
+
+        {/* Chat container */}
+        <div
+          className={`rounded-xl mx-auto flex flex-col relative transition-all duration-300
+      ${
+        hasUserSentMessage
+          ? "h-[350px] max-w-3xl px-2"
+          : "h-auto max-w-screen-md"
+      }`}
+          // style={{ backgroundColor: bgColor }}
+        >
+          {hasUserSentMessage && (
+            <ScrollArea className="h-[270px]">
+              {messages.map((msg, index) => (
+                <div key={index} className="space-y-3 p-2">
+                  {/* user bubble */}
+                  <div className="flex justify-end">
+                    <div className="max-w-[60%]">
                       <p
-                        className="rounded-xl px-3 py-[6px] text-sm break-words overflow-hidden"
+                        className="rounded-xl px-3 text-[15px] py-[6px] mr-3 break-words"
                         style={{
-                          backgroundColor: botColor,
-                          // fontSize,
-                          color: chatbotResponseFontColor,
+                          backgroundColor: bubbleColor,
+                          color: userMessageFontColor,
                         }}
-                        dangerouslySetInnerHTML={{
-                          __html: formatMessage(msg.botRes),
-                        }}
-                      ></p>
-                    )}
+                      >
+                        {msg.user}
+                      </p>
+                    </div>
+                  </div>
+                  {/* bot bubble */}
+                  <div className="flex justify-start">
+                    <div>
+                      {msg.botRes && (
+                        <p
+                          className="rounded-xl pe-3 text-[15px] py-[6px] break-words"
+                          style={{ color: chatbotResponseFontColor }}
+                          dangerouslySetInnerHTML={{
+                            __html: formatMessage(msg.botRes),
+                          }}
+                        ></p>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div ref={messageRef}></div>
-              </div>
-            ))}
-            {/* Powered by after messages */}
-            {messages.length > 0 && (
-              <div className="flex items-center justify-center space-x-2 mb-5 mt-3">
-                              {/* <div
-                                className="h-[14px] w-6 rounded-t-full"
-                                style={{ backgroundColor: bgColorPoweredByIcon }}
-                              ></div> */}
-                             
-                              <a href="https://c1m.ai/" target="_blank">
-                                <Image
-                                  src={"/logo.png"}
-                                  alt="logo"
-                                  height={35}
-                                  width={60}
-                                  priority
-                                  className="h-[35px] w-[60px]"
-                                />
-                              </a>
-                               <p
-                                className=" text-white font-semibold text-lg"
-                                style={{ color: fontColorPoweredBy }}
-                              >
-                                Powered by C1M
-                              </p>
-                            </div>
-            )}
-          </ScrollArea>
-          <div className="flex items-center space-x-2 ml-1 w-[95%] absolute bottom-2">
-            <input
-              type="text"
+              ))}
+              <div ref={messageRef}></div>
+            </ScrollArea>
+          )}
+
+          {/* Input with arrow inside */}
+          <div className="w-full mx-auto mt-3 relative">
+            <textarea
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
                   handleMessage(e);
                 }
               }}
+              rows={1}
               disabled={loading}
-              placeholder="Ask anything"
-              className="rounded-lg px-3 py-2 w-full outline-none border placeholder:text-[var(--placeholder-color)]"
+              placeholder="Ask anything..."
+              className="rounded-full py-3 px-5 w-full outline-none border resize-none overflow-hidden shadow-lg placeholder:text-[var(--placeholder-color)]"
               style={
                 {
-                  "--placeholder-color": inputPlaceHolderColor, // dynamic
+                  "--placeholder-color": inputPlaceHolderColor,
                   backgroundColor: inputBgColor,
                   color: inputTextColor,
                   borderColor: inputBorderColor,
                 } as React.CSSProperties
               }
               required
+              onInput={(e) => {
+                const target = e.target as HTMLTextAreaElement;
+                target.style.height = "auto";
+                target.style.height = `${target.scrollHeight}px`;
+              }}
             />
-            {loading ? (
-              <Loading1 color={loaderColor} />
-            ) : (
-              <button
-                onClick={handleMessage}
-                className="rounded-lg px-3 py-2 font-semibold w-24 text-white cursor-pointer"
-                style={{
-                  backgroundColor: submitBgColor,
-                  color: submitTextColor,
-                }}
-              >
-                Send
-              </button>
-            )}
+            <button
+              onClick={handleMessage}
+              disabled={loading}
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 cursor-pointer"
+              style={{
+                backgroundColor: submitBgColor,
+                color: submitTextColor,
+              }}
+            >
+              {loading ? (
+                <Loading1 color={loaderColor} />
+              ) : (
+                <IoMdArrowUp size={24} />
+              )}
+            </button>
           </div>
+        </div>
+
+        {/* Powered by */}
+        <div className="flex items-center justify-center space-x-2 mt-2">
+          <a href="https://c1m.ai/" target="_blank">
+            <Image
+              src={"/logo.png"}
+              alt="logo"
+              height={35}
+              width={60}
+              priority
+            />
+          </a>
+          <p
+            className="font-semibold text-lg"
+            style={{ color: fontColorPoweredBy }}
+          >
+            Powered by C1M
+          </p>
         </div>
       </div>
     </div>

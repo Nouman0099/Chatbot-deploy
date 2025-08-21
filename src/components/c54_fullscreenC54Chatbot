@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
         bottom: "0px",
         width: "700px",
         height: "600px",
-       fontSize: "24px",
+       fontSize: "28px",
         welcomeMessage: 'Hello, thank you for contacting. How can I help you?'
               fontColor: "#ffffff",
               bgColor: "#343541", // Gradient here
