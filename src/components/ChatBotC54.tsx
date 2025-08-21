@@ -155,36 +155,58 @@ export default function ChatBotC54() {
     }
   };
 
-  const formatMessage = (message: string) => {
-    return (
-      message
-        .replace(/</g, "&lt;") // prevent XSS
-        .replace(/>/g, "&gt;")
+  // const formatMessage = (message: string) => {
+  //   return (
+  //     message
+  //       .replace(/</g, "&lt;") // prevent XSS
+  //       .replace(/>/g, "&gt;")
 
-        // Paragraphs: double line breaks become new <p> blocks
-        .replace(/\n{2,}/g, "</p><p>")
+  //       // Paragraphs: double line breaks become new <p> blocks
+  //       .replace(/\n{2,}/g, "</p><p>")
 
-        // Line breaks: single \n becomes <br/>
-        .replace(/\n/g, "<br/>")
+  //       // Line breaks: single \n becomes <br/>
+  //       .replace(/\n/g, "<br/>")
 
-        // Start and end with <p> to wrap the message
-        .replace(/^/, "<p>")
-        .replace(/$/, "</p>")
+  //       // Start and end with <p> to wrap the message
+  //       .replace(/^/, "<p>")
+  //       .replace(/$/, "</p>")
 
-        // Make bullet point titles bold if surrounded by **
-        .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
+  //       // Make bullet point titles bold if surrounded by **
+  //       .replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:")
 
-        // Handle any other **text**
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  //       // Handle any other **text**
+  //       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
 
-        // Convert URLs to anchor links
-        .replace(
-          /(https?:\/\/[^\s]+)/g,
-          '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
-        )
+  //       // Convert URLs to anchor links
+  //       .replace(
+  //         /(https?:\/\/[^\s]+)/g,
+  //         '<a href="$1" target="_blank" class="text-blue-400 underline block">$1</a>'
+  //       )
+  //   );
+  // };
+
+   const formatMessage = (message: string) => {
+    // Sanitize input to prevent XSS
+    let safe = message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    // Bold formatting
+    safe = safe.replace(/\*\*(.*?)\*\*:/g, "<strong>$1</strong>:");
+    safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    // Convert URLs to anchor tags (no console now)
+    safe = safe.replace(
+      /(https?:\/\/[^\s]+)/g,
+      `<a href="$1" target="_blank" class="text-blue-400 underline block" onclick="event.stopPropagation();">$1</a>`
     );
-  };
 
+    // Split into paragraphs using two or more newlines
+    const paragraphs = safe
+      .split(/\n{2,}/)
+      .map((para) => `<p>${para.replace(/\n/g, "<br/>")}</p>`)
+      .join("");
+
+    return paragraphs;
+  };
   const {
     fontSize,
     fontColor,

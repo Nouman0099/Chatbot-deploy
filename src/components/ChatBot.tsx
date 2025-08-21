@@ -518,7 +518,7 @@ return (
               className="font-extrabold text-2xl capitalize mx-auto pb-2"
               style={{ color: fontColor, fontSize: fontSize }}
             >
-              C1M Presales
+             Finance For Founders
             </p>
           </div>
           <div
