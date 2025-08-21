@@ -223,7 +223,7 @@ export default function ChatBotC54() {
           className="font-extrabold text-2xl capitalize text-center mb-4"
           style={{ color: fontColor, fontSize: fontSize }}
         >
-          COLLECTIVE 54
+          {welcomeMessage}
         </p>
 
         {/* Chat container */}
